@@ -30,8 +30,6 @@ public class Application extends Controller {
     }
 
     public static Result index() {
-        List<User> users = User.find.all();
-        Logger.info(""+users.get(0).email);
         return ok(index.render("Your new application is ready."));
     }
 
