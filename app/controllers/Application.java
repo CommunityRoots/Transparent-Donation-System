@@ -35,6 +35,11 @@ public class Application extends Controller {
         return ok(index.render("Your new application is ready."));
     }
 
+    @Security.Authenticated(Secured.class)
+    public static Result profile() {
+        return ok(profile.render());
+    }
+
     public static Result login(){
         return ok(login.render(form(Login.class)));
     }
@@ -47,7 +52,7 @@ public class Application extends Controller {
             session().clear();
             session("email", loginForm.get().email);
             return redirect(
-                    routes.Application.index()
+                    routes.Application.profile()
             );
         }
     }
