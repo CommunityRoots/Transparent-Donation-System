@@ -1,0 +1,8 @@
+nguage: scala
+scala:
+ - 2.11.1
+script:
+ - &quot;cd $TRAVIS_BUILD_DIR&quot;
+ - &quot;sbt ++$TRAVIS_SCALA_VERSION test&quot;
+notifications:
+email: false
