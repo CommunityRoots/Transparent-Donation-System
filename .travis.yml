@@ -1,8 +1,9 @@
 language: scala
-scala:
- - 2.11.1
 script:
- - &quot;cd $TRAVIS_BUILD_DIR&quot;
- - &quot;sbt ++$TRAVIS_SCALA_VERSION test&quot;
+ - "cd $TRAVIS_BUILD_DIR"
+ - "sbt ++$TRAVIS_SCALA_VERSION test"
 notifications:
-email: false
+  # Email notifications are disabled to not annoy anybody.
+  # See http://about.travis-ci.org/docs/user/build-configuration/ to learn more
+  # about configuring notification recipients and more.
+  email: false
