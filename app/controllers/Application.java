@@ -30,12 +30,16 @@ public class Application extends Controller {
     }
 
     public static Result index() {
-        return ok(index.render("Your new application is ready."));
+        return ok(index.render());
     }
 
     @Security.Authenticated(Secured.class)
     public static Result profile() {
         return ok(profile.render());
+    }
+
+    public static Result needs() {
+        return ok(needs.render());
     }
 
     public static Result login(){
