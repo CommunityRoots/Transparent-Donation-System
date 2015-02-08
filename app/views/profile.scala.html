@@ -1,3 +1,4 @@
+@(user: User)
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -6,5 +7,11 @@
 </head>
 <body>
 <h1>profile page</h1>
+<dl id="user">
+    <dt>@user.name <span>(@user.email)</span></dt>
+    <dd>
+        <a href="@routes.Application.logout()">Logout</a>
+    </dd>
+</dl>
 </body>
 </html>

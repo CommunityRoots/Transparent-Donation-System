@@ -35,7 +35,7 @@ public class Application extends Controller {
 
     @Security.Authenticated(Secured.class)
     public static Result profile() {
-        return ok(profile.render());
+        return ok(profile.render(User.find.byId(request().username())));
     }
 
     public static Result login(){

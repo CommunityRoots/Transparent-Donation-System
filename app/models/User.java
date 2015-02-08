@@ -14,10 +14,9 @@ public class User extends Model {
         this.password = password;
     }
     //play framework changes these to private and adds getters + setters on run
-    @Id
     public Long id;
 
-    @Constraints.Email
+    @Id
     public String email;
 
     @Constraints.Required
@@ -26,7 +25,7 @@ public class User extends Model {
     @Constraints.Required
     public String password;
 
-    public static Finder<Long, User> find = new Finder<Long,User>(Long.class, User.class);
+    public static Finder<String, User> find = new Finder<String,User>(String.class, User.class);
 
     public static User authenticate(String email, String password) {
         return find.where().eq("email", email)
