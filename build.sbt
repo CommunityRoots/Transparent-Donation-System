@@ -11,8 +11,10 @@ libraryDependencies ++= Seq(
   javaEbean,
   cache,
   javaWs,
+  filters,
   "mysql" % "mysql-connector-java" % "5.1.18",
   "org.mindrot"  % "jbcrypt"   % "0.3m",
   "javax.mail" % "javax.mail-api" % "1.5.2",
-  "com.typesafe.play" %% "play-mailer" % "2.4.0"
+  "com.typesafe.play" %% "play-mailer" % "2.4.0",
+  "com.sun.mail" % "javax.mail" % "1.5.2"
 )

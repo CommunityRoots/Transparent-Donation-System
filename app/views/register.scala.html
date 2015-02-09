@@ -1,3 +1,4 @@
+@import helper._
 @(form: Form[Registration.RegisterForm])
 <html>
 <head>
@@ -9,8 +10,8 @@
 <header>
     <a href="@routes.Application.index" id="logo">community roots</a>
 </header>
-@helper.form(routes.Registration.authenticate) {
-<h1>Sign in</h1>
+@helper.form(CSRF(routes.Registration.authenticate)) {
+<h1>Register</h1>
 
 @if(form.hasGlobalErrors) {
 <p class="error">
