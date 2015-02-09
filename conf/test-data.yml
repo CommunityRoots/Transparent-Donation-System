@@ -1,4 +1,4 @@
 - !!models.User
     email:      bob@gmail.com
     name:       Bob
-    password:   secret
+    password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C

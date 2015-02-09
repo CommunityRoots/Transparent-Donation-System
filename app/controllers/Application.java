@@ -1,15 +1,14 @@
 package controllers;
 
 import models.User;
-import play.*;
-import play.api.libs.ws.ssl.SystemConfiguration;
 import play.data.Form;
-import play.mvc.*;
-import play.Logger;
-
-import views.html.*;
-
-import java.util.List;
+import play.mvc.Controller;
+import play.mvc.Result;
+import play.mvc.Security;
+import views.html.index;
+import views.html.login;
+import views.html.needs;
+import views.html.profile;
 
 import static play.data.Form.form;
 

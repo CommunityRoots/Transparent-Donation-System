@@ -1,0 +1,44 @@
+@(form: Form[Registration.RegisterForm])
+<html>
+<head>
+    <title>Register</title>
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+    <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/login.css")">
+</head>
+<body>
+<header>
+    <a href="@routes.Application.index" id="logo">community roots</a>
+</header>
+@helper.form(routes.Registration.authenticate) {
+<h1>Sign in</h1>
+
+@if(form.hasGlobalErrors) {
+<p class="error">
+    @form.globalError.message
+</p>
+}
+
+@if(flash.contains("success")) {
+<p class="success">
+    @flash.get("success")
+</p>
+}
+<p>
+    <input type="text" name="firstName" placeholder="First name" value="@form("firstName").value">
+</p>
+<p>
+    <input type="text" name="lastName" placeholder="Surname" value="@form("lastName").value">
+</p>
+<p>
+    <input type="email" name="email" placeholder="Email" value="@form("email").value">
+</p>
+<p>
+    <input type="password" name="password" placeholder="Password">
+</p>
+<p>
+    <button type="submit">Register</button>
+</p>
+}
+
+</body>
+</html>

@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.21)
 # Database: communityRoots
-# Generation Time: 2015-02-05 20:06:09 +0000
+# Generation Time: 2015-02-09 16:56:12 +0000
 # ************************************************************
 
 
@@ -47,7 +47,7 @@ CREATE TABLE `User` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
+  `password` binary(60) DEFAULT NULL,
   `organisation` varchar(255) DEFAULT '',
   `level` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -58,8 +58,8 @@ LOCK TABLES `User` WRITE;
 
 INSERT INTO `User` (`id`, `name`, `email`, `password`, `organisation`, `level`)
 VALUES
-	(1,'Ciaran','ciaranoconnor23@gmail.com','hello','',NULL);
-
+	(12,'bob','bob@gmail.com',X'243261243132246C593777524E3339354963684F63425966336B70462E797A3464696C3545514A376C762F643159356A3171636D7939474141585147','',NULL);
+/*bob password is secret*/
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
 

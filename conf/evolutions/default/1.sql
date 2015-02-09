@@ -4,7 +4,7 @@
 # --- !Ups
 
 create table need (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   donated_amount            integer,
   ask_amount                integer,
   added_by                  bigint,
@@ -19,24 +19,16 @@ create table user (
   constraint pk_user primary key (email))
 ;
 
-create sequence need_seq;
-
-create sequence user_seq;
-
 
 
 
 # --- !Downs
 
-SET REFERENTIAL_INTEGRITY FALSE;
+SET FOREIGN_KEY_CHECKS=0;
 
-drop table if exists need;
+drop table need;
 
-drop table if exists user;
+drop table user;
 
-SET REFERENTIAL_INTEGRITY TRUE;
-
-drop sequence if exists need_seq;
-
-drop sequence if exists user_seq;
+SET FOREIGN_KEY_CHECKS=1;
 
