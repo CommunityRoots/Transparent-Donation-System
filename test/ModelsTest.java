@@ -26,4 +26,11 @@ public class ModelsTest extends WithApplication {
         assertNull(User.authenticate("bob@gmail.com", "badpassword"));
         assertNull(User.authenticate("tom@gmail.com", "secret"));
     }
+
+    @Test
+    public void createAndRetrieveUser() {
+        User bob = User.find.where().eq("email", "bob@gmail.com").findUnique();
+        assertNotNull(bob);
+        assertEquals("Bob", bob.name);
+    }
 }

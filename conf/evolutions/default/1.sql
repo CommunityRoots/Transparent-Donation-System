@@ -3,6 +3,14 @@
 
 # --- !Ups
 
+create table need (
+  id                        bigint auto_increment not null,
+  donated_amount            integer,
+  ask_amount                integer,
+  added_by                  bigint,
+  constraint pk_need primary key (id))
+;
+
 create table user (
   email                     varchar(255) not null,
   id                        bigint,
@@ -17,6 +25,8 @@ create table user (
 # --- !Downs
 
 SET FOREIGN_KEY_CHECKS=0;
+
+drop table need;
 
 drop table user;
 
