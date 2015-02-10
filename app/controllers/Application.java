@@ -25,7 +25,16 @@ public class Application extends Controller {
             }
             return null;
         }
+    }
+    public static class ForgotPass {
+        public String email;
 
+        public String isValidEmail() {
+            if(User.find.byId(email)==null){
+                return "Now account registered with that email";
+            }
+            return null;
+        }
     }
 
     public static Result index() {

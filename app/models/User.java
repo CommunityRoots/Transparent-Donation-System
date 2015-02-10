@@ -18,11 +18,14 @@ public class User extends Model {
     public Long id;
 
     @Id
+    @Constraints.Required
     public String email;
 
     @Constraints.Required
     public String name;
 
+    @Constraints.MinLength(6)
+    @Constraints.MaxLength(20)
     @Constraints.Required
     public String password;
 

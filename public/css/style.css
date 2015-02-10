@@ -447,7 +447,25 @@ section.featured.inner {
 	background: #eee;
 	padding: 150px 0 50px;
 }
-  
+
+section.loginPage {
+    padding: 200px 0 60px;
+    height: 100%;
+    background: #70B9B0;
+    color: #fdfdfd;
+}
+
+section.loginPage h2.slogan {
+    color: #fff;
+    font-size: 48px;
+    font-weight: 900;
+}
+
+/* inner heading */
+section.loginPage.inner {
+    background: #eee;
+    padding: 150px 0 50px;
+}
   
 /* --- Flexslider --- */
 .flexslider {

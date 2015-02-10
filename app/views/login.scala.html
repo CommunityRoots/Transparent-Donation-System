@@ -1,40 +1,90 @@
 @import helper._
 @(form: Form[Application.Login])
-<html>
+
+
 <head>
-    <title>Login</title>
-    <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-    <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/login.css")">
+    <!-- BASICS -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Community Roots</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="@routes.Assets.at("css/bootstrap.css")">
+    <link rel="stylesheet" href="@routes.Assets.at("css/bootstrap-theme.css")">
+    <link rel="stylesheet" href="@routes.Assets.at("css/style.css")">
+    <!-- skin -->
+    <link rel="stylesheet" href="@routes.Assets.at("skin/default.css")">
 </head>
-<body>
-<header>
-    <a href="@routes.Application.index" id="logo"></a>
-</header>
-@helper.form(CSRF(routes.Application.authenticate)) {
-    <h1>Sign in</h1>
 
-    @if(form.hasGlobalErrors) {
-        <p class="error">
-            @form.globalError.message
-        </p>
-    }
 
-    @if(flash.contains("success")) {
-    <p class="success">
-        @flash.get("success")
-    </p>
-    }
+<section id="header" class="appear"></section>
+<div class="navbar navbar-fixed-top" role="navigation" data-0="line-height:100px; height:100px; background-color:rgba(0,0,0,0.3);" data-300="line-height:60px; height:60px; background-color:rgba(0,0,0,1);">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="fa fa-bars color-white"></span>
+            </button>
+            <h1><a class="navbar-brand" href="index.html" data-0="line-height:90px;" data-300="line-height:50px;">			Community Roots
+            </a></h1>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
+                <li class="active"><a href="@routes.Application.index()">Home</a></li>
+                <li><a href="@routes.Application.needs()">Needs</a></li>
+                <li><a href="">About us</a></li>
+                <li><a href="@routes.Registration.register()">Register</a></li>
+                <li><a href="@routes.Application.login()">Login</a></li>
 
-    <p>
-        <input type="email" name="email" placeholder="Email" value="@form("email").value">
-    </p>
-    <p>
-        <input type="password" name="password" placeholder="Password">
-    </p>
-    <p>
-        <button type="submit">Login</button>
-    </p>
-}
+            </ul>
+        </div><!--/.navbar-collapse -->
+    </div>
+</div>
+<section class="loginPage">
+    <div class="container">
+        <div class="row mar-bot40">
+            <div class="col-md-6 col-md-offset-3">
+
+                <div class="well">
+                    <div class="align-center">
+                        @helper.form(CSRF(routes.Application.authenticate)) {
+                        <h4 class="text-bold">Login</h4>
+
+                        @if(form.hasGlobalErrors) {
+                        <p class="error">
+                            @form.globalError.message
+                        </p>
+                        }
+
+                        @if(flash.contains("success")) {
+                        <p class="success">
+                            @flash.get("success")
+                        </p>
+                        }
+
+                        <p>
+                            <input type="email" name="email" placeholder="Email" value="@form("email").value">
+                        </p>
+                        <p>
+                            <input type="password" name="password" placeholder="Password">
+                        </p>
+                        <p>
+                            <button type="submit">Login</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="@routes.Assets.at("js/jquery.easing.1.3.js")"></script>
+<script src="@routes.Assets.at("js/bootstrap.min.js")"></script>
+<script src="@routes.Assets.at("js/jquery.appear.js")"></script>
+<script src="@routes.Assets.at("js/validate.js")"></script>
+<script src="@routes.Assets.at("js/main.js")"></script>
 
 </body>
 </html>
+
+}
