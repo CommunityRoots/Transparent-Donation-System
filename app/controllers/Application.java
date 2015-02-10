@@ -1,6 +1,7 @@
 package controllers;
 
 import models.User;
+import models.Need;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -47,7 +48,7 @@ public class Application extends Controller {
     }
 
     public static Result needs() {
-        return ok(needs.render());
+        return ok(needs.render(Need.find.all()));
     }
 
     public static Result login(){

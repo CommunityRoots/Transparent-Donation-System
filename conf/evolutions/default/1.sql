@@ -4,10 +4,11 @@
 # --- !Ups
 
 create table need (
-  id                        bigint auto_increment not null,
+  id                        integer auto_increment not null,
+  title                     varchar(255),
   donated_amount            integer,
   ask_amount                integer,
-  added_by                  bigint,
+  added_by                  integer,
   constraint pk_need primary key (id))
 ;
 
