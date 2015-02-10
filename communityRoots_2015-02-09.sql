@@ -36,7 +36,11 @@ CREATE TABLE `need` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+LOCK TABLES `need` WRITE;
+/*!40000 ALTER TABLE `need` DISABLE KEYS */;
+INSERT INTO `need` VALUES (1,'phone',1,1,'phone',1,10),(2,'fridge',2,1,'fridge',2,10),(3,'food',3,2,'food',2,10);
+/*!40000 ALTER TABLE `need` ENABLE KEYS */;
+UNLOCK TABLES;
 
 # Dump of table User
 # ------------------------------------------------------------
