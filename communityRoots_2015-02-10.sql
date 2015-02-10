@@ -5,9 +5,9 @@
 # http://www.sequelpro.com/
 # http://code.google.com/p/sequel-pro/
 #
-# Host: 127.0.0.1 (MySQL 5.6.21)
+# Host: 127.0.01 (MySQL 5.6.21)
 # Database: communityRoots
-# Generation Time: 2015-02-09 16:56:12 +0000
+# Generation Time: 2015-02-10 23:56:31 +0000
 # ************************************************************
 
 
@@ -26,45 +26,49 @@
 DROP TABLE IF EXISTS `need`;
 
 CREATE TABLE `need` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `description` varchar(255) DEFAULT NULL,
-  `priority` int(11) DEFAULT NULL,
-  `addedBy` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
-  `donatedAmount` double DEFAULT NULL,
-  `askAmount` double DEFAULT NULL,
+  `donated_amount` int(11) DEFAULT NULL,
+  `ask_amount` int(11) DEFAULT NULL,
+  `added_by` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `need` WRITE;
 /*!40000 ALTER TABLE `need` DISABLE KEYS */;
-INSERT INTO `need` VALUES (1,'phone',1,1,'phone',1,10),(2,'fridge',2,1,'fridge',2,10),(3,'food',3,2,'food',2,10);
+
+INSERT INTO `need` (`id`, `title`, `donated_amount`, `ask_amount`, `added_by`, `description`)
+VALUES
+	(1,'sex',30,50,'bob@gmail.com','Birra moist sex'),
+	(2,'Hair dye',10,20,'bob@gmail.com','My hairs ginger need a bitta dye');
+
 /*!40000 ALTER TABLE `need` ENABLE KEYS */;
 UNLOCK TABLES;
 
-# Dump of table User
+
+# Dump of table user
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `User`;
+DROP TABLE IF EXISTS `user`;
 
-CREATE TABLE `User` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `password` binary(60) DEFAULT NULL,
-  `organisation` varchar(255) DEFAULT '',
-  `level` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE `user` (
+  `email` varchar(255) NOT NULL,
+  `id` bigint(20) DEFAULT NULL,
+  `firstName` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `lastName` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-LOCK TABLES `User` WRITE;
-/*!40000 ALTER TABLE `User` DISABLE KEYS */;
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
 
-INSERT INTO `User` (`id`, `name`, `email`, `password`, `organisation`, `level`)
+INSERT INTO `user` (`email`, `id`, `firstName`, `password`, `lastName`)
 VALUES
-	(12,'bob','bob@gmail.com',X'243261243132246C593777524E3339354963684F63425966336B70462E797A3464696C3545514A376C762F643159356A3171636D7939474141585147','',NULL);
-/*bob password is secret*/
-/*!40000 ALTER TABLE `User` ENABLE KEYS */;
+	('bob@gmail.com',1,'Bob','$2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C',NULL);
+
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
 

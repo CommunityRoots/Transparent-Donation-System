@@ -8,7 +8,8 @@ create table need (
   title                     varchar(255),
   donated_amount            integer,
   ask_amount                integer,
-  added_by                  integer,
+  added_by                  varchar(255),
+  description               varchar(255),
   constraint pk_need primary key (id))
 ;
 

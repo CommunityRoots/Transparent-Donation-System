@@ -6,10 +6,7 @@ import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
-import views.html.index;
-import views.html.login;
-import views.html.needs;
-import views.html.profile;
+import views.html.*;
 
 import static play.data.Form.form;
 
@@ -38,13 +35,16 @@ public class Application extends Controller {
         }
     }
 
+
     public static Result index() {
         return ok(index.render());
     }
 
     @Security.Authenticated(Secured.class)
     public static Result profile() {
-        return ok(profile.render(User.find.byId(request().username())));
+        return ok(profile.render(User.find.byId(request().username()),
+                Need.findByEmail(session().get("email"))
+        ));
     }
 
     public static Result needs() {
@@ -54,6 +54,8 @@ public class Application extends Controller {
     public static Result login(){
         return ok(login.render(form(Login.class)));
     }
+
+    public static Result forgot() { return ok(forgot.render(form(ForgotPass.class)));}
 
     public static Result authenticate() {
         Form<Login> loginForm = form(Login.class).bindFromRequest();

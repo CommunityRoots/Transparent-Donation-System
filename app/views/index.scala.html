@@ -7,7 +7,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="fa fa-bars color-white"></span>
                 </button>
-                <h1><a class="navbar-brand" href="index.html" data-0="line-height:90px;" data-300="line-height:50px;">			Community Roots
+                <h1><a class="navbar-brand" href="@routes.Application.index()" data-0="line-height:90px;" data-300="line-height:50px;">			Community Roots
                 </a></h1>
             </div>
             <div class="navbar-collapse collapse">
@@ -15,8 +15,13 @@
                     <li class="active"><a href="@routes.Application.index()">Home</a></li>
                     <li><a href="@routes.Application.needs()">Needs</a></li>
                     <li><a href="">About us</a></li>
-                    <li><a href="@routes.Registration.register()">Register</a></li>
-                    <li><a href="@routes.Application.login()">Login</a></li>
+                    @if(session().isEmpty()) {
+                        <li><a href="@routes.Registration.register()">Register</a></li>
+                        <li><a href="@routes.Application.login()">Login</a></li>
+                    } else {
+                        <li><a href="@routes.Application.profile()">Profile</a></li>
+                        <li><a href="@routes.Application.logout()">Logout</a></li>
+                    }
 
                 </ul>
             </div><!--/.navbar-collapse -->
@@ -160,11 +165,14 @@
 
         </div>
     </section>
-    <section id="parallax2" class="section parallax" data-stellar-background-ratio="0.5">
+   <!-- probably get rid of this -->
+   <!-- <section id="parallax2" class="section parallax" data-stellar-background-ratio="0.5">
 
-    </section>
+    </section> -->
 
     <!-- contact -->
+    <!-- move to about -->
+    <!--
     <section id="section-contact" class="section appear clearfix">
         <div class="container">
 
@@ -208,7 +216,7 @@
                         </form>
 
                     </div>
-                </div>
+                </div> -->
                 <!-- ./span12 -->
             </div>
 

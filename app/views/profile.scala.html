@@ -1,4 +1,4 @@
-@(user: User)
+@(user: User, needs: List[Need])
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -13,6 +13,21 @@
         <a href="@routes.Application.logout()">Logout</a>
     </dd>
 </dl>
+<h2>Needs @user.name has donated to</h2>
+@if(needs.isEmpty) {
+    <p>You have not donated to any needs yet. You can view them <a href="@routes.Application.needs()">here</a></p>
+} else {
+    <ul>
+    @for(need <- needs) {
+        <li> Title: @need.title</li>
+        <li> Ask Amount @need.askAmount</li>
+        <li> Donated Amount: @need.donatedAmount</li>
+        <li> Percent donated: @need.progressPercentage()%</li>
+        <li> Description: @need.description</li>
+        <br />
+    }
+    </ul>
+}
 
 <a href="@routes.Application.needs" id="logo">needs page</a>
 </body>
