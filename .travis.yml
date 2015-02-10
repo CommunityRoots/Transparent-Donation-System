@@ -2,7 +2,7 @@ language: scala
 services: mysql
 before_script:
   - mysql -e 'create database communityRoots;'
-  - mysql -e 'create table communityRoots.User (id int(11), name varchar(255), email varchar(255), password varchar(255)) ;'
+  - mysql -e 'create table communityRoots.User (id int(11), name varchar(255), email varchar(255), password binary(60)) ;'
 script:
  - "cd $TRAVIS_BUILD_DIR"
  - "sbt ++$TRAVIS_SCALA_VERSION test"

@@ -15,6 +15,9 @@
                     <li class="active"><a href="@routes.Application.index()">Home</a></li>
                     <li><a href="@routes.Application.needs()">Needs</a></li>
                     <li><a href="">About us</a></li>
+                    <li><a href="@routes.Registration.register()">Register</a></li>
+                    <li><a href="@routes.Application.login()">Login</a></li>
+
                 </ul>
             </div><!--/.navbar-collapse -->
         </div>
@@ -26,12 +29,13 @@
                 <div class="col-md-6 col-md-offset-3">
 
                     <div class="align-center">
-                        <i class="fa fa-flask fa-5x mar-bot20"></i>
-                        <h2 class="slogan">Welcome to Amoeba</h2>
+                        <img src="@routes.Assets.at("img/WhiteTree.png")" width="130" height="130" alt="CommunityRoots Logo" />
+                        <h2 class="slogan">Welcome to Community Roots</h2>
                         <p>
-                            Lorem ipsum dolor sit amet, natum bonorum expetendis usu ut.
-                            Eum impetus offendit disputationi eu, at vim aliquip lucilius praesent.
-                            Alia laudem antiopam te ius, sed ad munere integre, ubique facete sapientem nam ut.
+                            Community Roots is a way for charities to post needs of real community members.
+                            You can then donate towards this need. When the full amount has been raised the money will
+                            be released to the charity. This means you know where your money is going.
+                            Your money will be used exactly how you want to help the needs of real people.
 
                         </p>
                     </div>
@@ -47,30 +51,30 @@
             <div class="row mar-bot40">
                 <div class="col-lg-4" >
                     <div class="align-center">
-                        <i class="fa fa-code fa-5x mar-bot20"></i>
-                        <h4 class="text-bold">Valid HTML5</h4>
-                        <p>Lorem ipsum dolor sit amet, mutat graeco volumus ad eam, singulis patrioque comprehensam nam no.
-                            Mei cu dicat voluptaria volumus.
+                        <i class="fa fa-square-o fa-5x mar-bot20"></i>
+                        <h4 class="text-bold">Transparent</h4>
+                        <p>You can see exactly what your money has been used for. We try to keep you updated at every step.
+                            The code that controls this system is also online and can be viewed
+                            <a href="https://github.com/CommunityRoots/Transparent-Donation-System">here</a>.
                         </p>
                     </div>
                 </div>
 
                 <div class="col-lg-4" >
                     <div class="align-center">
-                        <i class="fa fa-terminal fa-5x mar-bot20"></i>
-                        <h4 class="text-bold">Responsive</h4>
-                        <p>Lorem ipsum dolor sit amet, mutat graeco volumus ad eam, singulis patrioque comprehensam nam no.
-                            Mei cu dicat voluptaria volumus.
+                        <i class="fa fa-dollar fa-5x mar-bot20"></i>
+                        <h4 class="text-bold">Your money</h4>
+                        <p>You are in control of your money. You decide what your money goes towards. Your money will go to a real need,
+                            that can help the life of a real person.
                         </p>
                     </div>
                 </div>
 
                 <div class="col-lg-4" >
                     <div class="align-center">
-                        <i class="fa fa-bolt fa-5x mar-bot20"></i>
-                        <h4 class="text-bold">Customizable</h4>
-                        <p>Lorem ipsum dolor sit amet, mutat graeco volumus ad eam, singulis patrioque comprehensam nam no.
-                            Mei cu dicat voluptaria volumus.
+                        <i class="fa fa-heart-o fa-5x mar-bot20"></i>
+                        <h4 class="text-bold">We Care</h4>
+                        <p>Community Roots was built with one purpose, to help people. This is what we aim to do.
                         </p>
                     </div>
                 </div>
@@ -87,11 +91,7 @@
                 <div class="col-lg-12">
                     <div class="align-center">
                         <div class="testimonial pad-top40 pad-bot40 clearfix">
-                            <h5>
-                                Nunc velit risus, dapibus non interdum quis, suscipit nec dolor. Vivamus tempor tempus mauris vitae fermentum. In vitae nulla lacus. Sed sagittis tortor vel arcu sollicitudin nec tincidunt metus suscipit.Nunc velit risus, dapibus non interdum.
-                            </h5>
-                            <br/>
-                            <span class="author">&mdash; MIKE DOE <a href="#">www.siteurl.com</a></span>
+
                         </div>
 
                     </div>
@@ -109,8 +109,9 @@
             <div class="row mar-bot40">
                 <div class="col-md-offset-3 col-md-6">
                     <div class="section-header">
-                        <h2 class="section-heading animated" data-animation="bounceInUp">Our Team</h2>
-                        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet consectetur, adipisci velit, sed quia non numquam.</p>
+                        <h2 class="section-heading animated" data-animation="bounceInUp">Our Partners</h2>
+                        <p>Charities visit the homes of people with needs. They verify there is an actual need. This is how
+                        needs get onto our website. Without charities this system wouldnt function</p>
                     </div>
                 </div>
             </div>
@@ -118,40 +119,14 @@
             <div class="row align-center mar-bot40">
                 <div class="col-md-3">
                     <div class="team-member">
-                        <figure class="member-photo"><img src="img/team/member1.jpg" alt="" /></figure>
+                        <figure class="member-photo"><img src="@routes.Assets.at("img/svp-logo.png")" width="120" alt="" /></figure>
                         <div class="team-detail">
-                            <h4>Jason Doe</h4>
-                            <span>User experiences</span>
+                            <h4>St. Vincent de Paul</h4>
+                            <span><a href="http://www.svp.ie/">www.svp.ie</a> </span>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="team-member">
-                        <figure class="member-photo"><img src="img/team/member2.jpg" alt="" /></figure>
-                        <div class="team-detail">
-                            <h4>Timothy Clark</h4>
-                            <span>Web developer</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="team-member">
-                        <figure class="member-photo"><img src="img/team/member3.jpg" alt="" /></figure>
-                        <div class="team-detail">
-                            <h4>Vicky Tan</h4>
-                            <span>Web designer</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="team-member">
-                        <figure class="member-photo"><img src="img/team/member4.jpg" alt="" /></figure>
-                        <div class="team-detail">
-                            <h4>Kevin Peterson</h4>
-                            <span>UI designer</span>
-                        </div>
-                    </div>
-                </div>
+
             </div>
 
         </div>
@@ -162,8 +137,7 @@
     <section id="parallax1" class="section pad-top40 pad-bot40" data-stellar-background-ratio="0.5">
         <div class="container">
             <div class="align-center pad-top40 pad-bot40">
-                <blockquote class="bigquote color-white">Indoctum accusamus comprehensam</blockquote>
-                <p class="color-white">Bootstraptaste</p>
+
             </div>
         </div>
     </section>
@@ -175,148 +149,19 @@
             <div class="row mar-bot40">
                 <div class="col-md-offset-3 col-md-6">
                     <div class="section-header">
-                        <h2 class="section-heading animated" data-animation="bounceInUp">Portfolio</h2>
+                        <h2 class="section-heading animated" data-animation="bounceInUp">The Process Explained</h2>
                         <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet consectetur, adipisci velit, sed quia non numquam.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="row">
-                <nav id="filter" class="col-md-12 text-center">
-                    <ul>
-                        <li><a href="#" class="current btn-theme btn-small" data-filter="*">All</a></li>
-                        <li><a href="#"  class="btn-theme btn-small" data-filter=".webdesign" >Web Design</a></li>
-                        <li><a href="#"  class="btn-theme btn-small" data-filter=".photography">Photography</a></li>
-                        <li ><a href="#" class="btn-theme btn-small" data-filter=".print">Print</a></li>
-                    </ul>
-                </nav>
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="portfolio-items isotopeWrapper clearfix" id="3">
-
-                            <article class="col-md-4 isotopeItem webdesign">
-                                <div class="portfolio-item">
-                                    <img src="img/portfolio/img1.jpg" alt="" />
-                                    <div class="portfolio-desc align-center">
-                                        <div class="folio-info">
-                                            <h5><a href="#">Portfolio name</a></h5>
-                                            <a href="img/portfolio/img1.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="col-md-4 isotopeItem photography">
-                                <div class="portfolio-item">
-                                    <img src="img/portfolio/img2.jpg" alt="" />
-                                    <div class="portfolio-desc align-center">
-                                        <div class="folio-info">
-                                            <h5><a href="#">Portfolio name</a></h5>
-                                            <a href="img/portfolio/img2.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
 
 
-                            <article class="col-md-4 isotopeItem photography">
-                                <div class="portfolio-item">
-                                    <img src="img/portfolio/img3.jpg" alt="" />
-                                    <div class="portfolio-desc align-center">
-                                        <div class="folio-info">
-                                            <h5><a href="#">Portfolio name</a></h5>
-                                            <a href="img/portfolio/img3.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="col-md-4 isotopeItem print">
-                                <div class="portfolio-item">
-                                    <img src="img/portfolio/img4.jpg" alt="" />
-                                    <div class="portfolio-desc align-center">
-                                        <div class="folio-info">
-                                            <h5><a href="#">Portfolio name</a></h5>
-                                            <a href="img/portfolio/img4.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="col-md-4 isotopeItem photography">
-                                <div class="portfolio-item">
-                                    <img src="img/portfolio/img5.jpg" alt="" />
-                                    <div class="portfolio-desc align-center">
-                                        <div class="folio-info">
-                                            <h5><a href="#">Portfolio name</a></h5>
-                                            <a href="img/portfolio/img5.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="col-md-4 isotopeItem webdesign">
-                                <div class="portfolio-item">
-                                    <img src="img/portfolio/img6.jpg" alt="" />
-                                    <div class="portfolio-desc align-center">
-                                        <div class="folio-info">
-                                            <h5><a href="#">Portfolio name</a></h5>
-                                            <a href="img/portfolio/img6.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="col-md-4 isotopeItem print">
-                                <div class="portfolio-item">
-                                    <img src="img/portfolio/img7.jpg" alt="" />
-                                    <div class="portfolio-desc align-center">
-                                        <div class="folio-info">
-                                            <h5><a href="#">Portfolio name</a></h5>
-                                            <a href="img/portfolio/img7.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="col-md-4 isotopeItem photography">
-                                <div class="portfolio-item">
-                                    <img src="img/portfolio/img8.jpg" alt="" />
-                                    <div class="portfolio-desc align-center">
-                                        <div class="folio-info">
-                                            <h5><a href="#">Portfolio name</a></h5>
-                                            <a href="img/portfolio/img8.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="col-md-4 isotopeItem print">
-                                <div class="portfolio-item">
-                                    <img src="img/portfolio/img9.jpg" alt="" />
-                                    <div class="portfolio-desc align-center">
-                                        <div class="folio-info">
-                                            <h5><a href="#">Portfolio name</a></h5>
-                                            <a href="img/portfolio/img9.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-
-                    </div>
-
-
-                </div>
-            </div>
 
         </div>
     </section>
     <section id="parallax2" class="section parallax" data-stellar-background-ratio="0.5">
-        <div class="align-center pad-top40 pad-bot40">
-            <blockquote class="bigquote color-white">Indoctum accusamus comprehensam</blockquote>
-            <p class="color-white">Bootstraptaste</p>
-        </div>
+
     </section>
 
     <!-- contact -->
@@ -327,7 +172,7 @@
                 <div class="col-md-offset-3 col-md-6">
                     <div class="section-header">
                         <h2 class="section-heading animated" data-animation="bounceInUp">Contact us</h2>
-                        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet consectetur, adipisci velit, sed quia non numquam.</p>
+                        <p>Have an enquiry? Feel free to contact us.</p>
                     </div>
                 </div>
             </div>
@@ -386,7 +231,7 @@
             </div>
 
             <div class="row align-center copyright">
-                <div class="col-sm-12"><p>Copyright &copy; 2014 Amoeba - by <a href="http://bootstraptaste.com">Bootstraptaste</a></p></div>
+                <div class="col-sm-12"><p>Copyright &copy; 2015 CommunityRoots </p></div>
             </div>
         </div>
 
