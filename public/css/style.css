@@ -95,6 +95,9 @@ a:hover {
 	font-weight: 300;
 }
 
+.dropdown-menu a{
+	text-decoration: none;
+}
 
 .blink:hover {
 	opacity: 0.9;
