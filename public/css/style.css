@@ -19,8 +19,8 @@ body {
 .navbar{
 	background-color: #055E33 !important;
 }
-.active{
-	color: #167F39 !important;
+.navbar .navbar-nav > .active > a {
+    color: #000000;
 }
 .featured{
 	background-color: #167F39 !important;

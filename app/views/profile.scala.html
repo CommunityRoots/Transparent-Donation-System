@@ -1,34 +1,47 @@
 @(user: User, needs: List[Need])
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-<h1>profile page</h1>
-<dl id="user">
-    <dt>@user.firstName <span>(@user.email)</span></dt>
-    <dd>
-        <a href="@routes.Application.logout()">Logout</a>
-    </dd>
-</dl>
-<h2>Needs @user.firstName has donated to</h2>
-@if(needs.isEmpty) {
-    <p>You have not donated to any needs yet. You can view them <a href="@routes.Application.needs()">here</a></p>
-} else {
-    <ul>
-    @for(need <- needs) {
-        <li> Title: @need.title</li>
-        <li> Ask Amount @need.askAmount</li>
-        <li> Donated Amount: @need.donatedAmount</li>
-        <li> Percent donated: @need.progressPercentage()%</li>
-        <li> Description: @need.description</li>
-        <br />
-    }
-    </ul>
-}
+@main {
 
-<a href="@routes.Application.needs" id="logo">needs page</a>
+    <section id="header" class="appear"></section>
+    <div class="navbar navbar-fixed-top" role="navigation" data-0="line-height:100px; height:100px; background-color:rgba(0,0,0,0.3);" data-300="line-height:60px; height:60px; background-color:rgba(0,0,0,1);">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="fa fa-bars color-white"></span>
+                </button>
+                <h1><a class="navbar-brand" href="@routes.Application.index()" data-0="line-height:90px;" data-300="line-height:50px;">			Community Roots
+                </a></h1>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
+                    <li><a href="@routes.Application.index()">Home</a></li>
+                    <li><a href="@routes.Application.needs()">Needs</a></li>
+                    <li><a href="">About us</a></li>
+                    <li><a href="@routes.Application.profile()" class="active">Profile</a></li>
+                    <li><a href="@routes.Application.logout()">Logout</a></li>
+                </ul>
+            </div><!--/.navbar-collapse -->
+        </div>
+    </div>
+    <section class="featured"></section>
+    <h1>Profile page</h1>
+    <dl id="user">
+        <dt>@user.firstName <span>(@user.email)</span></dt>
+    </dl>
+    <h2>Needs @user.firstName has donated to</h2>
+    @if(needs.isEmpty) {
+        <p>You have not donated to any needs yet. You can view them <a href="@routes.Application.needs()">here</a></p>
+    } else {
+        <ul>
+        @for(need <- needs) {
+            <li> Title: @need.title</li>
+            <li> Ask Amount @need.askAmount</li>
+            <li> Donated Amount: @need.donatedAmount</li>
+            <li> Percent donated: @need.progressPercentage()%</li>
+            <li> Description: @need.description</li>
+            <br />
+        }
+        </ul>
+    }
+}
 </body>
 </html>
