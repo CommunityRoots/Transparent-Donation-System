@@ -55,7 +55,7 @@ public class Registration extends Controller {
             session().clear();
             new User(registerForm.get().email, registerForm.get().firstName,
                     registerForm.get().lastName,
-                    BCrypt.hashpw(registerForm.get().password,BCrypt.gensalt(12))).save();
+s                    BCrypt.hashpw(registerForm.get().password,BCrypt.gensalt(12))).save();
             session("email", registerForm.get().email);
             sendWelcomeEmail(registerForm.get().firstName,registerForm.get().email);
             return redirect(

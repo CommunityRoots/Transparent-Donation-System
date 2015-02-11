@@ -1,90 +1,92 @@
 @import helper._
 @(form: Form[Application.Login])
+@main{
+    <html>
+        <head>
+            <title>Login</title>
+            <style>
+            .container-form{
+            padding-top: 120px;
+            }
+            .colorgraph {
+            height: 5px;
+            border-top: 0;
+            background: #c4e17f;
+            border-radius: 5px;
+            background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+            background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+            background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+            background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+            }
 
-
-<head>
-    <!-- BASICS -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Community Roots</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="@routes.Assets.at("css/bootstrap.css")">
-    <link rel="stylesheet" href="@routes.Assets.at("css/bootstrap-theme.css")">
-    <link rel="stylesheet" href="@routes.Assets.at("css/style.css")">
-    <!-- skin -->
-    <link rel="stylesheet" href="@routes.Assets.at("skin/default.css")">
-</head>
-
-
-<section id="header" class="appear"></section>
-<div class="navbar navbar-fixed-top" role="navigation" data-0="line-height:100px; height:100px; background-color:rgba(0,0,0,0.3);" data-300="line-height:60px; height:60px; background-color:rgba(0,0,0,1);">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="fa fa-bars color-white"></span>
-            </button>
-            <h1><a class="navbar-brand" href="index.html" data-0="line-height:90px;" data-300="line-height:50px;">			Community Roots
-            </a></h1>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
-                <li class="active"><a href="@routes.Application.index()">Home</a></li>
-                <li><a href="@routes.Application.needs()">Needs</a></li>
-                <li><a href="">About us</a></li>
-                <li><a href="@routes.Registration.register()">Register</a></li>
-                <li><a href="@routes.Application.login()">Login</a></li>
-
-            </ul>
-        </div><!--/.navbar-collapse -->
-    </div>
-</div>
-<section class="loginPage">
-    <div class="container">
-        <div class="row mar-bot40">
-            <div class="col-md-6 col-md-offset-3">
-
-                <div class="well" style="background: #ffffff">
-                    <div class="align-center">
-                        @helper.form(CSRF(routes.Application.authenticate)) {
-                        <h4 class="text-bold">Login</h4>
-
-                        @if(form.hasGlobalErrors) {
-                        <p class="error">
-                            @form.globalError.message
-                        </p>
-                        }
-
-                        @if(flash.contains("success")) {
-                        <p class="success">
-                            @flash.get("success")
-                        </p>
-                        }
-
-                        <p>
-                            <input type="email" name="email" placeholder="Email" value="@form("email").value">
-                        </p>
-                        <p>
-                            <input type="password" name="password" placeholder="Password">
-                        </p>
-                        <p>
-                            <button type="submit">Login</button>
-                        </p>
+            </style>
+        </head>
+        <body>
+            <section id="header" class="appear"></section>
+            <div class="navbar navbar-fixed-top" role="navigation" data-0="line-height:100px; height:100px; background-color:rgba(0,0,0,0.3);" data-300="line-height:60px; height:60px; background-color:rgba(0,0,0,1);">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="fa fa-bars color-white"></span>
+                        </button>
+                        <h1><a class="navbar-brand" href="index.html" data-0="line-height:90px;" data-300="line-height:50px;">			Community Roots
+                        </a></h1>
                     </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
+                            <li class="active"><a href="@routes.Application.index()">Home</a></li>
+                            <li><a href="@routes.Application.needs()">Needs</a></li>
+                            <li><a href="">About us</a></li>
+                            <li><a href="@routes.Registration.register()">Register</a></li>
+                            <li><a href="@routes.Application.login()">Login</a></li>
+
+                        </ul>
+                    </div><!--/.navbar-collapse -->
                 </div>
             </div>
-        </div>
-    </div>
-</section>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="@routes.Assets.at("js/jquery.easing.1.3.js")"></script>
-<script src="@routes.Assets.at("js/bootstrap.min.js")"></script>
-<script src="@routes.Assets.at("js/jquery.appear.js")"></script>
-<script src="@routes.Assets.at("js/validate.js")"></script>
-<script src="@routes.Assets.at("js/main.js")"></script>
+            @helper.form(CSRF(routes.Application.authenticate)) {
 
-</body>
-</html>
+                @if(form.hasGlobalErrors) {
+                    <p class="error">
+                    @form.globalError.message
+                    </p>
+                }
 
+                @if(flash.contains("success")) {
+                    <p class="success">
+                    @flash.get("success")
+                    </p>
+                }
+                <div class="container-form">
+                    <div class="row">
+                        <div class="col-xs-16 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                            <form role="form">
+                                <h2>Please Sign In <small></small></h2>
+                                <hr class="colorgraph">
+                                <div class="col-xs-6 col-sm-6 col-md-6"">
+                                <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" value="@form("email").value" tabindex="5">
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5">
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="colorgraph">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-6"><button type="submit" class="btn btn-success btn-block btn-lg">Sign In</button></div>
+                            <div class="col-xs-6 col-md-6"><a href="@routes.Registration.register()" class="btn btn-primary btn-block btn-lg">I need an account</a></div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                    <!-- /.modal -->
+                </div>
+            }
+        </body>
+    </html>
 }
