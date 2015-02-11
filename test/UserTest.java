@@ -9,7 +9,7 @@ import play.libs.Yaml;
 import play.test.WithApplication;
 import java.util.List;
 
-public class ModelsTest extends WithApplication {
+public class UserTest extends WithApplication {
 
     //run before tests
     @Before
