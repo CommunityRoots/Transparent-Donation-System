@@ -53,7 +53,7 @@ public class Registration extends Controller {
             return badRequest(register.render(registerForm));
         } else {
             session().clear();
-            new User(registerForm.get().email, registerForm.get().firstName,
+            new User(registerForm.get().email, registerForm.get().firstName,registerForm.get().lastName,
                     BCrypt.hashpw(registerForm.get().password,BCrypt.gensalt(12))).save();
             session("email", registerForm.get().email);
             sendWelcomeEmail(registerForm.get().firstName,registerForm.get().email);

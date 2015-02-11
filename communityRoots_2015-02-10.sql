@@ -56,17 +56,17 @@ CREATE TABLE `user` (
   `email` varchar(255) NOT NULL,
   `id` bigint(20) DEFAULT NULL,
   `firstName` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
   `lastName` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 
-INSERT INTO `user` (`email`, `id`, `firstName`, `password`, `lastName`)
+INSERT INTO `user` (`email`, `id`, `firstName`, `lastName`, `password`)
 VALUES
-	('bob@gmail.com',1,'Bob','$2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C',NULL);
+	('bob@gmail.com',1,'Bob','smith', '$2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C');
 
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
