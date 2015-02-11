@@ -27,6 +27,11 @@ body {
 	padding: 60px 0!important;
 }
 
+#small{
+	font-size: 170%;
+	margin-bottom: 0;
+	padding-top: 10px;
+}
 .error{
 	color: #f0776c;
 }
@@ -36,11 +41,11 @@ body {
 }
 .nav{
 	padding-top: 30px;
-	
+
 }
 
 .navbar-nav > li > a:hover{
-	color: #167F39 !important;
+	color: #1C7F0F !important;
 }
 
 .clear {
