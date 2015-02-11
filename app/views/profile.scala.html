@@ -8,12 +8,12 @@
 <body>
 <h1>profile page</h1>
 <dl id="user">
-    <dt>@user.name <span>(@user.email)</span></dt>
+    <dt>@user.firstName <span>(@user.email)</span></dt>
     <dd>
         <a href="@routes.Application.logout()">Logout</a>
     </dd>
 </dl>
-<h2>Needs @user.name has donated to</h2>
+<h2>Needs @user.firstName has donated to</h2>
 @if(needs.isEmpty) {
     <p>You have not donated to any needs yet. You can view them <a href="@routes.Application.needs()">here</a></p>
 } else {

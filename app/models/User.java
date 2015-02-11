@@ -9,9 +9,10 @@ import play.data.validation.*;
 @Entity
 public class User extends Model {
 
-    public User(String email, String name, String password){
+    public User(String email, String firstName, String lastName, String password){
         this.email = email;
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.password = password;
     }
     //play framework changes these to private and adds getters + setters on run
@@ -22,7 +23,10 @@ public class User extends Model {
     public String email;
 
     @Constraints.Required
-    public String name;
+    public String firstName;
+
+    @Constraints.Required
+    public String lastName;
 
     @Constraints.MinLength(6)
     @Constraints.MaxLength(20)
