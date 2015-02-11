@@ -34,30 +34,18 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
-                            <li class="active"><a href="@routes.Application.index()">Home</a></li>
+                            <li><a href="@routes.Application.index()">Home</a></li>
                             <li><a href="@routes.Application.needs()">Needs</a></li>
                             <li><a href="">About us</a></li>
-                            <li><a href="@routes.Registration.register()">Register</a></li>
+                            <li class="active"><a href="@routes.Registration.register()">Register</a></li>
                             <li><a href="@routes.Application.login()">Login</a></li>
 
                         </ul>
                     </div><!--/.navbar-collapse -->
                 </div>
             </div>
-
+            <section class="featured"></section>
             @helper.form(CSRF(routes.Registration.authenticate)) {
-
-                @if(form.hasGlobalErrors) {
-                    <p class="error">
-                    @form.globalError.message
-                    </p>
-                }
-
-                @if(flash.contains("success")) {
-                    <p class="success">
-                    @flash.get("success")
-                    </p>
-                }
                 <div class="container-form">
                     <div class="row">
                         <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
@@ -102,6 +90,17 @@
                                         By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.
                                     </div>
                                 </div>
+                                @if(form.hasGlobalErrors) {
+                                    <p class="error">
+                                    @form.globalError.message
+                                    </p>
+                                }
+
+                                @if(flash.contains("success")) {
+                                    <p class="success">
+                                    @flash.get("success")
+                                    </p>
+                                }
                                 <hr class="colorgraph">
                                 <div class="row">
                                     <div class="col-xs-6 col-md-6"><button type="submit" class="btn btn-primary btn-block btn-lg" tabindex="7">Register</button></div>

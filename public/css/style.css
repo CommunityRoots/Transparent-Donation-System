@@ -16,6 +16,32 @@ body {
 	font-weight: 300;
 	text-shadow: none;
 }
+.navbar{
+	background-color: #055E33 !important;
+}
+.active{
+	color: #167F39 !important;
+}
+.featured{
+	background-color: #167F39 !important;
+	padding: 60px 0!important;
+}
+
+.error{
+	color: #f0776c;
+}
+.navbar-brand{
+	padding-top: 10px;
+
+}
+.nav{
+	padding-top: 30px;
+	
+}
+
+.navbar-nav > li > a:hover{
+	color: #167F39 !important;
+}
 
 .clear {
 	clear: both;
@@ -348,7 +374,7 @@ section.section {
 =========================== */
 .navbar {
 	line-height: 100px;
-	height: 100px;
+	height: 80px;
 	background-color: rgba(0,0,0,0.3);
 	display: block;
 	vertical-align: middle;
@@ -671,6 +697,13 @@ nav#filter a {
 	text-decoration: none;
 }
 
+.navbar-brand{
+	padding-top: 10px;
+
+}
+.nav{
+	padding-top: 30px;
+}
 
 .portfolio-items article img {width:100%;} 
 
@@ -1057,7 +1090,6 @@ a.socialIcon:hover, .socialHoverClass {
 .btn-cta.btn-lg {
 	border-bottom: 4px solid;
 }
-
 
 
 /* ========================================
