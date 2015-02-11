@@ -15,7 +15,7 @@
                     <li class="active"><a href="@routes.Application.index()">Home</a></li>
                     <li><a href="@routes.Application.needs()">Needs</a></li>
                     <li><a href="">About us</a></li>
-                    @if(session().isEmpty()) {
+                    @if(session().get("email")==null) {
                         <li><a href="@routes.Registration.register()">Register</a></li>
                         <li><a href="@routes.Application.login()">Login</a></li>
                     } else {
