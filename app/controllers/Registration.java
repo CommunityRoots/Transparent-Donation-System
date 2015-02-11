@@ -1,4 +1,5 @@
 package controllers;
+import models.EmailService;
 import models.PasswordValidator;
 import models.User;
 import org.mindrot.jbcrypt.BCrypt;
@@ -6,9 +7,6 @@ import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.register;
-
-import play.libs.mailer.Email;
-import play.libs.mailer.MailerPlugin;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -53,11 +51,15 @@ public class Registration extends Controller {
             return badRequest(register.render(registerForm));
         } else {
             session().clear();
-            new User(registerForm.get().email, registerForm.get().firstName,
+            String firstName = registerForm.get().firstName;
+            String email = registerForm.get().email;
+            new User(registerForm.get().email, firstName,
                     registerForm.get().lastName,
                     BCrypt.hashpw(registerForm.get().password,BCrypt.gensalt(12))).save();
-            session("email", registerForm.get().email);
-            sendWelcomeEmail(registerForm.get().firstName,registerForm.get().email);
+            session("email", email);
+            EmailService emailService = new EmailService();
+            emailService.sendEmail(firstName,email,"Welcome to Community Roots",
+                    "Welcome to CommunityRoots. Please feel free to donate money towards needs.");
             return redirect(
                     routes.Application.profile()
             );
@@ -75,12 +77,4 @@ public class Registration extends Controller {
         return result;
     }
 
-    private static void sendWelcomeEmail(String name, String sendEmail){
-        Email email = new Email();
-        email.setSubject("Welcome to Community Roots");
-        email.setFrom("CommunityRoots.net <info@communityroots.net>");
-        email.addTo(name+"<"+sendEmail+">");
-        email.setBodyText("Welcome to CommunityRoots. Please feel free to donate money towards needs.");
-        MailerPlugin.send(email);
-    }
 }
