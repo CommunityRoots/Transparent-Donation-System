@@ -51,6 +51,10 @@ public class Application extends Controller {
         return ok(needs.render(Need.find.all()));
     }
 
+    public static Result viewNeed(int id) {
+        return ok(viewNeed.render(Need.find.byId(id)));
+    }
+
     public static Result login(){
         return ok(login.render(form(Login.class)));
     }

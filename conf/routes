@@ -14,6 +14,9 @@ GET         /logout              controllers.Application.logout()
 #Needs page
 GET         /needs               controllers.Application.needs()
 
+#Needs page
+GET         /viewNeed            controllers.Application.viewNeed(id:Integer)
+
 #User page
 GET         /profile             controllers.Application.profile()
 
