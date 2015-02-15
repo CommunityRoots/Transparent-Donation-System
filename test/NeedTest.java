@@ -2,15 +2,28 @@ package need;
 
 import models.Need;
 import models.User;
-import org.junit.Test;
-
+import java.util.List;
+import com.avaje.ebean.Ebean;
+import org.junit.*;
+import static org.junit.Assert.*;
+import play.libs.Yaml;
+import play.test.WithApplication;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class NeedTest {
+public class NeedTest extends WithApplication {
+
+    @Before
+    public void setup(){
+        //testing user model so clear all pre existing user data in database
+        Ebean.delete(User.find.all());
+        Ebean.delete(Need.find.all());
+        //add data to database
+        Ebean.save((List) Yaml.load("test-data.yml"));
+    }
 
     @Test
     public void RetrieveNeedCorrelatingToEmail() {

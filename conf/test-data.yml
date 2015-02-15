@@ -4,8 +4,7 @@
     password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
 
 - !!models.Need
-    id: 1
-    title: Food
+    title: food
     donatedAmount: 20
     askAmount: 50
     addedBy: bob@gmail.com
