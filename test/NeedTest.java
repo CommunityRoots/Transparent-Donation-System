@@ -1,18 +1,13 @@
 package need;
 
-import com.avaje.ebean.Ebean;
 import models.Need;
 import models.User;
+import java.util.List;
+import com.avaje.ebean.Ebean;
 import org.junit.Before;
 import org.junit.Test;
 import play.libs.Yaml;
 import play.test.WithApplication;
-import java.util.List;
-import com.avaje.ebean.Ebean;
-import org.junit.*;
-import static org.junit.Assert.*;
-
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -20,7 +15,6 @@ import static org.junit.Assert.assertNotNull;
 
 public class NeedTest extends WithApplication {
 
-    //run before tests
     @Before
     public void setup(){
         //testing user model so clear all pre existing user data in database
