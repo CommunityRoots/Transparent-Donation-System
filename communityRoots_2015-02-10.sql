@@ -65,7 +65,7 @@ LOCK TABLES `user` WRITE;
 
 INSERT INTO `user` (`email`, `id`, `firstName`, `lastName`, `password`)
 VALUES
-	('bob@gmail.com',5,'Bob','smith', '$2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C');
+	('bob@gmail.com',1,'Bob','smith', '$2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C');
 
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;

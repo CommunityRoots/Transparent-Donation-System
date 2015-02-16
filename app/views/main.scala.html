@@ -12,6 +12,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" href="@routes.Assets.at("css/uikit.css")">
     <link rel="stylesheet" href="@routes.Assets.at("js/fancybox/jquery.fancybox.css")" type="text/css" media="screen" />
     <link rel="stylesheet" href="@routes.Assets.at("css/bootstrap.css")">
     <link rel="stylesheet" href="@routes.Assets.at("css/bootstrap-theme.css")">
@@ -22,11 +23,15 @@
 
 <body>
     @content
+    <script src="@routes.Assets.at("js/jquery.js")"></script>
+    <script src="@routes.Assets.at("js/uikit.js")"></script>
+    <script src="@routes.Assets.at("js/dropdown.js")"></script>
     <script src="@routes.Assets.at("js/modernizr-2.6.2-respond-1.1.0.min.js")"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="@routes.Assets.at("js/bootstrap.min.js")"></script>
     <script src="@routes.Assets.at("js/validate.js")"></script>
     <script src="@routes.Assets.at("js/main.js")"></script>
+
 
 </body>
 </html>

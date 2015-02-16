@@ -59,6 +59,10 @@ public class Application extends Controller {
         return ok(login.render(form(Login.class)));
     }
 
+    public static Result settings(){
+        return ok(settings.render());
+    }
+
     public static Result forgot() { return ok(forgot.render(form(ForgotPass.class)));}
 
     public static Result authenticate() {

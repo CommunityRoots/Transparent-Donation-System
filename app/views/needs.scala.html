@@ -16,8 +16,14 @@
                     <li><a href="@routes.Application.index()">Home</a></li>
                     <li class="active"><a href="@routes.Application.needs()">Needs</a></li>
                     <li><a href="@routes.Application.index()#about">About us</a></li>
-                    <li><a href="@routes.Registration.register()">Register</a></li>
-                    <li><a href="@routes.Application.login()">Login</a></li>
+                    @if(session().get("email")==null) {
+                        <li><a href="@routes.Registration.register()">Register</a></li>
+                        <li><a href="@routes.Application.login()">Login</a></li>
+                    } else {
+                        <li><a href="@routes.Application.profile()">Profile</a></li>
+                        <li><a href="@routes.Application.settings()">Settings</a></li>
+                        <li><a href="@routes.Application.logout()">Logout</a></li>
+                    }
 
                 </ul>
             </div><!--/.navbar-collapse -->
@@ -43,17 +49,17 @@
                 <div class="col-md-offset-3 col-md-6">
                     <div class="section-header">
                         <h2 class="section-heading animated" data-animation="bounceInUp">
-                            Your
-                            <a class="dropdown-toggle"
-                            data-toggle="dropdown"
-                            href="#">
-                                community
-                                <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                    <!-- links -->
-                                <li><a tabindex="-1" href="#">country</a></li>
-                            </ul>
+                            <div class="uk-margin" data-uk-margin>
+                                <div class="uk-button-dropdown" data-uk-dropdown>
+                                    Your
+                                    <button class="uk-button">community  <i class="uk-icon-caret-down"></i></button>
+                                    <div class="uk-dropdown uk-dropdown-flip"">
+                                        <ul class="uk-nav uk-nav-dropdown">
+                                            <li><a href="#">country</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                          </h2>
                         <p>The most urgent needs in your community</p>
                     </div>
