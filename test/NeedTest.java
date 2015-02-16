@@ -7,6 +7,10 @@ import org.junit.Before;
 import org.junit.Test;
 import play.libs.Yaml;
 import play.test.WithApplication;
+import java.util.List;
+import com.avaje.ebean.Ebean;
+import org.junit.*;
+import static org.junit.Assert.*;
 
 import java.util.List;
 

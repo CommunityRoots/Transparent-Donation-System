@@ -19,9 +19,11 @@ body {
 .navbar{
 	background-color: #055E33 !important;
 }
-.navbar .navbar-nav > .active > a {
-    color: #000000;
+
+.active{
+	color: #167F39 !important;
 }
+
 .featured{
 	background-color: #167F39 !important;
 	padding: 60px 0!important;
@@ -32,16 +34,16 @@ body {
 	margin-bottom: 0;
 	padding-top: 10px;
 }
+
 .error{
 	color: #f0776c;
 }
+
 .navbar-brand{
 	padding-top: 10px;
-
 }
 .nav{
 	padding-top: 30px;
-
 }
 
 .navbar-nav > li > a:hover{
