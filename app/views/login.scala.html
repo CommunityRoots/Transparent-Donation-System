@@ -37,8 +37,14 @@
                             <li><a href="@routes.Application.index()">Home</a></li>
                             <li><a href="@routes.Application.needs()">Needs</a></li>
                             <li><a href="@routes.Application.index()#about">About us</a></li>
-                            <li><a href="@routes.Registration.register()">Register</a></li>
-                            <li class="active"><a href="@routes.Application.login()">Login</a></li>
+                            @if(session().get("email")==null) {
+                                <li><a href="@routes.Registration.register()">Register</a></li>
+                                <li class="active"><a href="@routes.Application.login()">Login</a></li>
+                            } else {
+                                <li><a href="@routes.Application.profile()">Profile</a></li>
+                                <li><a href="@routes.Application.settings()">Settings</a></li>
+                                <li><a href="@routes.Application.logout()">Logout</a></li>
+                            }
 
                         </ul>
                     </div><!--/.navbar-collapse -->
