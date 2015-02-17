@@ -33,6 +33,8 @@ public class User extends Model {
     @Constraints.Required
     public String password;
 
+    public String confirmationToken;
+
     public static Finder<String, User> find = new Finder<String,User>(String.class, User.class);
 
     public static User authenticate(String email, String password) {
@@ -42,5 +44,14 @@ public class User extends Model {
             }
         }
         return null;
+    }
+
+    public static User findByConfirmationToken(String token) {
+        return find.where().eq("confirmationToken", token).findUnique();
+    }
+
+    public void changePassword(String password) {
+        this.password =  BCrypt.hashpw(password,BCrypt.gensalt(12));
+        this.save();
     }
 }
