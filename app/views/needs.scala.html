@@ -80,11 +80,12 @@
                             <!-- NEEDS GO HERE-->
                             @for(need <- needs) {
                                 <article class="col-md-4 isotopeItem webdesign">
-                                    <div class="portfolio-item">
-                                        <img src="img/portfolio/img1.jpg" alt="" />
                                         <div class="portfolio-desc align-center">
                                             <div class="folio-info">
+                                                <a href="@routes.Application.viewNeed(need.id)"><i class="fa fa-gift fa-5x"></i></a>
                                                 <h5><a href="@routes.Application.viewNeed(need.id)">@need.title</a></h5>
+                                                <p>@need.description</p>
+                                                <h5><a href="/charities/svp">SVP</a></h5>
                                             </div>
                                         </div>
                                     </div>
