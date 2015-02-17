@@ -9,13 +9,13 @@ public class PasswordValidator {
     private Matcher matcher;
 
     private static final String PASSWORD_PATTERN =
-            "((?=.*\\d)(?=.*[a-z])(?=.*[0-1]).{6,20})";
+            "((?=.*\\d)(?=.*[a-z])(?=.*[0-9]).{6,20})";
 
     public PasswordValidator(){
         pattern = Pattern.compile(PASSWORD_PATTERN);
     }
 
-    public boolean validate(final String password){
+    public boolean validate(String password){
         matcher = pattern.matcher(password);
         return matcher.matches();
     }

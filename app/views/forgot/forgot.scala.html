@@ -1,0 +1,100 @@
+@import helper._
+@(form: Form[Reset.ForgotPass])
+@main{
+<html>
+<head>
+    <title>Forgot Password</title>
+    <style>
+        .container-form{
+            padding-top: 120px;
+        }
+        .colorgraph {
+            height: 5px;
+            border-top: 0;
+            background: #c4e17f;
+            border-radius: 5px;
+            background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+            background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+            background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+            background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+        }
+
+    </style>
+</head>
+<body>
+<section id="header" class="appear"></section>
+<div class="navbar navbar-fixed-top" role="navigation" data-0="line-height:100px; height:100px; background-color:rgba(0,0,0,0.3);" data-300="line-height:60px; height:60px; background-color:rgba(0,0,0,1);">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="fa fa-bars color-white"></span>
+            </button>
+            <h1><a class="navbar-brand" href="index.html" data-0="line-height:90px;" data-300="line-height:50px;">			Community Roots
+            </a></h1>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
+                <li><a href="@routes.Application.index()">Home</a></li>
+                <li><a href="@routes.Application.needs()">Needs</a></li>
+                <li><a href="@routes.Application.index()#about">About us</a></li>
+                @if(session().get("email")==null) {
+                <li><a href="@routes.Registration.register()">Register</a></li>
+                <li class="active"><a href="@routes.Application.login()">Login</a></li>
+                } else {
+                <li><a href="@routes.Application.profile()">Profile</a></li>
+                <li><a href="@routes.Application.settings()">Settings</a></li>
+                <li><a href="@routes.Application.logout()">Logout</a></li>
+                }
+
+            </ul>
+        </div><!--/.navbar-collapse -->
+    </div>
+</div>
+
+<section class="featured"></section>
+
+@helper.form(CSRF(routes.Reset.doForgot)) {
+
+
+<div class="container-form">
+    <div class="row">
+        <div class="col-xs-16 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <form role="form">
+                <h2>Forgot Password <small></small></h2>
+                <p>Enter your accounts email address and we will send you a secure link to reset your password</p>
+                <hr class="colorgraph">
+                <div class="col-xs-6 col-sm-6 col-md-6"">
+                <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" value="@form("email").value" tabindex="5">
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6">
+
+            </div>
+        </div>
+        @if(form.hasGlobalErrors) {
+        <p class="error">
+            @form.globalError.message
+        </p>
+        }
+
+        @if(flash.contains("success")) {
+        <p class="success">
+            @flash.get("success")
+        </p>
+        }
+        <hr class="colorgraph">
+        <div class="row">
+            <div class="col-xs-6 col-md-6"><button type="submit" class="btn btn-success btn-block btn-lg">Send</button></div>
+
+        </div>
+        </form>
+    </div>
+</div>
+<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+</div>
+}
+</body>
+</html>
+}

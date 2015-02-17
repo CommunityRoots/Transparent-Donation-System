@@ -24,17 +24,6 @@ public class Application extends Controller {
             return null;
         }
     }
-    public static class ForgotPass {
-        public String email;
-
-        public String isValidEmail() {
-            if(User.find.byId(email)==null){
-                return "Now account registered with that email";
-            }
-            return null;
-        }
-    }
-
 
     public static Result index() {
         return ok(index.render());
@@ -59,11 +48,11 @@ public class Application extends Controller {
         return ok(login.render(form(Login.class)));
     }
 
+    @Security.Authenticated(Secured.class)
     public static Result settings(){
         return ok(settings.render());
     }
 
-    public static Result forgot() { return ok(forgot.render(form(ForgotPass.class)));}
 
     public static Result authenticate() {
         Form<Login> loginForm = form(Login.class).bindFromRequest();
