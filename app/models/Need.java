@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 public class Need extends Model {
 
-    Need(String title, int donatedAmount, int askAmount, String addedBy){
+    public Need(String title, int donatedAmount, int askAmount, String addedBy){
         this.title = title;
         this.donatedAmount = donatedAmount;
         this.askAmount = askAmount;

@@ -32,4 +32,10 @@ public class NeedTest extends WithApplication {
         assertNotEquals(0,food.size());
     }
 
+    @Test
+    public void progressPercentageTest(){
+        Need need =  new Need("food",20,50,"bob@hotmail.com");
+        assertEquals(40, need.progressPercentage());
+    }
+
 }
