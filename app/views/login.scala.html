@@ -76,9 +76,8 @@
                             <p class="error">
                             @form.globalError.message
                             </p>
-                            <p><a href="@routes.Reset.forgot()">Forgot Password</a></p>
                         }
-
+                        <p><a href="@routes.Reset.forgot()">Forgot Password</a></p>
                         @if(flash.contains("success")) {
                             <p class="success">
                             @flash.get("success")

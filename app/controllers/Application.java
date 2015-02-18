@@ -41,6 +41,12 @@ public class Application extends Controller {
     }
 
     public static Result viewNeed(int id) {
+        Need need = Need.findById(id);
+        if(need == null){
+            return redirect(
+                    routes.Application.needs()
+            );
+        }
         return ok(viewNeed.render(Need.find.byId(id)));
     }
 

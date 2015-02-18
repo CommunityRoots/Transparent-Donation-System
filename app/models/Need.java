@@ -46,6 +46,12 @@ public class Need extends Model {
                 .findList();
     }
 
+    public static Need findById(int id){
+        return Need.find.where()
+                .eq("id",id)
+                .findUnique();
+    }
+
     public int progressPercentage(){
         return donatedAmount*100/askAmount;
     }
