@@ -14,6 +14,7 @@ public class User extends Model {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
+        this.role = "user"; //default
     }
     //play framework changes these to private and adds getters + setters on run
     public Long id;
@@ -35,6 +36,8 @@ public class User extends Model {
 
     public String confirmationToken;
 
+    public String role;
+
     public static Finder<String, User> find = new Finder<String,User>(String.class, User.class);
 
     public static User authenticate(String email, String password) {
@@ -52,6 +55,11 @@ public class User extends Model {
 
     public void changePassword(String password) {
         this.password =  BCrypt.hashpw(password,BCrypt.gensalt(12));
+        this.save();
+    }
+
+    public void changeEmail(String email){
+        this.email = email;
         this.save();
     }
 }

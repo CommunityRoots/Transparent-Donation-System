@@ -1,4 +1,5 @@
-
+@import helper._
+@(form: Form[Profile.ChangePass], form2: Form[Profile.ChangeEmail])
 @main {
 
     <section id="header" class="appear"></section>
@@ -20,8 +21,8 @@
                         <li><a href="@routes.Registration.register()">Register</a></li>
                         <li><a href="@routes.Application.login()">Login</a></li>
                     } else {
-                        <li><a href="@routes.Application.profile()">Profile</a></li>
-                        <li class="active"><a href="@routes.Application.settings()">Settings</a></li>
+                        <li><a href="@routes.Profile.profile()">Profile</a></li>
+                        <li class="active"><a href="@routes.Profile.settings()">Settings</a></li>
                         <li><a href="@routes.Application.logout()">Logout</a></li>
                     }
                 </ul>
@@ -29,10 +30,55 @@
         </div>
     </div>
     <section class="featured"></section>
-    <h1>Your account settings</h1>
-    <li>Change your password</li>
-    <li>Change your email address</li>
-    <li></li>
+    <section id="section-works" class="section appear clearfix">
+        <div class="container">
+            <div class="row">
+                <h1>Your account settings</h1>
+            </div>
+            <div class="row">
+                <h3>Change Password</h3>
+                @helper.form(CSRF(routes.Profile.changePassword)) {
+                    <div class="container-form">
+                        <form role="form">
+                            <div class="row">
+                                <div class="col-lg-4"><input type="password" name="oldPassword" id="oldPassword" class="form-control input-lg" placeholder="Old Password" value="@form("oldPassword").value" tabindex="5"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4"><input type="password" name="newPassword" id="newPassword" class="form-control input-lg" placeholder="New Password" value="@form("newPassword").value" tabindex="5"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4"><input type="password" name="retypePassword" id="retypePassword" class="form-control input-lg" placeholder="ReType Password" value="@form("retypePassword").value" tabindex="5"></div>
+                            </div>
+                            <div class="row">
+                                <div class ="col-lg-2"><button type="submit" class="btn btn-success btn-block btn-lg">Submit</button></div>
+                            </div>
+
+                        </form>
+                    </div>
+                }
+            </div>
+
+            <br />
+            <div class="row">
+                <h3>Change Email</h3>
+                @helper.form(CSRF(routes.Profile.changeEmail)) {
+                <div class="container-form">
+                    <form role="form">
+                        <div class="row">
+                            <div class="col-lg-4"><input type="email" name="email" id="email" class="form-control input-lg" placeholder="New Email" value="@form("email").value" tabindex="5"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4"><input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" value="@form("password").value" tabindex="5"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2"><button type="submit" class="btn btn-success btn-block btn-lg">Submit</button></div>
+                        </div>
+                    </form>
+                </div>
+                }
+            </div>
+        </div>
+    </section>
 
 }
 </body>

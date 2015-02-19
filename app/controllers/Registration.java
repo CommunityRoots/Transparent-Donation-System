@@ -61,7 +61,7 @@ public class Registration extends Controller {
             emailService.sendEmail(firstName,email,"Welcome to Community Roots",
                     "Welcome to CommunityRoots. Please feel free to donate money towards needs.");
             return redirect(
-                    routes.Application.profile()
+                    routes.Profile.profile()
             );
         }
     }

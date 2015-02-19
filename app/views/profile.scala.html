@@ -20,8 +20,8 @@
                         <li><a href="@routes.Registration.register()">Register</a></li>
                         <li><a href="@routes.Application.login()">Login</a></li>
                     } else {
-                        <li class="active"><a href="@routes.Application.profile()">Profile</a></li>
-                        <li><a href="@routes.Application.settings()">Settings</a></li>
+                        <li class="active"><a href="@routes.Profile.profile()">Profile</a></li>
+                        <li><a href="@routes.Profile.settings()">Settings</a></li>
                         <li><a href="@routes.Application.logout()">Logout</a></li>
                     }
                 </ul>
@@ -29,25 +29,42 @@
         </div>
     </div>
     <section class="featured"></section>
-    <h1>Profile page</h1>
-    <dl id="user">
-        <dt>@user.firstName <span>(@user.email)</span></dt>
-    </dl>
-    <h2>Needs @user.firstName has donated to</h2>
-    @if(needs.isEmpty) {
-        <p>You have not donated to any needs yet. You can view them <a href="@routes.Application.needs()">here</a></p>
-    } else {
-        <ul>
-        @for(need <- needs) {
-            <li> Title: @need.title</li>
-            <li> Ask Amount @need.askAmount</li>
-            <li> Donated Amount: @need.donatedAmount</li>
-            <li> Percent donated: @need.progressPercentage()%</li>
-            <li> Description: @need.description</li>
-            <br />
-        }
-        </ul>
-    }
-}
+        <section id="section-works" class="section appear clearfix">
+            <div class="container">
+                <div class="row">
+                    <h1>Profile page</h1>
+                </div>
+                <div class="row">
+                    <dl id="user">
+                        <dt>@user.firstName <span>(@user.email)</span></dt>
+                    </dl>
+                </div>
+                <div class="row">
+                    @if(user.role == "volunteer") {
+                    <p>You are an admin. you can add volunteers and add needs</p>
+                    }
+                </div>
+                <div class="row">
+                    <h2>Needs @user.firstName has donated to</h2>
+                    @if(needs.isEmpty) {
+                    <p>You have not donated to any needs yet. You can view them <a href="@routes.Application.needs()">here</a></p>
+                    } else {
+                    <ul>
+                        @for(need <- needs) {
+                        <li> Title: @need.title</li>
+                        <li> Ask Amount @need.askAmount</li>
+                        <li> Donated Amount: @need.donatedAmount</li>
+                        <li> Percent donated: @need.progressPercentage()%</li>
+                        <li> Description: @need.description</li>
+                        <br />
+                        }
+                    </ul>
+                    }
+                    }
+                    </div>
+                    </div>
+                </div>
+            </section>
+
 </body>
 </html>

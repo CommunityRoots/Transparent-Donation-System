@@ -17,11 +17,13 @@ GET         /needs               controllers.Application.needs()
 #Need Desc page
 GET         /viewNeed            controllers.Application.viewNeed(id:Integer)
 
-#Settings page
-GET         /settings            controllers.Application.settings()
-
 #User page
-GET         /profile             controllers.Application.profile()
+GET         /profile             controllers.Profile.profile()
+
+#Settings page
+GET         /settings            controllers.Profile.settings()
+POST        /settings            controllers.Profile.changePassword()
+POST        /settings            controllers.Profile.changeEmail()
 
 #Registration
 GET         /register            controllers.Registration.register()

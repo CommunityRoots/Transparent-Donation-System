@@ -29,13 +29,6 @@ public class Application extends Controller {
         return ok(index.render());
     }
 
-    @Security.Authenticated(Secured.class)
-    public static Result profile() {
-        return ok(profile.render(User.find.byId(request().username()),
-                Need.findByEmail(session().get("email"))
-        ));
-    }
-
     public static Result needs() {
         return ok(needs.render(Need.find.all()));
     }
@@ -54,12 +47,6 @@ public class Application extends Controller {
         return ok(login.render(form(Login.class)));
     }
 
-    @Security.Authenticated(Secured.class)
-    public static Result settings(){
-        return ok(settings.render());
-    }
-
-
     public static Result authenticate() {
         Form<Login> loginForm = form(Login.class).bindFromRequest();
         if (loginForm.hasErrors()) {
@@ -68,7 +55,7 @@ public class Application extends Controller {
             session().clear();
             session("email", loginForm.get().email);
             return redirect(
-                    routes.Application.profile()
+                    routes.Profile.profile()
             );
         }
     }
