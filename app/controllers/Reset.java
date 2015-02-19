@@ -1,6 +1,6 @@
 package controllers;
 
-import models.PasswordValidator;
+import models.FormValidator;
 import models.Token;
 import models.User;
 import play.Logger;
@@ -10,7 +10,6 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.forgot.forgot;
 import views.html.forgot.reset;
-import views.html.login;
 
 
 import java.net.MalformedURLException;
@@ -35,11 +34,10 @@ public class Reset extends Controller {
         public String reEnteredPassword;
 
         public String validate() {
-            PasswordValidator passwordValidator = new PasswordValidator();
             if(!password.equals(reEnteredPassword)){
                 return "Passwords do not match";
             }
-            else if(!passwordValidator.validate(password)){
+            else if(!FormValidator.validate(password)){
                 return  "Password must have 1 number, between 6-20 characters";
             }
             return null;

@@ -35,6 +35,17 @@
             <div class="row">
                 <h1>Your account settings</h1>
             </div>
+            @if(form.hasGlobalErrors) {
+            <p class="error">
+                @form.globalError.message
+            </p>
+            }
+
+            @if(flash.contains("success")) {
+            <p class="success">
+                @flash.get("success")
+            </p>
+            }
             <div class="row">
                 <h3>Change Password</h3>
                 @helper.form(CSRF(routes.Profile.changePassword)) {

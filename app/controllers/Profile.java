@@ -1,5 +1,7 @@
 package controllers;
 
+import models.EmailService;
+import models.FormValidator;
 import models.Need;
 import models.User;
 import play.data.Form;
@@ -24,10 +26,15 @@ public class Profile {
         public String retypePassword;
 
         public String validate() {
-            if(retypePassword!=newPassword){
+            if(!FormValidator.validate(newPassword)){
+                return  "Password must have 1 number, between 6-20 characters";
+            }
+            else if(!retypePassword.equals(newPassword)){
                 return "Passwords did not match";
             }
-
+            else if (User.authenticate(session().get("email"), oldPassword) == null) {
+                return "Invalid password";
+            }
             return null;
         }
     }
@@ -37,6 +44,12 @@ public class Profile {
         public String password;
 
         public String validate(){
+            if (User.authenticate(session().get("email"), password) == null) {
+                return "Invalid password";
+            }
+            else if(!FormValidator.validate(email)){
+                return "Email invalid";
+            }
             return null;
         }
     }
@@ -60,6 +73,8 @@ public class Profile {
         } else {
             User user = User.find.byId(session().get("email"));
             user.changePassword(changePassForm.get().newPassword);
+            EmailService emailService = new EmailService();
+            emailService.sendEmail(user.firstName,user.email,"Password Change","Your Password has been changed.");
             flash("success", "Password Changed");
             return ok(settings.render(form(ChangePass.class),form(ChangeEmail.class)));
         }
