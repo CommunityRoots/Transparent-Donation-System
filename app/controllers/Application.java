@@ -37,15 +37,21 @@ public class Application extends Controller {
         Need need = Need.findById(id);
         if(need == null){
             return redirect(
-                    routes.Application.needs()
+                    routes.Application.invalidNeed()
             );
         }
         return ok(viewNeed.render(Need.find.byId(id)));
     }
 
+    public static Result invalidNeed()
+    {
+        return ok(invalidNeed.render());
+    }
+
     public static Result login(){
         return ok(login.render(form(Login.class)));
     }
+
 
     public static Result authenticate() {
         Form<Login> loginForm = form(Login.class).bindFromRequest();

@@ -17,6 +17,9 @@ GET         /needs               controllers.Application.needs()
 #Need Desc page
 GET         /viewNeed            controllers.Application.viewNeed(id:Integer)
 
+#Invalid Need page
+GET         /invalidNeed         controllers.Application.invalidNeed()
+
 #User page
 GET         /profile             controllers.Profile.profile()
 
@@ -32,8 +35,8 @@ POST        /register            controllers.Registration.authenticate()
 #Forgot Password
 GET         /forgot              controllers.Reset.forgot()
 POST        /forgot              controllers.Reset.doForgot()
-GET         /reset/:token         controllers.Reset.reset(token:String)
-POST        /reset/:token         controllers.Reset.doNewPass(token:String)
+GET         /reset/:token        controllers.Reset.reset(token:String)
+POST        /reset/:token        controllers.Reset.doNewPass(token:String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file        controllers.Assets.at(path="/public", file)

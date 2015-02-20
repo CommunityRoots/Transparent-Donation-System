@@ -1,4 +1,4 @@
-@(need: Need)
+
 @main {
 
     <section id="header" class="appear"></section>
@@ -32,21 +32,23 @@
 
     <section class="featured"></section>
 
-    <!-- section works -->
-    <section id="section-works" class="section appear clearfix">
+    <section id="parallax1" class="section pad-top40 pad-bot40" data-stellar-background-ratio="0.5">
+        <div class="container">
+            <div class="align-center pad-top40 pad-bot40">
+                <blockquote class="bigquote color-white">Needs</blockquote>
+                <p class="color-white">Bootstraptaste</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-about" class="section appear clearfix">
         <div class="container">
             <div class="row mar-bot40">
                 <div class="col-md-offset-3 col-md-6">
                     <div class="section-header">
-                        <h2 class="section-heading animated" data-animation="bounceInUp">
-                            @need.title
-                         </h2>
-                        <p>@need.description</p>
-                        <ul>
-                            <li> Ask Amount @need.askAmount</li>
-                            <li> Donated Amount: @need.donatedAmount</li>
-                            <li> Percent donated: @need.progressPercentage()%</li>
-                        </ul>
+                        <h2 class="section-heading animated" data-animation="bounceInUp">Sorry, we can't find that need</h2>
+                        <p>This could be because the need has been removed by the charity or because the url is incorrect.</p>
+                        <p>Click <a href="@routes.Application.needs()">here</a> to view the needs page.</p>
                     </div>
                 </div>
             </div>
