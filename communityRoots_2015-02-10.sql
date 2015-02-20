@@ -40,7 +40,7 @@ LOCK TABLES `need` WRITE;
 
 INSERT INTO `need` (`id`, `title`, `donated_amount`, `ask_amount`, `added_by`, `description`)
 VALUES
-	(1,'food',10,20,'bob@gmail.com','food');
+  (1,'food',10,20,'bob@gmail.com','food');
 
 /*!40000 ALTER TABLE `need` ENABLE KEYS */;
 UNLOCK TABLES;

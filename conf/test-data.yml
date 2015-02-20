@@ -9,3 +9,11 @@
     askAmount: 50
     addedBy: bob@gmail.com
     description: yadayada
+
+- !!models.Need
+    title: food
+    donatedAmount: 20
+    askAmount: 50
+    addedBy: bob@gmail.com
+    description: yadayada
+
