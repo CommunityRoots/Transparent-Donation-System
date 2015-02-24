@@ -44,7 +44,4 @@ GET         /assets/*file        controllers.Assets.at(path="/public", file)
 
 POST    /profile/addNeed          controllers.Profile.addNeed()
 POST    /profile/addVolunteer     controllers.Profile.addVolunteer()
-POST    /deleteNeed               controllers.Profile.deleteNeed(id: Long)
-
-#Javascript routes
-GET     /assets/javascripts/routes          controllers.Application.javascriptRoutes()
+GET    /deleteNeed/:id               controllers.Profile.deleteNeed(id: Long)

@@ -36,6 +36,7 @@ public class User extends Model {
     public String password;
 
     public String role;
+    public String charity;
 
     public static Finder<String, User> find = new Finder<String,User>(String.class, User.class);
 
@@ -65,5 +66,9 @@ public class User extends Model {
     public void changerole(String role){
         this.role = role;
         this.save();
+    }
+
+    public void setCharity(String charity){
+        this.charity = charity;
     }
 }

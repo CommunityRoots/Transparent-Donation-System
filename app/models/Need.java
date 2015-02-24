@@ -6,6 +6,8 @@ import org.joda.time.DateTime;
 import play.data.format.Formats;
 import play.db.ebean.*;
 import play.data.validation.*;
+
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -85,12 +87,15 @@ public class Need extends Model {
         return donatedAmount*100/askAmount;
     }
 
-    public void addNeed(String title,String description, String user, double amount ) {
+    public void addNeed(String title,String description, String user, double amount ,String location, int urgency, String charity) {
         this.title =title;
         this.description =description;
         this.addedBy = user;
         this.askAmount =amount;
         this.dateAdded = DateTime.now();
+        this.location = location;
+        this.urgency = urgency;
+        this.charity = charity;
         this.save();
     }
 

@@ -11,6 +11,7 @@ import play.mvc.Security;
 import views.html.profile;
 import views.html.settings;
 
+import javax.validation.Constraint;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,9 +19,7 @@ import static play.data.Form.form;
 import static play.mvc.Controller.flash;
 import static play.mvc.Controller.request;
 import static play.mvc.Controller.session;
-import static play.mvc.Results.badRequest;
-import static play.mvc.Results.forbidden;
-import static play.mvc.Results.ok;
+import static play.mvc.Results.*;
 
 @Security.Authenticated(Secured.class)
 public class Profile {
@@ -63,10 +62,15 @@ public class Profile {
         public String title;
         public double amount;
         public String description;
+        public int urgency;
+        public String location;
 
         public String validate(){
             if(title.length() >20 || title.length() <5){
                 return "Title length should be greater than 4 and less than 21";
+            }
+            else if(urgency >10 || urgency <0){
+                return "Urgency must be in the range of 1 - 10";
             }
 
             return null;
@@ -77,8 +81,13 @@ public class Profile {
         public String email;
 
         public String validate(){
+            String email = session().get("email");
+            User user = User.find.byId(email);
             if(User.find.byId(email) == null){
                 return "No user with that email";
+            }
+            if(!user.role.equals("admin")){
+                return "You do not have permission to do this";
             }
             return null;
         }
@@ -103,7 +112,7 @@ public class Profile {
             for(Donation donation : donationsByUserToNeed) {
                 needids.add(donation.needId);
             }
-            pagingList =  Need.find.where().in("id",needids).findPagingList(5);
+            pagingList =  Need.find.where().in("id",needids).findPagingList(3);
         }
 
         Page<Need> currentPage = pagingList.getPage(page - 1);
@@ -158,21 +167,39 @@ public class Profile {
             need.addNeed(addNeedForm.get().title,
                     addNeedForm.get().description,
                     session().get("email"),
-                    addNeedForm.get().amount
+                    addNeedForm.get().amount,
+                    addNeedForm.get().location,
+                    addNeedForm.get().urgency,
+                    user.charity
                     );
             return ok();
         }
     }
 
+    /**
+     *
+     * @param id identifier for the need
+     * @return redirect to profile with status of deletion
+     * You can delete a need only if you are an admin or volunteer
+     * Admins of a charity can delete needs added by volunteers of that charity
+     * Volunteers can delete needs they added
+     */
     public static Result deleteNeed(long id) {
         Need need = Need.findById(id);
-        if(need != null){
+        String email = session().get("email");
+        User user = User.find.byId(email);
+        if(need != null
+                && (user.email.equals(need.addedBy) || (user.role.equals("admin")&& user.charity.equals(need.charity)))
+                && (user.role.equals("admin")||user.role.equals("volunteer")))
+        {
             need.delete();
-            return profile(1);
+            flash("success", "Need Deleted");
         }
         else {
-            return badRequest();
+            flash("error", "Need Was not deleted. Invalid need or permissions.");
         }
+
+        return redirect(routes.Profile.profile(1));
     }
 
     public static Result addVolunteer(){
@@ -182,7 +209,10 @@ public class Profile {
         }
         else {
             User user = User.find.byId(addVolunteerForm.get().email);
+            String email = session().get("email");
+            User admin = User.find.byId(email);
             user.changerole("volunteer");
+            user.setCharity(admin.charity);
             return ok();
         }
 
