@@ -13,23 +13,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="@routes.Assets.at("css/uikit.css")">
-    <link rel="stylesheet" href="@routes.Assets.at("js/fancybox/jquery.fancybox.css")" type="text/css" media="screen" />
     <link rel="stylesheet" href="@routes.Assets.at("css/bootstrap.css")">
     <link rel="stylesheet" href="@routes.Assets.at("css/bootstrap-theme.css")">
     <link rel="stylesheet" href="@routes.Assets.at("css/style.css")">
     <!-- skin -->
     <link rel="stylesheet" href="@routes.Assets.at("skin/default.css")">
     <style>
-        .nopadding {
-            padding: 0 !important;
-            margin: 0 !important;
+        .no-gutter > [class*='col-'] {
+            padding-right:0;
+            padding-left:0;
         }
     </style>
 </head>
 
 <body>
     @content
-    <script src="@routes.Assets.at("js/jquery.js")"></script>
     <script src="@routes.Assets.at("js/uikit.js")"></script>
     <script src="@routes.Assets.at("js/dropdown.js")"></script>
     <script src="@routes.Assets.at("js/modernizr-2.6.2-respond-1.1.0.min.js")"></script>

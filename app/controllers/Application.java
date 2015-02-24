@@ -2,6 +2,7 @@ package controllers;
 
 import models.User;
 import models.Need;
+import play.Routes;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -33,7 +34,7 @@ public class Application extends Controller {
         return ok(needs.render(Need.find.all()));
     }
 
-    public static Result viewNeed(int id) {
+    public static Result viewNeed(long id) {
         Need need = Need.findById(id);
         if(need == null){
             return redirect(
@@ -61,7 +62,7 @@ public class Application extends Controller {
             session().clear();
             session("email", loginForm.get().email);
             return redirect(
-                    routes.Profile.profile()
+                    routes.Profile.profile(1)
             );
         }
     }
@@ -71,6 +72,16 @@ public class Application extends Controller {
         flash("success", "You've been logged out");
         return redirect(
                 routes.Application.login()
+        );
+    }
+
+    public static Result javascriptRoutes() {
+        response().setContentType("text/javascript");
+        return ok(
+                Routes.javascriptRouter("jsRoutes",
+                        routes.javascript.Profile.addNeed()
+
+                )
         );
     }
 

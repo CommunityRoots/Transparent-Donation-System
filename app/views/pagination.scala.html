@@ -1,0 +1,29 @@
+@(currentPage: Integer, pageCount: Integer, blockPageSize: Integer)
+
+
+
+<nav>
+    <ul class="pagination">
+
+        @if(currentPage == 1) {
+        <li class="disabled"><span>&laquo;</span></li>
+        } else {
+        <li><a href="@routes.Profile.profile(currentPage - 1)">&laquo;</a></li>
+        }
+
+        @for(index <- utils.TemplateHelpers.createRange(currentPage, blockPageSize, pageCount)) {
+        @if(currentPage == index) {
+        <li class="disabled"><span>@index</span></li>
+        } else {
+        <li><a href="@routes.Profile.profile(index)">@index</a></li>
+        }
+        }
+
+        @if(currentPage == (pageCount-1)) {
+        <li class="disabled"><span>&raquo;</span></li>
+        } else {
+        <li><a href="@routes.Profile.profile(currentPage + 1)">&raquo;</a></li>
+        }
+
+    </ul>
+</nav>

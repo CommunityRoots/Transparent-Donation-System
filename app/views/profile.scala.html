@@ -1,5 +1,6 @@
-@(user: User, needs: List[Need])
+@(form: Form[Profile.AddNeed],user: User, needs: List[Need], currentPage: Integer, pageCount: Integer)
 @main {
+
 
     <section id="header" class="appear"></section>
     <div class="navbar navbar-fixed-top" role="navigation" data-0="line-height:100px; height:100px; background-color:rgba(0,0,0,0.3);" data-300="line-height:60px; height:60px; background-color:rgba(0,0,0,1);">
@@ -32,39 +33,169 @@
         <section id="section-works" class="section appear clearfix">
             <div class="container">
                 <div class="row">
-                    <h1>Profile page</h1>
+                    <h1>Your Profile</h1>
                 </div>
                 <div class="row">
                     <dl id="user">
-                        <dt>@user.firstName <span>(@user.email)</span></dt>
+                        <dt>@user.firstName @user.lastName</dt>
                     </dl>
                 </div>
-                <div class="row">
-                    @if(user.role == "volunteer") {
-                    <p>You are an admin. you can add volunteers and add needs</p>
+
+                @if(user.role == "volunteer" || user.role == "admin") {
+                    <div class="row" >
+                        <div class ="col-lg-2" style="padding-left: 0"><button id="showAddNeed" class="btn btn-success btn-block btn-lg">Add Need</button></div>
+                        @if(user.role == "admin") {
+                            <div class ="col-lg-2"><button id="showAddVol" class="btn btn-success btn-block btn-lg">Add Volunteer</button></div>
+                            <div class ="col-lg-2"><a href="#"><button id="listVol" class="btn btn-success btn-block btn-lg">List Volunteers</button></a></div>
+                        }
+                        <br /><br /><br />
+                    </div>
+                    @if(form.hasGlobalErrors) {
+                        <p class="error">
+                            @form.globalError.message
+                        </p>
                     }
+
+                    @if(flash.contains("success")) {
+                        <p class="success">
+                            @flash.get("success")
+                        </p>
+                    }
+                    <div class ="row" id="status" style="display:none">
+                        <p id="needAdded"></p>
+                    </div>
+
+                        <div id="addNeed" style="display:none">
+                                <div class="container-form">
+                                    <form role="form" id="addNeedForm" onSubmit="return false;">
+                                        <div class="row">
+                                            <div class="col-lg-4"><input type="text" name="title" id="needTitle" class="form-control input-lg" placeholder="Need Title" maxlength="20" value="@form("needTitle").value" tabindex="5"></div> <br /><br />
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-4"><input type="number" name="amount" id="amount" class="form-control input-lg" placeholder="€" value="@form("amount").value" tabindex="5"></div><br /><br />
+                                        </div>
+                                        <div class="row">
+                                            <div class ="col-lg-6"><textarea class="form-control input-lg" rows="3" id="needDescription" placeholder="Description" maxlength="600" value="@form("description").value"></textarea></div><br /><br />
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class ="col-lg-2"><button id="addNeedButton" class="btn btn-success btn-block btn-lg">Add</button></div><div class ="col-lg-2"><button id="closeNeed" class="btn btn-danger btn-block btn-lg">Close</button></div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                        </div>
+
+                        <div id="addVolunteer" style="display: none">
+                            <div class="container-form">
+                                <form role="role" id="addVolunteerForm" onsubmit="return false;">
+                                    <div class="row">
+                                        <div class="col-lg-4"><input type="email" name="volEmail" id="volEmail" class="form-control input-lg" placeholder="Volunteer Email" tabindex="5"></div> <br /><br />
+                                    </div>
+                                    <div class="row">
+                                        <div class ="col-lg-2"><button id="addVolButton" class="btn btn-success btn-block btn-lg">Add</button></div><div class ="col-lg-2"><button id="closeVol" class="btn btn-danger btn-block btn-lg">Close</button></div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    <div class="row">
+                        <h2>Needs you have added</h2>
+                    </div>
+                } else {
+                    <div class="row">
+                        <h2 style="padding-left: 0">Needs you have donated to</h2>
+                    </div>
+                }
+                <div class="row">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Donated Amount</th>
+                            <th>Percent Donated</th>
+                            <th>Age</th>
+                            @if(user.role == "volunteer" || user.role == "admin") {
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            }
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @for((need,index) <- needs.zipWithIndex) {
+                            <tr>
+                                <td><a href="@routes.Application.viewNeed(need.id)">@need.title</a></td>
+                                <td>€@need.donatedAmount</td>
+                                <td>@need.progressPercentage()%</td>
+                                <td>@need.daysSinceNeedAdded() days</td>
+                                @if(user.role == "volunteer" || user.role == "admin") {
+                                    <td><a href="#"><i class="fa fa-pencil"></i></a></td>
+                                    <td><a href="@routes.Profile.deleteNeed(need.id)"><i class="fa fa-trash-o"></i></a></td>
+                                }
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
                 <div class="row">
-                    <h2>Needs @user.firstName has donated to</h2>
-                    @if(needs.isEmpty) {
-                    <p>You have not donated to any needs yet. You can view them <a href="@routes.Application.needs()">here</a></p>
-                    } else {
-                    <ul>
-                        @for(need <- needs) {
-                        <li> Title: @need.title</li>
-                        <li> Ask Amount @need.askAmount</li>
-                        <li> Donated Amount: @need.donatedAmount</li>
-                        <li> Percent donated: @need.progressPercentage()%</li>
-                        <li> Description: @need.description</li>
-                        <br />
-                        }
-                    </ul>
+                    @if(pageCount >1){
+                         @pagination(currentPage, pageCount, pageCount)
                     }
+                </div>
+
                     }
-                    </div>
                     </div>
                 </div>
             </section>
+
+        <script>
+            $("#addNeedButton").click(function() {
+                console.log("fired");
+                $.post(
+                        "/profile/addNeed",
+                        {
+                            "title": $("#needTitle").val(),
+                            "description": $("#needDescription").val(),
+                            "amount": $("#amount").val(),
+                            success: update("Your need has been added"),
+                            error: update("There was a problem, please try again")
+                        }
+
+
+                );
+            });
+            function update(text)
+            {
+                $("#addNeed").hide();
+                $("#status").show();
+                $("#needAdded").text(text);
+                $("#showAddNeed").removeClass("active");
+            }
+
+            $("#showAddNeed").click(function() {
+                $("#showAddNeed").addClass("active");
+                $("#showAddVol").removeClass("active");
+                $("#status").hide();
+                $("#addVolunteer").hide();
+                $("#addNeed").show();
+            });
+            $("#closeNeed").click(function() {
+                $("#addNeed").hide();
+                $("#status").hide();
+                $("#showAddNeed").removeClass("active");
+            });
+            $("#showAddVol").click(function() {
+                $("#addNeed").hide();
+                $("#addVolunteer").show();
+                $("#showAddVol").addClass("active");
+                $("#showAddNeed").removeClass("active");
+            });
+            $("#closeVol").click(function() {
+                $("#addVolunteer").hide();
+                $("#showAddVol").removeClass("active");
+            });
+        </script>
 
 </body>
 </html>
