@@ -72,6 +72,9 @@ public class Profile {
             else if(urgency >10 || urgency <0){
                 return "Urgency must be in the range of 1 - 10";
             }
+            else if(amount <0){
+                return "Amount cannot be a negative number";
+            }
 
             return null;
         }
@@ -81,19 +84,22 @@ public class Profile {
         public String email;
 
         public String validate(){
-            String email = session().get("email");
+            String adminEmail = session().get("email");
+            User admin = User.find.byId(adminEmail);
             User user = User.find.byId(email);
+
             if(User.find.byId(email) == null){
                 return "No user with that email";
             }
-            if(!user.role.equals("admin")){
+            else if(!admin.role.equals("admin")){
                 return "You do not have permission to do this";
+            }
+            else if(user.role.equals("admin")){
+                return "User is an admin and cannot be made a volunteer";
             }
             return null;
         }
     }
-
-
 
     public static Result profile(int page) {
 

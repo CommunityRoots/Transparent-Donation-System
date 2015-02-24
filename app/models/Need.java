@@ -1,6 +1,8 @@
 package models;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import org.joda.time.*;
 import org.joda.time.DateTime;
 import play.data.format.Formats;

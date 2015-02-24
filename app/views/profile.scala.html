@@ -181,11 +181,20 @@
                             "description": $("#needDescription").val(),
                             "amount": $("#amount").val(),
                             "location": $("#location").val(),
-                            "urgncy" : $("#urgency option:selected").text(),
-                            success: update("Your need has been added"),
-                            error: update("There was a problem, please try again")
+                            "urgency" : $("#urgency option:selected").not("option:selected disabled").text()
                         }
-                );
+                )
+                .error(function(xhr, status, error) {
+                    $("#status").show();
+                    $("#needAdded").text("An error occurred");
+                    //xhr.responseText.
+                })
+                .success(function() {
+                    $("#addNeed").hide();
+                    $("#status").show();
+                    $("#needAdded").text("Need has been added successfully");
+                    $("#showAddNeed").removeClass("active");
+                });
             });
             $("#addVolButton").click(function() {
                 $.post(
@@ -194,8 +203,18 @@
                             "email": $("#volEmail").val()
                         }
 
-
-                );
+                )
+                .error(function(xhr, status, error) {
+                    $("#status").show();
+                    $("#needAdded").text("An error occurred");
+                    //xhr.responseText.
+                })
+                .success(function() {
+                    $("#addVolunteer").hide();
+                    $("#status").show();
+                    $("#needAdded").text("Volunteer added.");
+                    $("#showAddVol").removeClass("active");
+                });
             });
             function update(text)
             {
