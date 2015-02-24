@@ -20,6 +20,7 @@
     location: Navan
     urgency: 10
     description: yadayadayaday adayadayada yadayadayada yadayadayadayad ayadayadayadayad ayadayada yadayadayad ayadayadayaday yada
+    dateAdded: 2015-02-24 19:42:30
 
 - !!models.Need
     title: food
@@ -30,6 +31,7 @@
     location: Navan
     urgency: 10
     description: yadayadayaday adayadayada yadayadayada yadayadayadayad ayadayadayadayad ayadayada yadayadayad ayadayadayaday yada
+    dateAdded: 2015-02-24 19:42:30
 
 - !!models.Need
     title: food
@@ -40,6 +42,7 @@
     location: Navan
     urgency: 10
     description: yadayadayaday adayadayada yadayadayada yadayadayadayad ayadayadayadayad ayadayada yadayadayad ayadayadayaday yada
+    dateAdded: 2015-02-24 19:42:30
 
 - !!models.Need
     title: airplane
@@ -47,6 +50,7 @@
     askAmount: 50
     urgency: 1
     addedBy: bob1@gmail.com
+    dateAdded: 2015-02-24 19:42:30
 
 - !!models.Need
     title: airplane
@@ -54,6 +58,7 @@
     askAmount: 50
     urgency: 1
     addedBy: bob1@gmail.com
+    dateAdded: 2015-02-24 19:42:30
 
 - !!models.Need
     title: airplane
@@ -61,6 +66,7 @@
     askAmount: 50
     urgency: 1
     addedBy: bob1@gmail.com
+    dateAdded: 2015-02-24 19:42:30
 
 - !!models.Need
     title: airplane
@@ -68,3 +74,4 @@
     askAmount: 50
     urgency: 1
     addedBy: bob1@gmail.com
+    dateAdded: 2015-02-24 19:42:30

@@ -215,6 +215,5 @@ public class Profile {
             user.setCharity(admin.charity);
             return ok();
         }
-
     }
 }
