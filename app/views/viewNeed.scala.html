@@ -26,32 +26,55 @@
                     }
 
                 </ul>
-            </div><!--/.navbar-collapse -->
+            </div>
         </div>
     </div>
+
+
 
     <section class="featured"></section>
 
     <!-- section works -->
-    <section id="section-works" class="section appear clearfix">
-        <div class="container">
-            <div class="row mar-bot40">
-                <div class="col-md-offset-3 col-md-6">
-                    <div class="section-header">
-                        <h2 class="section-heading animated" data-animation="bounceInUp">
-                            @need.title
-                         </h2>
-                        <p>@need.description</p>
-                        <ul>
-                            <li> Ask Amount @need.askAmount</li>
-                            <li> Donated Amount: @need.donatedAmount</li>
-                            <li> Percent donated: @need.progressPercentage()%</li>
-                        </ul>
+    <div class="centered">
+        <div class="col-md-offset-3 col-md-8">
+                <div class="row">
+                    <div class="col-sm-3 col-md-2 align-center"><i class="fa fa-gift fa-5x"></i></div>
+                    <div class="col-sm-5">
+                        <h1>@need.title</h1>
+                        <p>@need.charity</p>
+                        <p>@need.location</p>
+                        <p>@need.dateAdded.format("dd MM yyyy")</p>
+                            <!--
+                        breakdown of cost?
+                        -->
+
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-sm-7">
+                        <div class="description">
+                            @need.description
+                        </div>
+                    </div>
+                </div>
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="@need.progressPercentage()" aria-valuemin="0" aria-valuemax="100" style="width: @need.progressPercentage()%">
+                            @need.progressPercentage()%
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 align-center">
+                    €@need.donatedAmount/€@need.askAmount
+                </div>
+                <div class="col-sm-2 col-md-2">
+                    <a href="#" class="btn btn-primary btn-block">Donate</a>
+                </div>
             </div>
+
         </div>
-    </section>
+    </div>
 
     <a href="#header" class="scrollup"><i class="fa fa-chevron-up"></i></a>
 }

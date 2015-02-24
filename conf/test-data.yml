@@ -8,6 +8,35 @@
     donatedAmount: 20
     askAmount: 50
     addedBy: bob@gmail.com
+    charity: SVP
+    location: Navan
+    dateAdded: 2015-2-18
+    description: yadayadayaday adayadayada yadayadayada yadayadayadayad ayadayadayadayad ayadayadayadayadayadayadayadayadayadayadayadayadayadayadayadayadayadayadayada
+
+- !!models.Need
+    title: food
+    donatedAmount: 20
+    askAmount: 50
+    addedBy: bob@gmail.com
+
+- !!models.Need
+    title: food
+    donatedAmount: 20
+    askAmount: 50
+    addedBy: bob@gmail.com
+
+- !!models.Need
+    title: food
+    donatedAmount: 20
+    askAmount: 50
+    addedBy: bob@gmail.com
+    description: yadayada
+
+- !!models.Need
+    title: food
+    donatedAmount: 20
+    askAmount: 50
+    addedBy: bob@gmail.com
     description: yadayada
 
 - !!models.Need

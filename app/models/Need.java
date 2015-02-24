@@ -7,6 +7,7 @@ import play.db.ebean.*;
 import play.data.validation.*;
 
 import java.lang.Integer;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -37,6 +38,10 @@ public class Need extends Model {
 
     @Constraints.Required
     public String description;
+
+    public String charity;
+    public Date dateAdded;
+    public String location;
 
     public static Finder<Integer, Need> find = new Finder<Integer,Need>(Integer.class, Need.class);
 

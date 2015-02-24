@@ -10,6 +10,9 @@ create table need (
   ask_amount                integer,
   added_by                  varchar(255),
   description               varchar(255),
+  charity                   varchar(255),
+  date_added                datetime,
+  location                  varchar(255),
   constraint pk_need primary key (id))
 ;
 
