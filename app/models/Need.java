@@ -44,6 +44,10 @@ public class Need extends Model {
     @Constraints.MaxLength(600)
     public String description;
 
+    public String charity;
+    public String location;
+    public String fullName;
+
     @Formats.DateTime(pattern="dd/MM/yyyy")
     public DateTime dateAdded;
 

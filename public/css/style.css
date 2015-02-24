@@ -24,6 +24,37 @@ body {
 	color: #167F39 !important;
 }
 
+.folio-info{
+	min-height: 250px;
+	max-height: 250px;
+}
+
+.progress{
+	margin-top: 5px;
+}
+
+.description{
+	padding: 10px 0;
+}
+
+.centered{
+	margin: 0 auto;
+	display: block;
+	padding-top: 100px;
+}
+
+.desc-limit{
+	display: block;
+	display: -webkit-box;
+	font-size: 20px;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+
+
 .featured{
 	background-color: #167F39 !important;
 	padding: 60px 0!important;

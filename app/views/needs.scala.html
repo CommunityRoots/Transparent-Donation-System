@@ -85,7 +85,9 @@
                                         <div class="folio-info">
                                             <a href="@routes.Application.viewNeed(need.id)"><i class="fa fa-gift fa-5x"></i></a>
                                             <h5><a href="@routes.Application.viewNeed(need.id)">@need.title</a></h5>
-                                            <p>@need.description</p>
+                                            <div class="desc-limit">
+                                                    @need.description
+                                            </div>
                                             <h5><a href="/charities/svp">SVP</a></h5>
                                         </div>
                                     </div>
