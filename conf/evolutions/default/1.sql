@@ -18,6 +18,10 @@ create table need (
   ask_amount                double,
   added_by                  varchar(255),
   description               varchar(255),
+  charity                   varchar(255),
+  location                  varchar(255),
+  full_name                 varchar(255),
+  urgency                   integer,
   date_added                datetime,
   constraint pk_need primary key (id))
 ;

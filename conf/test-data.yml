@@ -1,7 +1,15 @@
 - !!models.User
     email:      bob@gmail.com
     firstName:  Bob
+    role:       admin
     password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
+
+- !!models.Need
+    title: airplane
+    donatedAmount: 20
+    askAmount: 50
+    urgency: 1
+    addedBy: bob1@gmail.com
 
 - !!models.Need
     title: food
@@ -10,39 +18,53 @@
     addedBy: bob@gmail.com
     charity: SVP
     location: Navan
-    dateAdded: 2015-2-18
-    description: yadayadayaday adayadayada yadayadayada yadayadayadayad ayadayadayadayad ayadayadayadayadayadayadayadayadayadayadayadayadayadayadayadayadayadayadayada
+    urgency: 10
+    description: yadayadayaday adayadayada yadayadayada yadayadayadayad ayadayadayadayad ayadayada yadayadayad ayadayadayaday yada
 
 - !!models.Need
     title: food
     donatedAmount: 20
     askAmount: 50
     addedBy: bob@gmail.com
+    charity: SVP
+    location: Navan
+    urgency: 10
+    description: yadayadayaday adayadayada yadayadayada yadayadayadayad ayadayadayadayad ayadayada yadayadayad ayadayadayaday yada
 
 - !!models.Need
     title: food
     donatedAmount: 20
     askAmount: 50
     addedBy: bob@gmail.com
+    charity: SVP
+    location: Navan
+    urgency: 10
+    description: yadayadayaday adayadayada yadayadayada yadayadayadayad ayadayadayadayad ayadayada yadayadayad ayadayadayaday yada
 
 - !!models.Need
-    title: food
+    title: airplane
     donatedAmount: 20
     askAmount: 50
-    addedBy: bob@gmail.com
-    description: yadayada
+    urgency: 1
+    addedBy: bob1@gmail.com
 
 - !!models.Need
-    title: food
+    title: airplane
     donatedAmount: 20
     askAmount: 50
-    addedBy: bob@gmail.com
-    description: yadayada
+    urgency: 1
+    addedBy: bob1@gmail.com
 
 - !!models.Need
-    title: food
+    title: airplane
     donatedAmount: 20
     askAmount: 50
-    addedBy: bob@gmail.com
-    description: yadayada
+    urgency: 1
+    addedBy: bob1@gmail.com
 
+- !!models.Need
+    title: airplane
+    donatedAmount: 20
+    askAmount: 50
+    urgency: 1
+    addedBy: bob1@gmail.com

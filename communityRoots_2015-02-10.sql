@@ -38,9 +38,9 @@ CREATE TABLE `need` (
 LOCK TABLES `need` WRITE;
 /*!40000 ALTER TABLE `need` DISABLE KEYS */;
 
-INSERT INTO `need` (`id`, `title`, `donated_amount`, `ask_amount`, `added_by`, `description`,`location`, `date_added`,`charity`)
+INSERT INTO `need` (`id`, `title`, `donated_amount`, `ask_amount`, `added_by`, `description`)
 VALUES
-	(1,'food',10,20,'bob@gmail.com','food','Navan',2015-2-18,'SVP');
+	(1,'food',10,20,'bob@gmail.com','food');
 
 /*!40000 ALTER TABLE `need` ENABLE KEYS */;
 UNLOCK TABLES;

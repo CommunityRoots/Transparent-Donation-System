@@ -1,4 +1,4 @@
-@(needs: List[Need])
+@(needs: List[Need], currentPage: Integer, pageCount: Integer)
 @main {
 
     <section id="header" class="appear"></section>
@@ -97,6 +97,11 @@
 
                         </div>
 
+                    </div>
+                    <div class="row align-center">
+                        @if(pageCount >1){
+                            @pagination(currentPage, pageCount, pageCount, "needs")
+                        }
                     </div>
 
 

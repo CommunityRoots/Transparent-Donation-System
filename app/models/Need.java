@@ -48,6 +48,10 @@ public class Need extends Model {
     public String location;
     public String fullName;
 
+    @Constraints.Min(1)
+    @Constraints.Max(10)
+    public int urgency;
+
     @Formats.DateTime(pattern="dd/MM/yyyy")
     public DateTime dateAdded;
 
@@ -91,6 +95,7 @@ public class Need extends Model {
     }
 
     public long daysSinceNeedAdded(){
-        return ((Days.daysBetween(dateAdded,DateTime.now()).getDays()));
+        return 1;
+        //return ((Days.daysBetween(dateAdded,DateTime.now()).getDays()));
     }
 }

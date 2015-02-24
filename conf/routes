@@ -12,9 +12,8 @@ POST        /login               controllers.Application.authenticate()
 GET         /logout              controllers.Application.logout()
 
 #Needs page
-#GET         /needs               controllers.Application.needs(page: Int ?= 1)
+GET         /needs               controllers.Application.needs(page: Int ?= 1)
 #GET         /needs:page          controllers.Application.needs(page: Int)
-GET         /needs               controllers.Application.needs()
 
 #Need Desc page
 GET         /viewNeed            controllers.Application.viewNeed(id:Long)
