@@ -87,6 +87,6 @@ public class Need extends Model {
     }
 
     public long daysSinceNeedAdded(){
-        return ((Days.daysBetween(DateTime.now(),dateAdded).getDays()));
+        return ((Days.daysBetween(dateAdded,DateTime.now()).getDays()));
     }
 }

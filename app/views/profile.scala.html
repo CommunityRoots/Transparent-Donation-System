@@ -85,6 +85,7 @@
 
                                     </form>
                                 </div>
+                            <br /> <br />
                         </div>
 
                         <div id="addVolunteer" style="display: none">
@@ -98,6 +99,7 @@
                                     </div>
                                 </form>
                             </div>
+                            <br /> <br />
                         </div>
 
                     <div class="row">
@@ -112,10 +114,10 @@
                     <table class="table table-striped table-hover">
                         <thead>
                         <tr>
-                            <th>Title</th>
+                            <th>Need</th>
                             <th>Donated Amount</th>
                             <th>Percent Donated</th>
-                            <th>Age</th>
+                            <th>Added</th>
                             @if(user.role == "volunteer" || user.role == "admin") {
                                 <th>Edit</th>
                                 <th>Delete</th>
@@ -128,7 +130,7 @@
                                 <td><a href="@routes.Application.viewNeed(need.id)">@need.title</a></td>
                                 <td>€@need.donatedAmount</td>
                                 <td>@need.progressPercentage()%</td>
-                                <td>@need.daysSinceNeedAdded() days</td>
+                                <td>@need.daysSinceNeedAdded() days ago</td>
                                 @if(user.role == "volunteer" || user.role == "admin") {
                                     <td><a href="#"><i class="fa fa-pencil"></i></a></td>
                                     <td><a href="@routes.Profile.deleteNeed(need.id)"><i class="fa fa-trash-o"></i></a></td>
@@ -151,7 +153,6 @@
 
         <script>
             $("#addNeedButton").click(function() {
-                console.log("fired");
                 $.post(
                         "/profile/addNeed",
                         {
@@ -160,6 +161,16 @@
                             "amount": $("#amount").val(),
                             success: update("Your need has been added"),
                             error: update("There was a problem, please try again")
+                        }
+
+
+                );
+            });
+            $("#addVolButton").click(function() {
+                $.post(
+                        "/profile/addVolunteer",
+                        {
+                            "email": $("#volEmail").val()
                         }
 
 

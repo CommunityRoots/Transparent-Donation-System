@@ -77,6 +77,9 @@ public class Profile {
         public String email;
 
         public String validate(){
+            if(User.find.byId(email) == null){
+                return "No user with that email";
+            }
             return null;
         }
     }
@@ -169,6 +172,18 @@ public class Profile {
         }
         else {
             return badRequest();
+        }
+    }
+
+    public static Result addVolunteer(){
+        Form<AddVolunteer> addVolunteerForm = form(AddVolunteer.class).bindFromRequest();
+        if(addVolunteerForm.hasErrors()){
+            return badRequest(addVolunteerForm.errorsAsJson()).as("application/json");
+        }
+        else {
+            User user = User.find.byId(addVolunteerForm.get().email);
+            user.changerole("volunteer");
+            return ok();
         }
 
     }

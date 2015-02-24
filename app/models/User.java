@@ -17,6 +17,7 @@ public class User extends Model {
         this.role = "user"; //default
     }
     //play framework changes these to private and adds getters + setters on run
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     public Long id;
 
     @Id
@@ -33,8 +34,6 @@ public class User extends Model {
     @Constraints.MaxLength(20)
     @Constraints.Required
     public String password;
-
-    public String confirmationToken;
 
     public String role;
 
@@ -60,6 +59,11 @@ public class User extends Model {
 
     public void changeEmail(String email){
         this.email = email;
+        this.save();
+    }
+
+    public void changerole(String role){
+        this.role = role;
         this.save();
     }
 }

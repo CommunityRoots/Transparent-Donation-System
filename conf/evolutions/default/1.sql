@@ -36,7 +36,6 @@ create table user (
   first_name                varchar(255),
   last_name                 varchar(255),
   password                  varchar(255),
-  confirmation_token        varchar(255),
   role                      varchar(255),
   constraint pk_user primary key (email))
 ;
