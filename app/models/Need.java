@@ -2,12 +2,14 @@ package models;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import org.joda.time.*;
 import org.joda.time.DateTime;
 import play.data.format.Formats;
 import play.db.ebean.*;
 import play.data.validation.*;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class Need extends Model {
         this.donatedAmount = 0;
         this.askAmount = askAmount;
         this.addedBy = addedBy;
-        this.dateAdded = DateTime.now();
+        this.dateAdded = new Date();
     }
 
     public Need() {}
@@ -53,8 +55,8 @@ public class Need extends Model {
     @Constraints.Max(10)
     public int urgency;
 
-    @Formats.DateTime(pattern="dd/MM/yyyy")
-    public DateTime dateAdded = DateTime.now();
+    public Date dateAdded;
+    
     @ManyToOne
     public List<Donation> donations = new LinkedList<>();
 
@@ -93,7 +95,7 @@ public class Need extends Model {
         this.description =description;
         this.addedBy = user;
         this.askAmount =amount;
-        this.dateAdded = DateTime.now();
+        this.dateAdded = new Date();
         this.location = location;
         this.urgency = urgency;
         this.charity = charity;
@@ -101,7 +103,8 @@ public class Need extends Model {
     }
 
     public long daysSinceNeedAdded(){
-        return ((Days.daysBetween(dateAdded,DateTime.now()).getDays()));
+        Date today = new Date();
+        return ( (today.getTime() - dateAdded.getTime()) / (1000 * 60 * 60 * 24) );
     }
 
     public void addDonation(Need needId,User userId, double amount){
