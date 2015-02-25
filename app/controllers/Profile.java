@@ -3,21 +3,17 @@ package controllers;
 import com.avaje.ebean.Page;
 import com.avaje.ebean.PagingList;
 import models.*;
-import play.cache.Cache;
-import play.cache.Cached;
 import play.data.Form;
 import play.mvc.Result;
 import play.mvc.Security;
 import views.html.profile;
 import views.html.settings;
 
-import javax.validation.Constraint;
 import java.util.LinkedList;
 import java.util.List;
 
 import static play.data.Form.form;
 import static play.mvc.Controller.flash;
-import static play.mvc.Controller.request;
 import static play.mvc.Controller.session;
 import static play.mvc.Results.*;
 
@@ -108,7 +104,7 @@ public class Profile {
         String role = user.role;
         PagingList<Need> pagingList;
         if(role.equals("admin")||role.equals("volunteer")){
-            pagingList =  Need.find.where().in("added_by",email).findPagingList(3);
+            pagingList =  Need.find.where().in("added_by_email",email).findPagingList(3);
         }
         else {
             List<Donation> donationsByUserToNeed = Donation.find.where()
@@ -116,7 +112,7 @@ public class Profile {
                     .findList();
             LinkedList<Long> needids = new LinkedList<>();
             for(Donation donation : donationsByUserToNeed) {
-                needids.add(donation.needId);
+                needids.add(donation.need.id);
             }
             pagingList =  Need.find.where().in("id",needids).findPagingList(3);
         }
@@ -125,7 +121,7 @@ public class Profile {
         List<Need> needs = currentPage.getList();
 
         Integer totalPageCount = pagingList.getTotalPageCount();
-
+        User.find.all();
         return ok(profile.render(form(AddNeed.class),user,
                 needs, page, totalPageCount)
         );
@@ -172,7 +168,7 @@ public class Profile {
             Need need = new Need();
             need.addNeed(addNeedForm.get().title,
                     addNeedForm.get().description,
-                    session().get("email"),
+                    user,
                     addNeedForm.get().amount,
                     addNeedForm.get().location,
                     addNeedForm.get().urgency,
@@ -195,7 +191,7 @@ public class Profile {
         String email = session().get("email");
         User user = User.find.byId(email);
         if(need != null
-                && (user.email.equals(need.addedBy) || (user.role.equals("admin")&& user.charity.equals(need.charity)))
+                && (user.email.equals(need.addedBy.email) || (user.role.equals("admin")&& user.charity.equals(need.charity)))
                 && (user.role.equals("admin")||user.role.equals("volunteer")))
         {
             need.delete();
@@ -217,7 +213,7 @@ public class Profile {
             User user = User.find.byId(addVolunteerForm.get().email);
             String email = session().get("email");
             User admin = User.find.byId(email);
-            user.changerole("volunteer");
+            user.changeRole("volunteer");
             user.setCharity(admin.charity);
             return ok();
         }

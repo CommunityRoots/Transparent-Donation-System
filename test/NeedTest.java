@@ -1,5 +1,6 @@
-package need;
+package models;
 
+import models.Donation;
 import models.Need;
 import models.User;
 import java.util.List;
@@ -15,26 +16,16 @@ import static org.junit.Assert.assertNotNull;
 
 public class NeedTest extends WithApplication {
 
-    @Before
-    public void setup(){
-        //testing user model so clear all pre existing user data in database
-        Ebean.delete(User.find.all());
-        Ebean.delete(Need.find.all());
-        //add data to database
-        Ebean.save((List) Yaml.load("test-data.yml"));
-    }
-
     @Test
     public void RetrieveNeedCorrelatingToEmail() {
         List<Need> food = Need.findByEmail("bob@gmail.com");
         assertNotNull(food);
-        assertEquals("food", food.get(0).title);
         assertNotEquals(0,food.size());
     }
 
     @Test
     public void progressPercentageTest(){
-        Need need =  new Need("food",50,"bob@hotmail.com");
+        Need need =  new Need("food",50,User.find.byId("bob@hotmail.com"));
         assertEquals(0, need.progressPercentage());
     }
 

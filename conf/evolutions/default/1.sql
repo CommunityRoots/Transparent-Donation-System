@@ -5,9 +5,9 @@
 
 create table donation (
   id                        bigint auto_increment not null,
-  need_id                   bigint,
   donator_email             varchar(255),
   amount                    double,
+  need_id                   bigint,
   constraint pk_donation primary key (id))
 ;
 
@@ -16,7 +16,7 @@ create table need (
   title                     varchar(255),
   donated_amount            double,
   ask_amount                double,
-  added_by                  varchar(255),
+  added_by_email            varchar(255),
   description               varchar(255),
   charity                   varchar(255),
   location                  varchar(255),
@@ -45,6 +45,12 @@ create table user (
   constraint pk_user primary key (email))
 ;
 
+alter table donation add constraint fk_donation_donator_1 foreign key (donator_email) references user (email) on delete restrict on update restrict;
+create index ix_donation_donator_1 on donation (donator_email);
+alter table donation add constraint fk_donation_need_2 foreign key (need_id) references need (id) on delete restrict on update restrict;
+create index ix_donation_need_2 on donation (need_id);
+alter table need add constraint fk_need_addedBy_3 foreign key (added_by_email) references user (email) on delete restrict on update restrict;
+create index ix_need_addedBy_3 on need (added_by_email);
 
 
 

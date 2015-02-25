@@ -17,12 +17,12 @@ public class User extends Model {
         this.role = "user"; //default
     }
     //play framework changes these to private and adds getters + setters on run
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    public Long id;
 
     @Id
     @Constraints.Required
     public String email;
+
+    public long id;
 
     @Constraints.Required
     public String firstName;
@@ -36,6 +36,7 @@ public class User extends Model {
     public String password;
 
     public String role;
+
     public String charity;
 
     public static Finder<String, User> find = new Finder<String,User>(String.class, User.class);
@@ -54,7 +55,7 @@ public class User extends Model {
     }
 
     public void changePassword(String password) {
-        this.password =  BCrypt.hashpw(password,BCrypt.gensalt(12));
+        this.password = BCrypt.hashpw(password,BCrypt.gensalt(12));
         this.save();
     }
 
@@ -63,12 +64,17 @@ public class User extends Model {
         this.save();
     }
 
-    public void changerole(String role){
+    public void changeRole(String role){
         this.role = role;
         this.save();
     }
 
     public void setCharity(String charity){
         this.charity = charity;
+        this.save();
+    }
+
+    public void findAll(){
+        User.find.all();
     }
 }

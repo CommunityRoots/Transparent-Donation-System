@@ -9,20 +9,21 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "donation")
-public class Donation {
+public class Donation extends Model {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     public long id;
-    public long needId;
     @Email
-    public String donatorEmail;
+    @ManyToOne
+    public User donator;
     public double amount;
+    @ManyToOne
+    public Need need;
 
-    public Donation(long needId,String donatorEmail, double amount){
-        this.needId = needId;
-        this.donatorEmail= donatorEmail;
+    public Donation(Need need,User donator, double amount){
+        this.need = need;
+        this.donator = donator;
         this.amount = amount;
     }
 
@@ -34,9 +35,15 @@ public class Donation {
                 .findUnique();
     }
 
-    public static List<Donation> findByDonatorEmail(String email) {
+    public static List<Donation> findByDonator(String email) {
         return Donation.find.where()
-                .eq("donatorEmail", email)
+                .eq("donator.email", email)
                 .findList();
+    }
+
+    public static Donation createDonation(Need needId,User userId, double amount){
+        Donation donation = new Donation(needId,userId,amount);
+        donation.save();
+        return donation;
     }
 }

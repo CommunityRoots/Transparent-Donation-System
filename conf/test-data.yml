@@ -1,77 +1,88 @@
-- !!models.User
+- &usr1 !!models.User
     email:      bob@gmail.com
     firstName:  Bob
     role:       admin
     password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
 
-- !!models.Need
+- !!models.User
+    email:      tom@gmail.com
+    firstName:  Tom
+    role:       volunteer
+    password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
+
+- !!models.User
+    email:      Harold@gmail.com
+    firstName:  Harold
+    role:       user
+    password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
+
+- &need1 !!models.Need
     title: airplane
     donatedAmount: 20
     askAmount: 50
     urgency: 1
-    addedBy: bob1@gmail.com
+    addedBy: *usr1
 
 - !!models.Need
     title: food
     donatedAmount: 20
     askAmount: 50
-    addedBy: bob@gmail.com
+    addedBy: *usr1
     charity: SVP
     location: Navan
     urgency: 10
     description: yadayadayaday adayadayada yadayadayada yadayadayadayad ayadayadayadayad ayadayada yadayadayad ayadayadayaday yada
-    dateAdded: 2015-02-24 19:42:30
 
 - !!models.Need
     title: food
     donatedAmount: 20
     askAmount: 50
-    addedBy: bob@gmail.com
+    addedBy: *usr1
     charity: SVP
     location: Navan
     urgency: 10
     description: yadayadayaday adayadayada yadayadayada yadayadayadayad ayadayadayadayad ayadayada yadayadayad ayadayadayaday yada
-    dateAdded: 2015-02-24 19:42:30
 
 - !!models.Need
     title: food
     donatedAmount: 20
     askAmount: 50
-    addedBy: bob@gmail.com
+    addedBy: *usr1
     charity: SVP
     location: Navan
     urgency: 10
     description: yadayadayaday adayadayada yadayadayada yadayadayadayad ayadayadayadayad ayadayada yadayadayad ayadayadayaday yada
-    dateAdded: 2015-02-24 19:42:30
 
 - !!models.Need
     title: airplane
     donatedAmount: 20
     askAmount: 50
     urgency: 1
-    addedBy: bob1@gmail.com
-    dateAdded: 2015-02-24 19:42:30
+    addedBy: *usr1
 
 - !!models.Need
     title: airplane
     donatedAmount: 20
     askAmount: 50
     urgency: 1
-    addedBy: bob1@gmail.com
-    dateAdded: 2015-02-24 19:42:30
+    addedBy: *usr1
 
 - !!models.Need
     title: airplane
     donatedAmount: 20
     askAmount: 50
     urgency: 1
-    addedBy: bob1@gmail.com
-    dateAdded: 2015-02-24 19:42:30
+    addedBy: *usr1
 
 - !!models.Need
     title: airplane
     donatedAmount: 20
     askAmount: 50
     urgency: 1
-    addedBy: bob1@gmail.com
-    dateAdded: 2015-02-24 19:42:30
+    addedBy: *usr1
+
+- !!models.Donation
+    donator: *usr1
+    amount: 10
+    need: *need1
+
