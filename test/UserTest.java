@@ -1,17 +1,11 @@
 package models;
 
 
-import com.avaje.ebean.Ebean;
 import org.junit.*;
 import static org.junit.Assert.*;
-
-import play.db.ebean.Model;
-import play.libs.Yaml;
 import play.test.WithApplication;
-import java.util.List;
 
 public class UserTest extends WithApplication {
-
 
     @Test
     public void userAuthenticateTest() {

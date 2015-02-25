@@ -22,6 +22,8 @@ public class User extends Model {
     @Constraints.Required
     public String email;
 
+    @SequenceGenerator(name = "Token_generator", sequenceName = "Token_sequence")
+    @GeneratedValue(generator = "Token_generator")
     public long id;
 
     @Constraints.Required
@@ -50,10 +52,6 @@ public class User extends Model {
         return null;
     }
 
-    public static User findByConfirmationToken(String token) {
-        return find.where().eq("confirmationToken", token).findUnique();
-    }
-
     public void changePassword(String password) {
         this.password = BCrypt.hashpw(password,BCrypt.gensalt(12));
         this.save();
@@ -72,9 +70,5 @@ public class User extends Model {
     public void setCharity(String charity){
         this.charity = charity;
         this.save();
-    }
-
-    public void findAll(){
-        User.find.all();
     }
 }

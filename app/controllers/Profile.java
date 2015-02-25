@@ -187,7 +187,7 @@ public class Profile {
      * Volunteers can delete needs they added
      */
     public static Result deleteNeed(long id) {
-        Need need = Need.findById(id);
+        Need need = Need.find.byId(id);
         String email = session().get("email");
         User user = User.find.byId(email);
         if(need != null

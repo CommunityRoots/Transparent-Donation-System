@@ -12,7 +12,6 @@ import java.util.List;
 public class Donation extends Model {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
     public long id;
     @Email
     @ManyToOne
@@ -29,11 +28,6 @@ public class Donation extends Model {
 
     public static Model.Finder<Long, Donation> find = new Model.Finder<Long,Donation>(Long.class, Donation.class);
 
-    public static Need findById(int id){
-        return Need.find.where()
-                .eq("id",id)
-                .findUnique();
-    }
 
     public static List<Donation> findByDonator(String email) {
         return Donation.find.where()

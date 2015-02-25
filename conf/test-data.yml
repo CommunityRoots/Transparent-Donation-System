@@ -3,18 +3,21 @@
     firstName:  Bob
     role:       admin
     password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
+    charity:    svp
 
 - !!models.User
     email:      tom@gmail.com
     firstName:  Tom
     role:       volunteer
     password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
+    charity:    svp
 
 - !!models.User
     email:      Harold@gmail.com
     firstName:  Harold
     role:       user
     password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
+    charity:    svp
 
 - &need1 !!models.Need
     title: airplane
@@ -22,6 +25,7 @@
     askAmount: 50
     urgency: 1
     addedBy: *usr1
+    dateAdded: 2015-02-24
 
 - !!models.Need
     title: food
@@ -32,6 +36,7 @@
     location: Navan
     urgency: 10
     description: yadayadayaday adayadayada yadayadayada yadayadayadayad ayadayadayadayad ayadayada yadayadayad ayadayadayaday yada
+    dateAdded: 2015-02-24
 
 - !!models.Need
     title: food
@@ -42,6 +47,7 @@
     location: Navan
     urgency: 10
     description: yadayadayaday adayadayada yadayadayada yadayadayadayad ayadayadayadayad ayadayada yadayadayad ayadayadayaday yada
+    dateAdded: 2015-02-24
 
 - !!models.Need
     title: food
@@ -52,6 +58,7 @@
     location: Navan
     urgency: 10
     description: yadayadayaday adayadayada yadayadayada yadayadayadayad ayadayadayadayad ayadayada yadayadayad ayadayadayaday yada
+    dateAdded: 2015-02-24
 
 - !!models.Need
     title: airplane
@@ -59,6 +66,7 @@
     askAmount: 50
     urgency: 1
     addedBy: *usr1
+    dateAdded: 2015-02-24
 
 - !!models.Need
     title: airplane
@@ -66,6 +74,7 @@
     askAmount: 50
     urgency: 1
     addedBy: *usr1
+    dateAdded: 2015-02-24
 
 - !!models.Need
     title: airplane
@@ -73,6 +82,7 @@
     askAmount: 50
     urgency: 1
     addedBy: *usr1
+    dateAdded: 2015-02-24
 
 - !!models.Need
     title: airplane
@@ -80,6 +90,7 @@
     askAmount: 50
     urgency: 1
     addedBy: *usr1
+    dateAdded: 2015-02-24
 
 - !!models.Donation
     donator: *usr1

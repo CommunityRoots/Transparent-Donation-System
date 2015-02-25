@@ -3,10 +3,7 @@ package need;
 import models.Need;
 import models.User;
 import java.util.List;
-import com.avaje.ebean.Ebean;
-import org.junit.Before;
 import org.junit.Test;
-import play.libs.Yaml;
 import play.test.WithApplication;
 
 import static org.junit.Assert.assertEquals;

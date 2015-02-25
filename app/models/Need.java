@@ -27,7 +27,6 @@ public class Need extends Model {
     public Need() {}
     //play framework changes these to private and adds getters + setters on run
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
     public long id;
 
     @Constraints.Required
@@ -69,7 +68,7 @@ public class Need extends Model {
                 .findList();
         LinkedList<Need> needsDonatedToByUser = new LinkedList<>();
         for(Donation donation : donationsByUserToNeed){
-            needsDonatedToByUser.add(Need.findById(donation.need.id));
+            needsDonatedToByUser.add(Need.find.byId(donation.need.id));
         }
         return needsDonatedToByUser;
 
@@ -77,13 +76,6 @@ public class Need extends Model {
 
     public static List<Need> findByEmail(String user) {
         return Need.find.where().eq("added_by_email",user).findList();
-    }
-
-
-    public static Need findById(long id){
-        return Need.find.where()
-                .eq("id",id)
-                .findUnique();
     }
 
     public int progressPercentage(){
