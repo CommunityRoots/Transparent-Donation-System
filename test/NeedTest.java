@@ -35,7 +35,7 @@ public class NeedTest extends WithApplication {
     @Test
     public void progressPercentageTest(){
         Need need =  new Need("food",50,"bob@hotmail.com");
-        assertEquals(0, need.progressPercentage());
+        assertEquals(0, need.progressPercentage(),0); // third param is the amount the numbers can be off by
     }
 
 }
