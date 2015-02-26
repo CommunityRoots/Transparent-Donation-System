@@ -6,10 +6,10 @@ import models.*;
 import play.data.Form;
 import play.mvc.Result;
 import play.mvc.Security;
+import views.html.editNeed;
 import views.html.profile;
 import views.html.settings;
 import views.html.volunteers;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -96,6 +96,25 @@ public class Profile {
             }
             return null;
         }
+    }
+
+    public static class EditNeed {
+        public String title;
+        public String description;
+        public int urgency;
+        public String location;
+        public double amount;
+
+        public String validate(){
+            if(title.length()>20){
+                return "Title too long. Should be under 60 letters";
+            }
+            else if(amount <0){
+                return "Amount can not be negative number";
+            }
+            return null;
+        }
+
     }
 
     public static Result profile(int page) {
@@ -194,8 +213,13 @@ public class Profile {
                 && (user.email.equals(need.addedBy.email) || (user.role.equals("admin")&& user.charity.equals(need.charity)))
                 && (user.role.equals("admin")||user.role.equals("volunteer")))
         {
-            need.delete();
-            flash("success", "Need Deleted");
+            if(need.delteNeed()){
+                flash("success", "Need Deleted");
+            }
+            else{
+                flash("error","Need already has money donated to it so was not deleted");
+            }
+
         }
         else {
             flash("error", "Need Was not deleted. Invalid need or permissions.");
@@ -257,6 +281,32 @@ public class Profile {
     }
 
     public static Result editNeed(long id){
-        return ok();
+        Need need = Need.find.byId(id);
+        String email = session().get("email");
+        User user = User.find.byId(email);
+        if(!user.equals(need.addedBy)
+                || (user.role.equals("admin")&&user.charity.equals(need.charity))){
+            flash("error", "You do not have permission to edit this need");
+            return redirect(routes.Profile.profile(1));
+        }
+        Form<EditNeed> editNeedForm = form(EditNeed.class);
+        EditNeed editNeeds = new EditNeed();
+        editNeeds.title = need.title;
+        editNeeds.description = need.description;
+        editNeeds.location = need.location;
+        editNeeds.urgency = need.urgency;
+        editNeeds.amount = need.askAmount;
+        editNeedForm = editNeedForm.fill(editNeeds);
+        return ok(editNeed.render(editNeedForm,id));
+    }
+
+    public static Result doEditNeed(long id){
+        Form<EditNeed> editNeedForm = form(EditNeed.class).bindFromRequest();
+        Need need = Need.find.byId(id);
+        need.editNeed(editNeedForm.get().title,editNeedForm.get().description,
+                editNeedForm.get().location,editNeedForm.get().amount,
+                editNeedForm.get().urgency);
+        flash("success", "Need has been updated");
+        return redirect(routes.Profile.profile(1));
     }
 }

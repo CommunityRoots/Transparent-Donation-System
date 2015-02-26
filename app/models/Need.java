@@ -102,5 +102,25 @@ public class Need extends Model {
     public void addDonation(Need needId,User userId, double amount){
         Donation donation = Donation.createDonation(needId,userId,amount);
         donations.add(donation);
+        donatedAmount +=amount;
+    }
+
+    public void editNeed(String title, String description, String location, double amount, int urgency){
+        this.title =title;
+        this.description = description;
+        this.location =location;
+        this.askAmount =amount;
+        this.urgency = urgency;
+        this.save();
+    }
+
+    public boolean delteNeed(){
+        if(donatedAmount>0){
+            return false;
+        }
+        else {
+            this.delete();
+            return true;
+        }
     }
 }

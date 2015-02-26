@@ -4,6 +4,7 @@ package models;
 import org.hibernate.validator.constraints.Email;
 import play.db.ebean.Model;
 
+import javax.annotation.Nullable;
 import javax.persistence.*;
 import java.util.List;
 

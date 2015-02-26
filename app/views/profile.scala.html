@@ -97,7 +97,7 @@
                                             <br /><br />
                                         </div>
                                         <div class="row">
-                                            <div class ="col-lg-6"><textarea class="form-control input-lg" rows="3" id="needDescription" placeholder="Description" maxlength="600" value="@form("description").value"></textarea></div><br /><br />
+                                            <div class ="col-lg-6"><textarea class="form-control input-lg" rows="3" id="needDescription" placeholder="Description" maxlength="600"></textarea></div><br /><br />
                                         </div>
                                         <br />
                                         <div class="row">
@@ -153,7 +153,7 @@
                                 <td>@need.progressPercentage()%</td>
                                 <td>@need.daysSinceNeedAdded() days ago</td>
                                 @if(user.role == "volunteer" || user.role == "admin") {
-                                    <td><a href="#"><i class="fa fa-pencil"></i></a></td>
+                                    <td><a href="@routes.Profile.editNeed(need.id)"><i class="fa fa-pencil"></i></a></td>
                                     <td><a href="@routes.Profile.deleteNeed(need.id)"><i class="fa fa-trash-o"></i></a></td>
                                 }
                             </tr>
