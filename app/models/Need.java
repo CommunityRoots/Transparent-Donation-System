@@ -114,13 +114,13 @@ public class Need extends Model {
         this.save();
     }
 
-    public boolean delteNeed(){
-        if(donatedAmount>0){
-            return false;
-        }
-        else {
+    public boolean deleteNeed(){
+        if(donatedAmount==0){
             this.delete();
             return true;
         }
+
+        return false;
+
     }
 }

@@ -213,13 +213,12 @@ public class Profile {
                 && (user.email.equals(need.addedBy.email) || (user.role.equals("admin")&& user.charity.equals(need.charity)))
                 && (user.role.equals("admin")||user.role.equals("volunteer")))
         {
-            if(need.delteNeed()){
+            if(need.deleteNeed()){
                 flash("success", "Need Deleted");
             }
             else{
                 flash("error","Need already has money donated to it so was not deleted");
             }
-
         }
         else {
             flash("error", "Need Was not deleted. Invalid need or permissions.");

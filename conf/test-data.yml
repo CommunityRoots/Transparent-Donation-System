@@ -31,7 +31,7 @@
 
 - !!models.Need
     title: food
-    donatedAmount: 20
+    donatedAmount: 0
     askAmount: 50
     addedBy: *usr1
     charity: SVP
@@ -42,7 +42,7 @@
 
 - !!models.Need
     title: food
-    donatedAmount: 20
+    donatedAmount: 0
     askAmount: 50
     addedBy: *usr1
     charity: SVP
@@ -53,7 +53,7 @@
 
 - !!models.Need
     title: food
-    donatedAmount: 20
+    donatedAmount: 0
     askAmount: 50
     addedBy: *usr1
     charity: SVP
@@ -64,7 +64,7 @@
 
 - !!models.Need
     title: airplane
-    donatedAmount: 20
+    donatedAmount: 0
     askAmount: 50
     urgency: 1
     addedBy: *usr1
@@ -72,7 +72,7 @@
 
 - !!models.Need
     title: airplane
-    donatedAmount: 20
+    donatedAmount: 0
     askAmount: 50
     urgency: 1
     addedBy: *usr1
@@ -80,7 +80,7 @@
 
 - !!models.Need
     title: airplane
-    donatedAmount: 20
+    donatedAmount: 0
     askAmount: 50
     urgency: 1
     addedBy: *usr1
@@ -88,7 +88,7 @@
 
 - !!models.Need
     title: airplane
-    donatedAmount: 20
+    donatedAmount: 0
     askAmount: 50
     urgency: 1
     addedBy: *usr1
@@ -96,6 +96,6 @@
 
 - !!models.Donation
     donator: *usr1
-    amount: 10
+    amount: 20
     need: *need1
 

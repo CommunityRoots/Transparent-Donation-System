@@ -61,6 +61,11 @@
                             @flash.get("success")
                         </p>
                     }
+                    @if(flash.contains("error")) {
+                    <p class="error">
+                        @flash.get("error")
+                    </p>
+                    }
                     <div class ="row" id="status" style="display:none">
                         <p id="needAdded"></p>
                     </div>
