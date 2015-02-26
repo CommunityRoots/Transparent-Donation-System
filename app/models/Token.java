@@ -22,10 +22,6 @@ public class Token extends Model {
 
     @Constraints.Required
     @Formats.NonEmpty
-    public Long userId;
-
-    @Constraints.Required
-    @Formats.NonEmpty
     public String email;
 
     @Formats.DateTime(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -47,11 +43,10 @@ public class Token extends Model {
         return cal.getTime();
     }
 
-    private static Token getNewToken(User user, String email) {
+    private static Token getNewToken(User user) {
         Token token = new Token();
         token.token = UUID.randomUUID().toString();
-        token.userId = user.id;
-        token.email = email;
+        token.email = user.email;
         token.save();
         return token;
     }
@@ -60,7 +55,7 @@ public class Token extends Model {
             String mail = user.email;
             String name = user.firstName;
             String subject = "Forgot Password";
-            Token token = getNewToken(user, user.email);
+            Token token = getNewToken(user);
             String urlString = "http://communityroots.net/reset/"+token.token;
             URL url = new URL(urlString);
             String content = "Link to change your password "+ url;

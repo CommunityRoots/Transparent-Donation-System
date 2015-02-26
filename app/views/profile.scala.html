@@ -46,7 +46,7 @@
                         <div class ="col-lg-2" style="padding-left: 0"><button id="showAddNeed" class="btn btn-success btn-block btn-lg">Add Need</button></div>
                         @if(user.role == "admin") {
                             <div class ="col-lg-2"><button id="showAddVol" class="btn btn-success btn-block btn-lg">Add Volunteer</button></div>
-                            <div class ="col-lg-2"><a href="#"><button id="listVol" class="btn btn-success btn-block btn-lg">List Volunteers</button></a></div>
+                            <div class ="col-lg-2"><a href="@routes.Profile.listVolunteers()"><button id="listVol" class="btn btn-success btn-block btn-lg">List Volunteers</button></a></div>
                         }
                         <br /><br /><br />
                     </div>

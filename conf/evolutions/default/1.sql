@@ -28,7 +28,6 @@ create table need (
 
 create table token (
   token                     varchar(255) not null,
-  user_id                   bigint,
   email                     varchar(255),
   date_creation             datetime,
   constraint pk_token primary key (token))
@@ -36,7 +35,6 @@ create table token (
 
 create table user (
   email                     varchar(255) not null,
-  id                        bigint,
   first_name                varchar(255),
   last_name                 varchar(255),
   password                  varchar(255),

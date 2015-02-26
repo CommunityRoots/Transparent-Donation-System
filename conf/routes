@@ -21,8 +21,14 @@ GET         /viewNeed            controllers.Application.viewNeed(id:Long)
 #Invalid Need page
 GET         /invalidNeed         controllers.Application.invalidNeed()
 
-#User page
-GET         /profile             controllers.Profile.profile(page: Integer ?= 1)
+#Profile page
+GET         /profile                  controllers.Profile.profile(page: Integer ?= 1)
+POST        /profile/addNeed          controllers.Profile.addNeed()
+POST        /profile/addVolunteer     controllers.Profile.addVolunteer()
+GET         /deleteNeed/:id           controllers.Profile.deleteNeed(id: Long)
+GET         /volunteers               controllers.Profile.listVolunteers(page: Integer ?= 1)
+GET         /deleteVol/:email         controllers.Profile.deleteVolunteer(email: String)
+GET         /editNeed:id              controllers.Profile.editNeed(id: Long)
 
 #Settings page
 GET         /settings            controllers.Profile.settings()
@@ -42,6 +48,4 @@ POST        /reset/:token        controllers.Reset.doNewPass(token:String)
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file        controllers.Assets.at(path="/public", file)
 
-POST    /profile/addNeed          controllers.Profile.addNeed()
-POST    /profile/addVolunteer     controllers.Profile.addVolunteer()
-GET    /deleteNeed/:id               controllers.Profile.deleteNeed(id: Long)
+

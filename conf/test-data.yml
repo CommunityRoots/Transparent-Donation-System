@@ -1,6 +1,7 @@
 - &usr1 !!models.User
     email:      bob@gmail.com
     firstName:  Bob
+    lastName:   Minion
     role:       admin
     password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
     charity:    svp
@@ -8,16 +9,17 @@
 - !!models.User
     email:      tom@gmail.com
     firstName:  Tom
+    lastName:   Swaroski
     role:       volunteer
     password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
     charity:    svp
 
 - !!models.User
-    email:      Harold@gmail.com
+    email:      harold@gmail.com
     firstName:  Harold
+    lastName:   Commodious
     role:       user
     password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
-    charity:    svp
 
 - &need1 !!models.Need
     title: airplane

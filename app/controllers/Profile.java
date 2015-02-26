@@ -8,6 +8,7 @@ import play.mvc.Result;
 import play.mvc.Security;
 import views.html.profile;
 import views.html.settings;
+import views.html.volunteers;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -121,7 +122,6 @@ public class Profile {
         List<Need> needs = currentPage.getList();
 
         Integer totalPageCount = pagingList.getTotalPageCount();
-        User.find.all();
         return ok(profile.render(form(AddNeed.class),user,
                 needs, page, totalPageCount)
         );
@@ -217,5 +217,46 @@ public class Profile {
             user.setCharity(admin.charity);
             return ok();
         }
+    }
+
+    public static Result listVolunteers(int page){
+        String email = session().get("email");
+        User user = User.find.byId(email);
+        String role = user.role;
+        if(!role.equals("admin")){
+            return redirect(routes.Application.index());
+        }
+
+        //users that have role volunteer and same charity as user
+        PagingList<User> pagingList = User.find.where()
+                .eq("role","volunteer")
+                .eq("charity",user.charity)
+                .findPagingList(10);
+
+        Page<User> currentPage = pagingList.getPage(page - 1);
+        List<User> volunteer = currentPage.getList();
+
+        Integer totalPageCount = pagingList.getTotalPageCount();
+        return ok(volunteers.render(
+                        volunteer, page, totalPageCount)
+        );
+    }
+
+    public static Result deleteVolunteer(String id){
+        String email = session().get("email");
+        User user = User.find.byId(email);
+        User volunteer = User.find.byId(id);
+        if(!user.role.equals("admin") ||
+                !user.charity.equals(volunteer.charity)){
+            flash("error", "You do not have permission to remove a volunteer");
+            return redirect(routes.Profile.listVolunteers(1));
+        }
+        volunteer.changeRole("user");
+        flash("success", "volunteer has been removed");
+        return redirect(routes.Profile.listVolunteers(1));
+    }
+
+    public static Result editNeed(long id){
+        return ok();
     }
 }

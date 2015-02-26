@@ -10,8 +10,11 @@
         }else {
             @if(onPage == "needs") {
                 <li><a href="@routes.Application.needs(currentPage - 1)">&laquo;</a></li>
-            } else {
+            } else { @if(onPage == "volunteers") {
+                <li><a href="@routes.Profile.listVolunteers(currentPage - 1)">&laquo;</a></li>
+                 } else {
                 <li><a href="@routes.Profile.profile(currentPage - 1)">&laquo;</a></li>
+                }
             }
         }
         @for(index <- utils.TemplateHelpers.createRange(currentPage, blockPageSize, pageCount)) {
@@ -20,8 +23,11 @@
             } else {
                 @if(onPage == "needs") {
                     <li><a href="@routes.Application.needs(index)">@index</a></li>
-                } else {
-                    <li><a href="@routes.Profile.profile(index)">@index</a></li>
+                } else { @if(onPage == "volunteers"){
+                    <li><a href="@routes.Profile.listVolunteers(index)">@index</a></li>
+                    } else {
+                        <li><a href="@routes.Profile.profile(index)">@index</a></li>
+                    }
                 }
             }
         }
@@ -31,10 +37,13 @@
         } else {
             @if(onPage == "needs") {
                 <li><a href="@routes.Application.needs(currentPage + 1)">&raquo;</a></li>
-            } else {
-                <li><a href="@routes.Profile.profile(currentPage + 1)">&raquo;</a></li>
+            } else { @if(onPage == "volunteers"){
+                <li><a href="@routes.Profile.listVolunteers(currentPage + 1)">&laquo;</a></li>
+                } else {
+                    <li><a href="@routes.Profile.profile(currentPage + 1)">&raquo;</a></li>
+                }
             }
-        }
+         }
 
 
     </ul>

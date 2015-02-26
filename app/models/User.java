@@ -6,6 +6,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import play.db.ebean.*;
 import play.data.validation.*;
 
+
 @Entity
 public class User extends Model {
 
@@ -21,10 +22,6 @@ public class User extends Model {
     @Id
     @Constraints.Required
     public String email;
-
-    @SequenceGenerator(name = "Token_generator", sequenceName = "Token_sequence")
-    @GeneratedValue(generator = "Token_generator")
-    public long id;
 
     @Constraints.Required
     public String firstName;
