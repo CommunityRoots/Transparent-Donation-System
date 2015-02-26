@@ -33,6 +33,8 @@ body {
 	margin-top: 5px;
 }
 
+.top-buffer { margin-top:20px; }
+
 .description{
 	padding: 10px 0;
 }
