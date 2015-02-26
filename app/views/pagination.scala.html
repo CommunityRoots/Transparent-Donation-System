@@ -14,6 +14,7 @@
                 <li><a href="@routes.Profile.profile(currentPage - 1)">&laquo;</a></li>
             }
         }
+
         @for(index <- utils.TemplateHelpers.createRange(currentPage, blockPageSize, pageCount)) {
             @if(currentPage == index) {
                 <li class="disabled"><span>@index</span></li>
@@ -26,7 +27,7 @@
             }
         }
 
-        @if(currentPage == (pageCount-1)) {
+        @if(currentPage == (pageCount)) {
             <li class="disabled"><span>&raquo;</span></li>
         } else {
             @if(onPage == "needs") {
@@ -35,7 +36,6 @@
                 <li><a href="@routes.Profile.profile(currentPage + 1)">&raquo;</a></li>
             }
         }
-
-
+        
     </ul>
 </nav>

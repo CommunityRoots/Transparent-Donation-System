@@ -35,7 +35,7 @@ public class Application extends Controller {
     public static Result needs(int page) {
         PagingList<Need> pagingList =  Need.find.where()
                 .orderBy("urgency desc")
-                .findPagingList(6);
+                .findPagingList(3);
         Page<Need> currentPage = pagingList.getPage(page - 1);
         List<Need> needList = currentPage.getList();
 
