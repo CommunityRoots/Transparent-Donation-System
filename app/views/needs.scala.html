@@ -18,11 +18,11 @@
                     <li><a href="@routes.Application.index()#about">About us</a></li>
                     @if(session().get("email")==null) {
                         <li><a href="@routes.Registration.register()">Register</a></li>
-                        <li><a href="@routes.Application.login()">Login</a></li>
+                        <li><a href="@routes.Login.login()">Login</a></li>
                     } else {
                         <li><a href="@routes.Profile.profile()">Profile</a></li>
                         <li><a href="@routes.Profile.settings()">Settings</a></li>
-                        <li><a href="@routes.Application.logout()">Logout</a></li>
+                        <li><a href="@routes.Login.logout()">Logout</a></li>
                     }
 
                 </ul>
@@ -83,8 +83,8 @@
                                 @for(need <- needs) {
                                     <div class="col-md-4 align-center">
                                         <div class="folio-info">
-                                            <a href="@routes.Application.viewNeed(need.id)"><i class="fa fa-gift fa-5x"></i></a>
-                                            <h5><a href="@routes.Application.viewNeed(need.id)">@need.title</a></h5>
+                                            <a href="@routes.NeedCont.viewNeed(need.id)"><i class="fa fa-gift fa-5x"></i></a>
+                                            <h5><a href="@routes.NeedCont.viewNeed(need.id)">@need.title</a></h5>
                                             <div class="desc-limit">
                                                     @need.description
                                             </div>

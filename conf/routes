@@ -7,19 +7,16 @@ GET         /                    controllers.Application.index()
 GET         /index               controllers.Application.index()
 
 # Login page
-GET         /login               controllers.Application.login()
-POST        /login               controllers.Application.authenticate()
-GET         /logout              controllers.Application.logout()
+GET         /login               controllers.Login.login()
+POST        /login               controllers.Login.authenticate()
+GET         /logout              controllers.Login.logout()
 
 #Needs page
 GET         /needs               controllers.Application.needs(page: Int ?= 1)
-#GET         /needs:page          controllers.Application.needs(page: Int)
 
 #Need Desc page
-GET         /viewNeed            controllers.Application.viewNeed(id:Long)
-
-#Invalid Need page
-GET         /invalidNeed         controllers.Application.invalidNeed()
+GET         /viewNeed            controllers.NeedCont.viewNeed(id:Long)
+GET         /invalidNeed         controllers.NeedCont.invalidNeed()
 
 #Profile page
 GET         /profile                  controllers.Profile.profile(page: Integer ?= 1)

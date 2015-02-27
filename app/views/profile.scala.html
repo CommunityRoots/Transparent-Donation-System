@@ -19,11 +19,11 @@
                     <li><a href="@routes.Application.index()#about">About us</a></li>
                     @if(session().get("email")==null) {
                         <li><a href="@routes.Registration.register()">Register</a></li>
-                        <li><a href="@routes.Application.login()">Login</a></li>
+                        <li><a href="@routes.Login.login()">Login</a></li>
                     } else {
                         <li class="active"><a href="@routes.Profile.profile()">Profile</a></li>
                         <li><a href="@routes.Profile.settings()">Settings</a></li>
-                        <li><a href="@routes.Application.logout()">Logout</a></li>
+                        <li><a href="@routes.Login.logout()">Logout</a></li>
                     }
                 </ul>
             </div><!--/.navbar-collapse -->
@@ -153,7 +153,7 @@
                         <tbody>
                             @for((need,index) <- needs.zipWithIndex) {
                             <tr>
-                                <td><a href="@routes.Application.viewNeed(need.id)">@need.title</a></td>
+                                <td><a href="@routes.NeedCont.viewNeed(need.id)">@need.title</a></td>
                                 <td>€@need.donatedAmount</td>
                                 <td>@need.progressPercentage()%</td>
                                 <td>@need.daysSinceNeedAdded() days ago</td>

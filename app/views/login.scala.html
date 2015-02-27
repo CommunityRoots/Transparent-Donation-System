@@ -1,5 +1,5 @@
 @import helper._
-@(form: Form[Application.Login])
+@(form: Form[Login.LoginForm])
 @main{
     <html>
         <head>
@@ -39,11 +39,11 @@
                             <li><a href="@routes.Application.index()#about">About us</a></li>
                             @if(session().get("email")==null) {
                                 <li><a href="@routes.Registration.register()">Register</a></li>
-                                <li class="active"><a href="@routes.Application.login()">Login</a></li>
+                                <li class="active"><a href="@routes.Login.login()">Login</a></li>
                             } else {
                                 <li><a href="@routes.Profile.profile()">Profile</a></li>
                                 <li><a href="@routes.Profile.settings()">Settings</a></li>
-                                <li><a href="@routes.Application.logout()">Logout</a></li>
+                                <li><a href="@routes.Login.logout()">Logout</a></li>
                             }
 
                         </ul>
@@ -53,7 +53,7 @@
 
             <section class="featured"></section>
 
-            @helper.form(CSRF(routes.Application.authenticate)) {
+            @helper.form(CSRF(routes.Login.authenticate)) {
 
 
                 <div class="container-form">
