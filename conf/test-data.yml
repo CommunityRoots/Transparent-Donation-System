@@ -41,44 +41,6 @@
     dateAdded: 2015-02-24
 
 - !!models.Need
-    title: food
-    donatedAmount: 0
-    askAmount: 50
-    addedBy: *usr1
-    charity: SVP
-    location: Navan
-    urgency: 10
-    description: yadayadayaday adayadayada yadayadayada yadayadayadayad ayadayadayadayad ayadayada yadayadayad ayadayadayaday yada
-    dateAdded: 2015-02-24
-
-- !!models.Need
-    title: food
-    donatedAmount: 0
-    askAmount: 50
-    addedBy: *usr1
-    charity: SVP
-    location: Navan
-    urgency: 10
-    description: yadayadayaday adayadayada yadayadayada yadayadayadayad ayadayadayadayad ayadayada yadayadayad ayadayadayaday yada
-    dateAdded: 2015-02-24
-
-- !!models.Need
-    title: airplane
-    donatedAmount: 0
-    askAmount: 50
-    urgency: 1
-    addedBy: *usr1
-    dateAdded: 2015-02-24
-
-- !!models.Need
-    title: airplane
-    donatedAmount: 0
-    askAmount: 50
-    urgency: 1
-    addedBy: *usr1
-    dateAdded: 2015-02-24
-
-- !!models.Need
     title: airplane
     donatedAmount: 0
     askAmount: 50
