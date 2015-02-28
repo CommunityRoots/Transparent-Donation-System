@@ -41,10 +41,10 @@
                     </dl>
                 </div>
 
-                @if(user.role == "volunteer" || user.role == "admin") {
+                @if(user.role == 2 || user.role == 3) {
                     <div class="row" >
                         <div class ="col-lg-2" style="padding-left: 0"><button id="showAddNeed" class="btn btn-success btn-block btn-lg">Add Need</button></div>
-                        @if(user.role == "admin") {
+                        @if(user.role == 2) {
                             <div class ="col-lg-2"><button id="showAddVol" class="btn btn-success btn-block btn-lg">Add Volunteer</button></div>
                             <div class ="col-lg-2"><a href="@routes.Profile.listVolunteers()"><button id="listVol" class="btn btn-success btn-block btn-lg">List Volunteers</button></a></div>
                         }
@@ -144,7 +144,7 @@
                             <th>Donated Amount</th>
                             <th>Percent Donated</th>
                             <th>Added</th>
-                            @if(user.role == "volunteer" || user.role == "admin") {
+                            @if(user.role <4) {
                                 <th>Edit</th>
                                 <th>Delete</th>
                             }
@@ -157,7 +157,7 @@
                                 <td>€@need.donatedAmount</td>
                                 <td>@need.progressPercentage()%</td>
                                 <td>@need.daysSinceNeedAdded() days ago</td>
-                                @if(user.role == "volunteer" || user.role == "admin") {
+                                @if(user.role <4 ) {
                                     <td><a href="@routes.Profile.editNeed(need.id)"><i class="fa fa-pencil"></i></a></td>
                                     <td><a href="@routes.Profile.deleteNeed(need.id)"><i class="fa fa-trash-o"></i></a></td>
                                 }

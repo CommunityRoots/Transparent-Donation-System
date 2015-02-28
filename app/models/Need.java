@@ -56,8 +56,11 @@ public class Need extends Model {
 
     public Date dateAdded;
     
-    @ManyToOne
+    @OneToMany
     public List<Donation> donations = new LinkedList<>();
+
+    @OneToMany
+    public List<Updates> updates = new LinkedList<>();
 
     public static Finder<Long, Need> find = new Finder<Long,Need>(Long.class, Need.class);
 
@@ -100,9 +103,16 @@ public class Need extends Model {
     }
 
     public void addDonation(Need needId,User userId, double amount){
-        Donation donation = Donation.createDonation(needId,userId,amount);
+        Donation donation = new Donation(needId,userId,amount);
+        donation.save();
         donations.add(donation);
         donatedAmount +=amount;
+    }
+
+    public void addUpdate(Need need, String title,String message){
+        Updates update = new Updates(title,message,need);
+        update.save();
+        updates.add(update);
     }
 
     public void editNeed(String title, String description, String location, double amount, int urgency){
@@ -119,8 +129,6 @@ public class Need extends Model {
             this.delete();
             return true;
         }
-
         return false;
-
     }
 }

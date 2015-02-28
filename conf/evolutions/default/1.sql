@@ -33,13 +33,24 @@ create table token (
   constraint pk_token primary key (token))
 ;
 
+create table updates (
+  id                        bigint auto_increment not null,
+  title                     varchar(255),
+  message                   varchar(255),
+  date_added                datetime,
+  need_id                   bigint,
+  constraint pk_updates primary key (id))
+;
+
 create table user (
   email                     varchar(255) not null,
   first_name                varchar(255),
   last_name                 varchar(255),
   password                  varchar(255),
-  role                      varchar(255),
+  role                      integer,
   charity                   varchar(255),
+  joined                    datetime,
+  last_login                datetime,
   constraint pk_user primary key (email))
 ;
 
@@ -49,6 +60,8 @@ alter table donation add constraint fk_donation_need_2 foreign key (need_id) ref
 create index ix_donation_need_2 on donation (need_id);
 alter table need add constraint fk_need_addedBy_3 foreign key (added_by_email) references user (email) on delete restrict on update restrict;
 create index ix_need_addedBy_3 on need (added_by_email);
+alter table updates add constraint fk_updates_need_4 foreign key (need_id) references need (id) on delete restrict on update restrict;
+create index ix_updates_need_4 on updates (need_id);
 
 
 
@@ -61,6 +74,8 @@ drop table donation;
 drop table need;
 
 drop table token;
+
+drop table updates;
 
 drop table user;
 

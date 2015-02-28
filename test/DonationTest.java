@@ -26,7 +26,7 @@ public class DonationTest {
             public void run() {
                 Need need = Need.find.byId((long) 1);
                 User user = User.find.byId("bob@gmail.com");
-                Donation donation = Donation.createDonation(need,user,10);
+                Donation donation = new Donation(need,user,10);
                 assertNotNull(donation);
                 assertEquals(10,donation.amount,0);
             }

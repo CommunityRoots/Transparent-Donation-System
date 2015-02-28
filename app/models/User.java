@@ -6,6 +6,8 @@ import org.mindrot.jbcrypt.BCrypt;
 import play.db.ebean.*;
 import play.data.validation.*;
 
+import java.util.Date;
+
 
 @Entity
 public class User extends Model {
@@ -15,7 +17,8 @@ public class User extends Model {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-        this.role = "user"; //default
+        this.role = 4; //default
+        this.joined = new Date();
     }
     //play framework changes these to private and adds getters + setters on run
 
@@ -34,9 +37,20 @@ public class User extends Model {
     @Constraints.Required
     public String password;
 
-    public String role;
+    /*
+        User Roles:
+        1 - admin adder
+        2 - community admin
+        3 - volunteer
+        4 - donator account
+     */
+    public int role;
 
     public String charity;
+
+    public Date joined;
+
+    public Date lastLogin;
 
     public static Finder<String, User> find = new Finder<String,User>(String.class, User.class);
 
@@ -59,7 +73,7 @@ public class User extends Model {
         this.save();
     }
 
-    public void changeRole(String role){
+    public void changeRole(int role){
         this.role = role;
         this.save();
     }

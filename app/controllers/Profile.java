@@ -88,10 +88,10 @@ public class Profile {
             if(User.find.byId(email) == null){
                 return "No user with that email";
             }
-            else if(!admin.role.equals("admin")){
+            else if(admin.role >2){
                 return "You do not have permission to do this";
             }
-            else if(user.role.equals("admin")){
+            else if(user.role<3){
                 return "User is an admin and cannot be made a volunteer";
             }
             return null;
@@ -121,12 +121,14 @@ public class Profile {
 
         String email = session().get("email");
         User user = User.find.byId(email);
-        String role = user.role;
+        int role = user.role;
         PagingList<Need> pagingList;
-        if(role.equals("admin")||role.equals("volunteer")){
+        //admin or volunteer. Give them needs they added
+        if(role== 3 || role == 2){
             pagingList =  Need.find.where().in("added_by_email",email).findPagingList(3);
         }
         else {
+            //Give users needs they donated to
             List<Donation> donationsByUserToNeed = Donation.find.where()
                     .eq("donator_email",email)
                     .findList();
@@ -209,9 +211,11 @@ public class Profile {
         Need need = Need.find.byId(id);
         String email = session().get("email");
         User user = User.find.byId(email);
+        //can delete if they added the need
+        //if they are an admin of the charity a need was added into
         if(need != null
-                && (user.email.equals(need.addedBy.email) || (user.role.equals("admin")&& user.charity.equals(need.charity)))
-                && (user.role.equals("admin")||user.role.equals("volunteer")))
+                && (user.email.equals(need.addedBy.email) || (user.role==2&& user.charity.equals(need.charity)))
+                && user.role<4)
         {
             if(need.deleteNeed()){
                 flash("success", "Need Deleted");
@@ -236,7 +240,7 @@ public class Profile {
             User user = User.find.byId(addVolunteerForm.get().email);
             String email = session().get("email");
             User admin = User.find.byId(email);
-            user.changeRole("volunteer");
+            user.changeRole(3);
             user.setCharity(admin.charity);
             return ok();
         }
@@ -245,8 +249,7 @@ public class Profile {
     public static Result listVolunteers(int page){
         String email = session().get("email");
         User user = User.find.byId(email);
-        String role = user.role;
-        if(!role.equals("admin")){
+        if(user.role!=2){
             return redirect(routes.Application.index());
         }
 
@@ -269,12 +272,12 @@ public class Profile {
         String email = session().get("email");
         User user = User.find.byId(email);
         User volunteer = User.find.byId(id);
-        if(!user.role.equals("admin") ||
+        if(user.role > 2 ||
                 !user.charity.equals(volunteer.charity)){
             flash("error", "You do not have permission to remove a volunteer");
             return redirect(routes.Profile.listVolunteers(1));
         }
-        volunteer.changeRole("user");
+        volunteer.changeRole(4);
         flash("success", "volunteer has been removed");
         return redirect(routes.Profile.listVolunteers(1));
     }
@@ -284,7 +287,7 @@ public class Profile {
         String email = session().get("email");
         User user = User.find.byId(email);
         if(!user.equals(need.addedBy)
-                || (user.role.equals("admin")&&user.charity.equals(need.charity))){
+                || (user.role==2&&user.charity.equals(need.charity))){
             flash("error", "You do not have permission to edit this need");
             return redirect(routes.Profile.profile(1));
         }

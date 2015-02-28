@@ -36,9 +36,4 @@ public class Donation extends Model {
                 .findList();
     }
 
-    public static Donation createDonation(Need needId,User userId, double amount){
-        Donation donation = new Donation(needId,userId,amount);
-        donation.save();
-        return donation;
-    }
 }

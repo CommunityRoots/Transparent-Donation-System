@@ -2,7 +2,7 @@
     email:      bob@gmail.com
     firstName:  Bob
     lastName:   Minion
-    role:       admin
+    role:       2
     password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
     charity:    svp
 
@@ -10,7 +10,7 @@
     email:      tom@gmail.com
     firstName:  Tom
     lastName:   Swaroski
-    role:       volunteer
+    role:       3
     password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
     charity:    svp
 
@@ -18,7 +18,7 @@
     email:      harold@gmail.com
     firstName:  Harold
     lastName:   Commodious
-    role:       user
+    role:       4
     password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
 
 - &need1 !!models.Need

@@ -9,6 +9,8 @@ import play.mvc.Security;
 import views.html.*;
 import com.avaje.ebean.Page;
 import com.avaje.ebean.PagingList;
+
+import java.util.Date;
 import java.util.List;
 
 import static play.data.Form.form;
@@ -38,7 +40,10 @@ public class Login extends Controller {
             return badRequest(login.render(loginForm));
         } else {
             session().clear();
-            session("email", loginForm.get().email);
+            String email = loginForm.get().email;
+            session("email", email);
+            User user = User.find.byId(email);
+            user.lastLogin = new Date();
             return redirect(
                     routes.Profile.profile(1)
             );
