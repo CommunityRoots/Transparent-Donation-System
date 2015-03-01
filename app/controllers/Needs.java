@@ -16,8 +16,12 @@ import static play.data.Form.form;
 public class Needs extends Controller {
 
     public static Result viewNeed(long id) {
+
+        User user = null;
         String email = session().get("email");
-        User user = User.find.byId(email);
+        if(email!=null){
+            user = User.find.byId(email);
+        }
         Need need = Need.find.byId(id);
         if(need == null){
             return redirect(

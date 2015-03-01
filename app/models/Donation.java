@@ -6,6 +6,7 @@ import play.db.ebean.Model;
 
 import javax.annotation.Nullable;
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 
@@ -20,11 +21,13 @@ public class Donation extends Model {
     public double amount;
     @ManyToOne
     public Need need;
+    public Date date;
 
     public Donation(Need need,User donator, double amount){
         this.need = need;
         this.donator = donator;
         this.amount = amount;
+        this.date = new Date();
     }
 
     public static Model.Finder<Long, Donation> find = new Model.Finder<Long,Donation>(Long.class, Donation.class);

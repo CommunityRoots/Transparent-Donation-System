@@ -83,6 +83,7 @@
                 </div>
             </div>
             <div class="row align-center" id="enterAmount" style="display: none">
+                @if(session().get("email")!=null) {
                 <div class="col-sm-9 col-md-9">
                     @helper.form(CSRF(routes.Payment.chargeCard)) {
                     <form role="form">
@@ -105,7 +106,8 @@
                                                 data-currency="EUR"
                                                 data-panel-label="Donate"
                                                 data-label="Pay with card"
-                                                data-email="@user.email" >
+                                                data-email="@user.email"
+                                                >
                                         </script>
                                     </form>
                                 }
@@ -113,6 +115,9 @@
                         </div>
 
                 </div>
+                 } else {
+                     <div class="col-sm-4 col-sm-offset-3"><p>Please <a href="@routes.Login.login()">Login</a> or <a href="@routes.Registration.register()">register</a> to donate</div>
+                 }
             </div>
 
 

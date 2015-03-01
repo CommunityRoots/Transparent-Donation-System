@@ -5,6 +5,14 @@
 [CommunityRoots.net](http://communityroots.net)  
 
 ###To get working
-Add a file called stripe.conf into the /conf directory  
-Add `stripe.api.key=<API_KEY>`
+Add a file called secret.conf into the /conf directory  
+Add 
+
+`stripe.api.key=<API_KEY>`  
+`smtp.host=`  
+`smtp.port=`  
+`smtp.ssl=`  
+`smtp.tls=`  
+`smtp.user=`  
+`smtp.password=`  
 

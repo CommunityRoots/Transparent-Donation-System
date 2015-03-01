@@ -13,6 +13,7 @@ create table donation (
   donator_email             varchar(255),
   amount                    double,
   need_id                   bigint,
+  date                      datetime,
   constraint pk_donation primary key (id))
 ;
 
