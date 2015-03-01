@@ -1,4 +1,5 @@
-@(need: Need)
+@import helper._
+@(need: Need, user: User)
 @main {
 
     <section id="header" class="appear"></section>
@@ -36,6 +37,15 @@
 
     <!-- section works -->
     <div class="centered">
+        <div class="row align-center">
+            <div class="col-lg-12">
+                @if(flash.contains("success")) {
+                <p class="success" style="color: green">
+                    @flash.get("success")
+                </p>
+                }
+            </div>
+        </div>
         <div class="col-md-offset-3 col-md-8">
                 <div class="row">
                     <div class="col-sm-3 col-md-2 align-center"><i class="fa fa-gift fa-5x"></i></div>
@@ -69,9 +79,42 @@
                     €@need.donatedAmount/€@need.askAmount
                 </div>
                 <div class="col-sm-2 col-md-2">
-                    <a href="#" class="btn btn-primary btn-block">Donate</a>
+                    <a id="donateAmount" class="btn btn-primary btn-block">Donate</a>
                 </div>
             </div>
+            <div class="row align-center" id="enterAmount" style="display: none">
+                <div class="col-sm-9 col-md-9">
+                    @helper.form(CSRF(routes.Payment.chargeCard)) {
+                    <form role="form">
+                    <div class="form-group">
+
+                        <label for="donateAmount">Amount:</label>
+                        <input type="number" id="donationAmount" name="donationAmount" placeholder="€0.00">
+                    </div>
+                        <input type="hidden" name="needId" value="@need.id">
+                        <div class="row align-center">
+                            <div class="col-sm-3 col-sm-offset-5">
+
+
+                                        <script
+                                                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                                data-key="pk_test_b0grQz7PHEniHo9E5rTxcwfX"
+                                                data-image="@routes.Assets.at("img/GreenTree.png")"
+                                                data-name="CommunityRoots.net"
+                                                data-description="Donation to @need.title in @need.location"
+                                                data-currency="EUR"
+                                                data-panel-label="Donate"
+                                                data-label="Pay with card"
+                                                data-email="@user.email" >
+                                        </script>
+                                    </form>
+                                }
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+
 
             <div class="row top-buffer">
                 <div class="col-sm-7">
@@ -87,4 +130,12 @@
     </div>
 
     <a href="#header" class="scrollup"><i class="fa fa-chevron-up"></i></a>
+
+
 }
+<script>
+
+    $("#donateAmount").click(function() {
+        $("#enterAmount").show();
+    });
+</script>

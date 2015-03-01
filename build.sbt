@@ -16,5 +16,6 @@ libraryDependencies ++= Seq(
   "org.mindrot"  % "jbcrypt"   % "0.3m",
   "javax.mail" % "javax.mail-api" % "1.5.2",
   "com.typesafe.play" %% "play-mailer" % "2.4.0",
-  "com.sun.mail" % "javax.mail" % "1.5.2"
+  "com.sun.mail" % "javax.mail" % "1.5.2",
+  "com.stripe" % "stripe-java" % "1.26.0"
 )

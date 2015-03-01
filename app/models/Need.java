@@ -2,16 +2,14 @@ package models;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import org.joda.time.*;
-import org.joda.time.DateTime;
-import play.data.format.Formats;
+
 import play.db.ebean.*;
 import play.data.validation.*;
 
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+
 
 @Entity
 public class Need extends Model {
@@ -25,6 +23,10 @@ public class Need extends Model {
     }
 
     public Need() {}
+
+    public enum Category {
+        Family, Education
+    }
     //play framework changes these to private and adds getters + setters on run
     @Id
     public long id;
@@ -50,11 +52,16 @@ public class Need extends Model {
     public String location;
     public String fullName;
 
+    public Category category;
+
     @Constraints.Min(1)
     @Constraints.Max(10)
     public int urgency;
 
     public Date dateAdded;
+
+    //1 = closed 0 = open
+    public int closed;
     
     @OneToMany
     public List<Donation> donations = new LinkedList<>();
@@ -94,6 +101,7 @@ public class Need extends Model {
         this.location = location;
         this.urgency = urgency;
         this.charity = charity;
+        this.closed =0;
         this.save();
     }
 
@@ -104,9 +112,13 @@ public class Need extends Model {
 
     public void addDonation(Need needId,User userId, double amount){
         Donation donation = new Donation(needId,userId,amount);
-        donation.save();
         donations.add(donation);
         donatedAmount +=amount;
+        if(donatedAmount >= askAmount){
+            closed =1;
+        }
+        this.save();
+        donation.save();
     }
 
     public void addUpdate(Need need, String title,String message){

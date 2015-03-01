@@ -15,8 +15,8 @@ GET         /logout              controllers.Login.logout()
 GET         /needs               controllers.Application.needs(page: Int ?= 1)
 
 #Need Desc page
-GET         /viewNeed            controllers.NeedCont.viewNeed(id:Long)
-GET         /invalidNeed         controllers.NeedCont.invalidNeed()
+GET         /viewNeed            controllers.Needs.viewNeed(id:Long)
+GET         /invalidNeed         controllers.Needs.invalidNeed()
 
 #Profile page
 GET         /profile                  controllers.Profile.profile(page: Integer ?= 1)
@@ -45,5 +45,8 @@ POST        /reset/:token        controllers.Reset.doNewPass(token:String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file        controllers.Assets.at(path="/public", file)
+
+#Payments
+POST       /viewNeed             controllers.Payment.chargeCard()
 
 

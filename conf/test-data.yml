@@ -37,7 +37,51 @@
     charity: SVP
     location: Navan
     urgency: 10
-    description: yadayadayaday adayadayada yadayadayada yadayadayadayad ayadayadayadayad ayadayada yadayadayad ayadayadayaday yada
+    description: Family in need of food. Bills are rising and they cannot afford to feed the family.
+    dateAdded: 2015-02-24
+
+- !!models.Need
+    title: food
+    donatedAmount: 0
+    askAmount: 50
+    addedBy: *usr1
+    charity: SVP
+    location: Navan
+    urgency: 10
+    description: Family in need of food. Bills are rising and they cannot afford to feed the family.
+    dateAdded: 2015-02-24
+
+- !!models.Need
+    title: food
+    donatedAmount: 0
+    askAmount: 50
+    addedBy: *usr1
+    charity: SVP
+    location: Navan
+    urgency: 10
+    description: Family in need of food. Bills are rising and they cannot afford to feed the family.
+    dateAdded: 2015-02-24
+
+- !!models.Need
+    title: food
+    donatedAmount: 0
+    askAmount: 50
+    addedBy: *usr1
+    charity: SVP
+    location: Navan
+    urgency: 10
+    description: Family in need of food. Bills are rising and they cannot afford to feed the family.
+    dateAdded: 2015-02-24
+
+- !!models.Need
+    title: food
+    donatedAmount: 0
+    askAmount: 50
+    addedBy: *usr1
+    charity: SVP
+    location: Navan
+    urgency: 10
+    description: Family in need of food. Bills are rising and they cannot afford to feed the family.
     dateAdded: 2015-02-24
 
 - !!models.Need

@@ -153,7 +153,7 @@
                         <tbody>
                             @for((need,index) <- needs.zipWithIndex) {
                             <tr>
-                                <td><a href="@routes.NeedCont.viewNeed(need.id)">@need.title</a></td>
+                                <td><a href="@routes.Needs.viewNeed(need.id)">@need.title</a></td>
                                 <td>€@need.donatedAmount</td>
                                 <td>@need.progressPercentage()%</td>
                                 <td>@need.daysSinceNeedAdded() days ago</td>

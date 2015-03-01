@@ -13,16 +13,18 @@ import java.util.List;
 
 import static play.data.Form.form;
 
-public class NeedCont extends Controller {
+public class Needs extends Controller {
 
     public static Result viewNeed(long id) {
+        String email = session().get("email");
+        User user = User.find.byId(email);
         Need need = Need.find.byId(id);
         if(need == null){
             return redirect(
-                    routes.NeedCont.invalidNeed()
+                    routes.Needs.invalidNeed()
             );
         }
-        return ok(viewNeed.render(Need.find.byId(id)));
+        return ok(viewNeed.render(Need.find.byId(id),user));
     }
 
     public static Result invalidNeed()

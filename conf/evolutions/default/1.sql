@@ -3,6 +3,11 @@
 
 # --- !Ups
 
+create table charity (
+  name                      varchar(255) not null,
+  constraint pk_charity primary key (name))
+;
+
 create table donation (
   id                        bigint auto_increment not null,
   donator_email             varchar(255),
@@ -21,8 +26,11 @@ create table need (
   charity                   varchar(255),
   location                  varchar(255),
   full_name                 varchar(255),
+  category                  integer,
   urgency                   integer,
   date_added                datetime,
+  closed                    integer,
+  constraint ck_need_category check (category in (0,1)),
   constraint pk_need primary key (id))
 ;
 
@@ -68,6 +76,8 @@ create index ix_updates_need_4 on updates (need_id);
 # --- !Downs
 
 SET FOREIGN_KEY_CHECKS=0;
+
+drop table charity;
 
 drop table donation;
 
