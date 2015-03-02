@@ -6,10 +6,8 @@ import models.*;
 import play.data.Form;
 import play.mvc.Result;
 import play.mvc.Security;
-import views.html.editNeed;
-import views.html.profile;
-import views.html.settings;
-import views.html.volunteers;
+import views.html.profile.*;
+import views.html.need.*;
 import java.util.LinkedList;
 import java.util.List;
 

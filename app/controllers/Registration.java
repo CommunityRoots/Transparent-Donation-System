@@ -6,7 +6,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.register;
+import views.html.login.register;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
