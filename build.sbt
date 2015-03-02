@@ -17,5 +17,6 @@ libraryDependencies ++= Seq(
   "javax.mail" % "javax.mail-api" % "1.5.2",
   "com.typesafe.play" %% "play-mailer" % "2.4.0",
   "com.sun.mail" % "javax.mail" % "1.5.2",
-  "com.stripe" % "stripe-java" % "1.26.0"
+  "com.stripe" % "stripe-java" % "1.26.0",
+  "org.seleniumhq.selenium" % "selenium-java" % "2.31.0" % "test"
 )

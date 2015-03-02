@@ -19,7 +19,7 @@
                 <ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
                     <li class="active"><a href="@routes.Application.index()">Home</a></li>
                     <li><a href="@routes.Application.needs()">Needs</a></li>
-                    <li><a href="@routes.Application.index()#about">About us</a></li>
+                    <li><a href="@routes.Application.index()#about" id="aboutLink">About us</a></li>
                     @if(session().get("email")==null) {
                         <li><a href="@routes.Registration.register()">Register</a></li>
                         <li><a href="@routes.Login.login()">Login</a></li>

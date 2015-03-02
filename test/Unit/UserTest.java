@@ -1,6 +1,7 @@
-package models;
+package Unit;
 
 
+import models.User;
 import org.junit.*;
 import static org.junit.Assert.*;
 import play.test.WithApplication;
