@@ -6,7 +6,7 @@ import play.libs.mailer.MailerPlugin;
 
 public class EmailService {
 
-    Email email = new Email();
+    private Email email = new Email();
 
     public void sendEmail(String name, String sendEmail, String subject, String content){
         email.setFrom("CommunityRoots.net <info@communityroots.net>");

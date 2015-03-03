@@ -21,9 +21,22 @@ public class Payment {
         long needId = Long.parseLong(dynamicForm.get("needId"));
 
         PaymentProcessor paymentProcessor = new PaymentProcessor();
-        paymentProcessor.paymentThroughStripe(token,email,amount,needId);
-
-        flash("success", "Your donation has been made. Thank you!");
+        //process payment and get status
+        int status = paymentProcessor.paymentThroughStripe(token,email,amount,needId);
+        switch (status) {
+            case 1:
+                flash("success", "Your donation has been made. Thank you!");
+                break;
+            case 2:
+                flash("error", "You tried to donated too much, please try again.");
+                break;
+            case 3:
+                flash("error", "Sorry, minimum donation is €0.20");
+                break;
+            case 4:
+                flash("error", "Something has gone wrong, donation has not been made.");
+                break;
+        }
         return redirect(routes.Needs.viewNeed(needId));
     }
 }
