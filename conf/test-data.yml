@@ -1,10 +1,21 @@
+- &svp !!models.Charity
+    name: SVP
+
+- &usr1 !!models.User
+    email:      fred@gmail.com
+    firstName:  Fred
+    lastName:   Kapinsky
+    role:       1
+    password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
+    charity:    *svp
+
 - &usr1 !!models.User
     email:      bob@gmail.com
     firstName:  Bob
     lastName:   Minion
     role:       2
     password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
-    charity:    svp
+    charity:    *svp
 
 - !!models.User
     email:      tom@gmail.com
@@ -12,7 +23,7 @@
     lastName:   Swaroski
     role:       3
     password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
-    charity:    svp
+    charity:    *svp
 
 - !!models.User
     email:      harold@gmail.com
@@ -28,6 +39,7 @@
     urgency: 1
     addedBy: *usr1
     dateAdded: 2015-02-24
+    charity: *svp
 
 - !!models.Need
     title: food
@@ -39,6 +51,7 @@
     urgency: 10
     description: Family in need of food. Bills are rising and they cannot afford to feed the family.
     dateAdded: 2015-02-24
+    charity: *svp
 
 - !!models.Need
     title: food
@@ -50,6 +63,7 @@
     urgency: 10
     description: Family in need of food. Bills are rising and they cannot afford to feed the family.
     dateAdded: 2015-02-24
+    charity: *svp
 
 - !!models.Need
     title: food
@@ -61,6 +75,7 @@
     urgency: 10
     description: Family in need of food. Bills are rising and they cannot afford to feed the family.
     dateAdded: 2015-02-24
+    charity: *svp
 
 - !!models.Need
     title: food
@@ -72,6 +87,7 @@
     urgency: 10
     description: Family in need of food. Bills are rising and they cannot afford to feed the family.
     dateAdded: 2015-02-24
+    charity: *svp
 
 - !!models.Need
     title: food
@@ -83,6 +99,7 @@
     urgency: 10
     description: Family in need of food. Bills are rising and they cannot afford to feed the family.
     dateAdded: 2015-02-24
+    charity: *svp
 
 - !!models.Need
     title: airplane
@@ -91,6 +108,7 @@
     urgency: 1
     addedBy: *usr1
     dateAdded: 2015-02-24
+    charity: *svp
 
 - !!models.Need
     title: airplane
@@ -99,6 +117,7 @@
     urgency: 1
     addedBy: *usr1
     dateAdded: 2015-02-24
+    charity: *svp
 
 - !!models.Donation
     donator: *usr1

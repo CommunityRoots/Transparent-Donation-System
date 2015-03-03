@@ -23,6 +23,8 @@ public class User extends Model {
     //play framework changes these to private and adds getters + setters on run
 
     @Id
+    public long id;
+
     @Constraints.Required
     public String email;
 
@@ -42,11 +44,12 @@ public class User extends Model {
         1 - admin adder
         2 - community admin
         3 - volunteer
-        4 - donator account
+        4 - Donator account
      */
     public int role;
 
-    public String charity;
+    @ManyToOne
+    public Charity charity;
 
     public Date joined;
 
@@ -54,9 +57,13 @@ public class User extends Model {
 
     public static Finder<String, User> find = new Finder<String,User>(String.class, User.class);
 
+    public static User findByEmail(String email){
+        return User.find.where().eq("email",email).findUnique();
+    }
+
     public static User authenticate(String email, String password) {
-        if(find.byId(email) != null){
-            if(BCrypt.checkpw(password, find.byId(email).password)){
+        if(findByEmail(email) != null){
+            if(BCrypt.checkpw(password, findByEmail(email).password)){
                 return find.where().eq("email",email).findUnique();
             }
         }
@@ -70,7 +77,7 @@ public class User extends Model {
 
     public void changeEmail(String email){
         this.email = email;
-        this.save();
+        this.update();
     }
 
     public void changeRole(int role){
@@ -78,8 +85,13 @@ public class User extends Model {
         this.save();
     }
 
-    public void setCharity(String charity){
+    public void setCharity(Charity charity){
         this.charity = charity;
+        this.save();
+    }
+
+    public void setLastLogin(){
+        this.lastLogin = new Date();
         this.save();
     }
 }

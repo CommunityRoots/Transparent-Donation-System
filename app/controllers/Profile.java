@@ -46,9 +46,10 @@ public class Profile {
             if (User.authenticate(session().get("email"), password) == null) {
                 return "Invalid password";
             }
-            else if(!FormValidator.validate(email)){
-                return "Email invalid";
+            else if(User.findByEmail(email) != null){
+                return "Email already in use";
             }
+
             return null;
         }
     }
@@ -118,17 +119,17 @@ public class Profile {
     public static Result profile(int page) {
 
         String email = session().get("email");
-        User user = User.find.byId(email);
+        User user = User.findByEmail(email);
         int role = user.role;
         PagingList<Need> pagingList;
         //admin or volunteer. Give them needs they added
-        if(role== 3 || role == 2){
-            pagingList =  Need.find.where().in("added_by_email",email).findPagingList(3);
+        if(role<4){
+            pagingList = Need.find.where().eq("added_by_id",user.id).findPagingList(3);
         }
         else {
             //Give users needs they donated to
             List<Donation> donationsByUserToNeed = Donation.find.where()
-                    .eq("donator_email",email)
+                    .eq("donator_id",user.id)
                     .findList();
             LinkedList<Long> needids = new LinkedList<>();
             for(Donation donation : donationsByUserToNeed) {
@@ -155,7 +156,7 @@ public class Profile {
         if (changePassForm.hasErrors()) {
             return forbidden();
         } else {
-            User user = User.find.byId(session().get("email"));
+            User user = User.findByEmail(session().get("email"));
             user.changePassword(changePassForm.get().newPassword);
             EmailService emailService = new EmailService();
             emailService.sendEmail(user.firstName,user.email,"Password Change","Your Password has been changed.");
@@ -169,16 +170,18 @@ public class Profile {
         if (changeEmailForm.hasErrors()) {
             return badRequest(settings.render(form(ChangePass.class),changeEmailForm));
         } else {
-            User user = User.find.byId(session().get("email"));
+            User user = User.findByEmail(session().get("email"));
             user.changeEmail(changeEmailForm.get().email);
-            flash("success", "Password Changed");
+            session().clear();
+            session("email", changeEmailForm.get().email);
+            flash("success", "Email Changed");
             return ok(settings.render(form(ChangePass.class),form(ChangeEmail.class)));
         }
     }
 
     public static Result addNeed(){
         String email = session().get("email");
-        User user = User.find.byId(email);
+        User user = User.findByEmail(email);
         Form<AddNeed> addNeedForm = form(AddNeed.class).bindFromRequest();
         if(addNeedForm.hasErrors()){
             return badRequest(addNeedForm.errorsAsJson()).as("application/json");
@@ -208,7 +211,7 @@ public class Profile {
     public static Result deleteNeed(long id) {
         Need need = Need.find.byId(id);
         String email = session().get("email");
-        User user = User.find.byId(email);
+        User user = User.findByEmail(email);
         //can delete if they added the need
         //if they are an admin of the charity a need was added into
         if(need != null
@@ -235,7 +238,7 @@ public class Profile {
             return badRequest(addVolunteerForm.errorsAsJson()).as("application/json");
         }
         else {
-            User user = User.find.byId(addVolunteerForm.get().email);
+            User user = User.findByEmail(addVolunteerForm.get().email);
             String email = session().get("email");
             User admin = User.find.byId(email);
             user.changeRole(3);
@@ -246,7 +249,7 @@ public class Profile {
 
     public static Result listVolunteers(int page){
         String email = session().get("email");
-        User user = User.find.byId(email);
+        User user = User.findByEmail(email);
         if(user.role!=2){
             return redirect(routes.Application.index());
         }
@@ -268,8 +271,8 @@ public class Profile {
 
     public static Result deleteVolunteer(String id){
         String email = session().get("email");
-        User user = User.find.byId(email);
-        User volunteer = User.find.byId(id);
+        User user = User.findByEmail(email);
+        User volunteer = User.findByEmail(id);
         if(user.role > 2 ||
                 !user.charity.equals(volunteer.charity)){
             flash("error", "You do not have permission to remove a volunteer");
@@ -283,7 +286,7 @@ public class Profile {
     public static Result editNeed(long id){
         Need need = Need.find.byId(id);
         String email = session().get("email");
-        User user = User.find.byId(email);
+        User user = User.findByEmail(email);
         if(!user.equals(need.addedBy)
                 || (user.role==2&&user.charity.equals(need.charity))){
             flash("error", "You do not have permission to edit this need");

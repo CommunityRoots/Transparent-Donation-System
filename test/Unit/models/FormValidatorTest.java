@@ -1,4 +1,4 @@
-package Unit;
+package Unit.models;
 
 import models.FormValidator;
 import org.junit.Test;

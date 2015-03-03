@@ -1,4 +1,4 @@
-package Unit;
+package Unit.models;
 
 public class TokenTest {
 }

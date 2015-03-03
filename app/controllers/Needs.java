@@ -20,7 +20,7 @@ public class Needs extends Controller {
         User user = null;
         String email = session().get("email");
         if(email!=null){
-            user = User.find.byId(email);
+            user = User.findByEmail(email);
         }
         Need need = Need.find.byId(id);
         if(need == null){

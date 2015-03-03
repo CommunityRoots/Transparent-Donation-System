@@ -37,7 +37,9 @@
             </div>
             @if(form.hasGlobalErrors) {
             <p class="error">
-                @form.globalError.message
+                @for(error <- form.globalErrors) {
+                    <li>@error.message</li>
+                }
             </p>
             }
 
@@ -58,7 +60,7 @@
                                 <div class="col-lg-4"><input type="password" name="newPassword" id="newPassword" class="form-control input-lg" placeholder="New Password" value="@form("newPassword").value" tabindex="5"></div><br /> <br />
                             </div>
                             <div class="row">
-                                <div class="col-lg-4"><input type="password" name="retypePassword" id="retypePassword" class="form-control input-lg" placeholder="ReType Password" value="@form("retypePassword").value" tabindex="5"></div><br /> <br />
+                                <div class="col-lg-4"><input type="password" name="retypePassword" id="retypePassword" class="form-control input-lg" placeholder="Retype Password" value="@form("retypePassword").value" tabindex="5"></div><br /> <br />
                             </div>
                             <div class="row">
                                 <div class ="col-lg-2"><button type="submit" class="btn btn-success btn-block btn-lg">Submit</button></div>

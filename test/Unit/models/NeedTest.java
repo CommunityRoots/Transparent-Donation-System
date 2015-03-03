@@ -1,4 +1,4 @@
-package Unit;
+package Unit.models;
 
 import models.Need;
 import models.User;
@@ -13,15 +13,16 @@ import static org.junit.Assert.assertNotNull;
 public class NeedTest extends WithApplication {
 
     @Test
-    public void RetrieveNeedCorrelatingToEmail() {
-        List<Need> food = Need.findByEmail("bob@gmail.com");
+    public void RetrieveNeedCorrelatingToAdder() {
+        User user = User.findByEmail("bob@gmail.com");
+        List<Need> food = Need.findByAdded(user.id);
         assertNotNull(food);
         assertNotEquals(0,food.size());
     }
 
     @Test
     public void progressPercentageTest(){
-        Need need =  new Need("food",50,User.find.byId("bob@hotmail.com"));
+        Need need =  new Need("food",50,User.findByEmail("bob@gmail.com"));
         assertEquals(0, need.progressPercentage(),0);
     }
 

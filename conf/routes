@@ -24,14 +24,14 @@ POST        /profile/addNeed          controllers.Profile.addNeed()
 POST        /profile/addVolunteer     controllers.Profile.addVolunteer()
 GET         /deleteNeed/:id           controllers.Profile.deleteNeed(id: Long)
 GET         /volunteers               controllers.Profile.listVolunteers(page: Integer ?= 1)
-GET         /deleteVol/:email         controllers.Profile.deleteVolunteer(email: String)
-GET         /editNeed/:id              controllers.Profile.editNeed(id: Long)
-POST        /editNeed/:id              controllers.Profile.doEditNeed(id: Long)
+DELETE      /deleteVol/:email         controllers.Profile.deleteVolunteer(email: String)
+GET         /editNeed/:id             controllers.Profile.editNeed(id: Long)
+POST        /editNeed/:id             controllers.Profile.doEditNeed(id: Long)
 
 #Settings page
 GET         /settings            controllers.Profile.settings()
-POST        /settings            controllers.Profile.changePassword()
-POST        /settings            controllers.Profile.changeEmail()
+POST        /settings/pass            controllers.Profile.changePassword()
+POST        /settings/email            controllers.Profile.changeEmail()
 
 #Registration
 GET         /register            controllers.Registration.register()
@@ -49,4 +49,8 @@ GET         /assets/*file        controllers.Assets.at(path="/public", file)
 #Payments
 POST       /viewNeed             controllers.Payment.chargeCard()
 
+#Admin
+GET        /admin                controllers.Admin.admin()
+POST       /admin                controllers.Admin.addCharity()
+POST       /admin/addLeader      controllers.Admin.addLeader()
 

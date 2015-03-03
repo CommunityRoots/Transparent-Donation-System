@@ -20,7 +20,7 @@ public class PaymentProcessor {
         //need being donated to
         Need need = Need.find.byId(needId);
         //user that is donating to the need
-        User user = User.find.byId(email);
+        User user = User.findByEmail(email);
 
         //process Stripe payment
         try {

@@ -48,7 +48,8 @@ public class Need extends Model {
     @Constraints.MaxLength(600)
     public String description;
 
-    public String charity;
+    @ManyToOne
+    public Charity charity;
     public String location;
     public String fullName;
 
@@ -72,9 +73,9 @@ public class Need extends Model {
     public static Finder<Long, Need> find = new Finder<Long,Need>(Long.class, Need.class);
 
 
-    public static List<Need> findByDonatedTo(String email){
+    public static List<Need> findByDonatedTo(long id){
         List<Donation> donationsByUserToNeed = Donation.find.where()
-                .eq("donator_email",email)
+                .eq("donator_id",id)
                 .findList();
         LinkedList<Need> needsDonatedToByUser = new LinkedList<>();
         for(Donation donation : donationsByUserToNeed){
@@ -84,15 +85,15 @@ public class Need extends Model {
 
     }
 
-    public static List<Need> findByEmail(String user) {
-        return Need.find.where().eq("added_by_email",user).findList();
+    public static List<Need> findByAdded(long id) {
+        return Need.find.where().eq("added_by_id",id).findList();
     }
 
     public int progressPercentage(){
         return (int) Math.round(donatedAmount*100/askAmount);
     }
 
-    public void addNeed(String title,String description, User user, double amount ,String location, int urgency, String charity) {
+    public void addNeed(String title,String description, User user, double amount ,String location, int urgency, Charity charity) {
         this.title =title;
         this.description =description;
         this.addedBy = user;

@@ -4,13 +4,14 @@
 # --- !Ups
 
 create table charity (
-  name                      varchar(255) not null,
-  constraint pk_charity primary key (name))
+  id                        bigint auto_increment not null,
+  name                      varchar(255),
+  constraint pk_charity primary key (id))
 ;
 
 create table donation (
   id                        bigint auto_increment not null,
-  donator_email             varchar(255),
+  donator_id                bigint,
   amount                    double,
   need_id                   bigint,
   date                      datetime,
@@ -22,9 +23,9 @@ create table need (
   title                     varchar(255),
   donated_amount            double,
   ask_amount                double,
-  added_by_email            varchar(255),
+  added_by_id               bigint,
   description               varchar(255),
-  charity                   varchar(255),
+  charity_id                bigint,
   location                  varchar(255),
   full_name                 varchar(255),
   category                  integer,
@@ -52,25 +53,30 @@ create table updates (
 ;
 
 create table user (
-  email                     varchar(255) not null,
+  id                        bigint auto_increment not null,
+  email                     varchar(255),
   first_name                varchar(255),
   last_name                 varchar(255),
   password                  varchar(255),
   role                      integer,
-  charity                   varchar(255),
+  charity_id                bigint,
   joined                    datetime,
   last_login                datetime,
-  constraint pk_user primary key (email))
+  constraint pk_user primary key (id))
 ;
 
-alter table donation add constraint fk_donation_donator_1 foreign key (donator_email) references user (email) on delete restrict on update restrict;
-create index ix_donation_donator_1 on donation (donator_email);
+alter table donation add constraint fk_donation_donator_1 foreign key (donator_id) references user (id) on delete restrict on update restrict;
+create index ix_donation_donator_1 on donation (donator_id);
 alter table donation add constraint fk_donation_need_2 foreign key (need_id) references need (id) on delete restrict on update restrict;
 create index ix_donation_need_2 on donation (need_id);
-alter table need add constraint fk_need_addedBy_3 foreign key (added_by_email) references user (email) on delete restrict on update restrict;
-create index ix_need_addedBy_3 on need (added_by_email);
-alter table updates add constraint fk_updates_need_4 foreign key (need_id) references need (id) on delete restrict on update restrict;
-create index ix_updates_need_4 on updates (need_id);
+alter table need add constraint fk_need_addedBy_3 foreign key (added_by_id) references user (id) on delete restrict on update restrict;
+create index ix_need_addedBy_3 on need (added_by_id);
+alter table need add constraint fk_need_charity_4 foreign key (charity_id) references charity (id) on delete restrict on update restrict;
+create index ix_need_charity_4 on need (charity_id);
+alter table updates add constraint fk_updates_need_5 foreign key (need_id) references need (id) on delete restrict on update restrict;
+create index ix_updates_need_5 on updates (need_id);
+alter table user add constraint fk_user_charity_6 foreign key (charity_id) references charity (id) on delete restrict on update restrict;
+create index ix_user_charity_6 on user (charity_id);
 
 
 

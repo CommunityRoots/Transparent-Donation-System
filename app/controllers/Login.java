@@ -42,8 +42,8 @@ public class Login extends Controller {
             session().clear();
             String email = loginForm.get().email;
             session("email", email);
-            User user = User.find.byId(email);
-            user.lastLogin = new Date();
+            User user = User.findByEmail(email);
+            user.setLastLogin();
             return redirect(
                     routes.Profile.profile(1)
             );

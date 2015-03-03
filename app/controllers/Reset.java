@@ -22,7 +22,7 @@ public class Reset extends Controller {
         public String email;
 
         public String validate() {
-            if(User.find.byId(email)==null){
+            if(User.findByEmail(email)==null){
                 return "No account registered with that email";
             }
             return null;
@@ -57,7 +57,7 @@ public class Reset extends Controller {
         }
 
         final String email = askForm.get().email;
-        User user = User.find.byId(email);
+        User user = User.findByEmail(email);
         if (user == null) {
             flash("error", ("No such user"));
             return badRequest(forgot.render(askForm));
@@ -119,7 +119,7 @@ public class Reset extends Controller {
                 Form<ForgotPass> askForm = form(ForgotPass.class);
                 return badRequest(reset.render(resetForm,token));
             }
-            User user = User.find.byId(resetToken.email);
+            User user = User.findByEmail(resetToken.email);
             if (user == null) {
                 flash("error", ("No such user"));
                 return badRequest(reset.render(resetForm,token));
