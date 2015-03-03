@@ -30,7 +30,7 @@ public class Registration extends Controller {
             if(!FormValidator.isValidEmailAddress(email)){
                 return "Invalid email address";
             }
-            if (User.find.byId(email) != null) {
+            if (User.findByEmail(email) != null) {
                 return "Email address already in use";
             }
             if(!FormValidator.validate(password)){

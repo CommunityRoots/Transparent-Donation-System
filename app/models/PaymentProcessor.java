@@ -25,7 +25,7 @@ public class PaymentProcessor {
      * 3 = minimum donation of 20cents
      * 4 = error occured
      */
-    public int paymentThroughStripe(String token, String email, double amount,long needId){
+    public int paymentThroughStripe(String token, String email, double amount,long needId, double preeFeeAmount){
         //amount to cents
         int amountInCents = (int)(amount*100);
 
@@ -44,7 +44,6 @@ public class PaymentProcessor {
         else if(amountInCents <20){
             return 3;
         }
-
 
         //process Stripe payment
         try {
@@ -86,7 +85,7 @@ public class PaymentProcessor {
         }
 
         //add donation to system
-        need.addDonation(need,user,amount);
+        need.addDonation(need,user,preeFeeAmount);
 
         //send email
         EmailService emailService = new EmailService();
