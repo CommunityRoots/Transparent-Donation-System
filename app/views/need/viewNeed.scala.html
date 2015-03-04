@@ -1,5 +1,5 @@
 @import helper._
-@(need: Need, user: User)
+@(need: Need, user: User, updates: List[Updates])
 @main {
 
     <section id="header" class="appear"></section>
@@ -54,7 +54,7 @@
                         <p>@need.charity.name</p>
                         <p>@need.location</p>
                         <p>@need.dateAdded</p>
-                        <p id="amountNeeded">€@(need.askAmount - need.donatedAmount)</p>
+                        <p id="amountNeeded">€@(need.askAmount - need.donatedAmount) needed</p>
                             <!--
                         breakdown of cost?
                         -->
@@ -137,10 +137,16 @@
                     <h1>Updates</h1>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-2">dates/go/here</div>
-                <div class="col-sm-7">yayayayayayayyayayayayayayayayay ayayayayayayaya ayayyayaya ayayyayaa</div>
-            </div>
+                @for(update <- updates){
+                    <div class="row">
+                        <div class="col-sm-2">@update.dateAdded</div>
+                        <div class="col-sm-7"><h3>@update.title</h3></div>
+                    </div>
+                    <div class="row pad-bot40">
+                        <div class="col-sm-7 col-sm-offset-2">@update.message</div>
+                    </div>
+                }
+
 
         </div>
     </div>

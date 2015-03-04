@@ -72,7 +72,6 @@ public class Need extends Model {
 
     public static Finder<Long, Need> find = new Finder<Long,Need>(Long.class, Need.class);
 
-
     public static List<Need> findByDonatedTo(long id){
         List<Donation> donationsByUserToNeed = Donation.find.where()
                 .eq("donator_id",id)
