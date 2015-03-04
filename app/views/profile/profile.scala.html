@@ -101,6 +101,15 @@
                                                     <option>9</option>
                                                     <option>10</option>
                                                 </select>
+                                                </div>
+                                            </div>
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <select id="category" class="form-control input-lg">
+                                                    <option selected disabled>Category</option>
+                                                    <option>Family</option>
+                                                    <option>Education</option>
+                                                </select>
                                             </div>
                                             <br /><br />
                                         </div>
@@ -189,7 +198,8 @@
                             "description": $("#needDescription").val(),
                             "amount": $("#amount").val(),
                             "location": $("#location").val(),
-                            "urgency" : $("#urgency option:selected").not("option:selected disabled").text()
+                            "urgency" : $("#urgency option:selected").not("option:selected disabled").text(),
+                            "category": $("#category option:selected").not("option:selected disabled").text()
                         }
                 )
                 .error(function(xhr, status, error) {

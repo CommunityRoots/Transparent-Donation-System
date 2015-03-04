@@ -1,4 +1,4 @@
-@(currentPage: Integer, blockPageSize: Integer, pageCount: Integer, onPage: String)
+@(currentPage: Integer, blockPageSize: Integer, pageCount: Integer, onPage: String, option: Integer = 0)
 
 
 
@@ -9,7 +9,7 @@
             <li class="disabled"><span>&laquo;</span></li>
         }else {
             @if(onPage == "needs") {
-                <li><a href="@routes.Application.needs(currentPage - 1)">&laquo;</a></li>
+                <li><a href="@routes.Application.needs(currentPage - 1,option)">&laquo;</a></li>
             } else {
                 <li><a href="@routes.Profile.profile(currentPage - 1)">&laquo;</a></li>
             }
@@ -19,7 +19,7 @@
                 <li class="disabled"><span>@index</span></li>
             } else {
                 @if(onPage == "needs") {
-                    <li><a href="@routes.Application.needs(index)">@index</a></li>
+                    <li><a href="@routes.Application.needs(index,option)">@index</a></li>
                 } else {
                     <li><a href="@routes.Profile.profile(index)">@index</a></li>
                 }
@@ -30,7 +30,7 @@
             <li class="disabled"><span>&raquo;</span></li>
         } else {
             @if(onPage == "needs") {
-                <li><a href="@routes.Application.needs(currentPage + 1)">&raquo;</a></li>
+                <li><a href="@routes.Application.needs(currentPage + 1,option)">&raquo;</a></li>
             } else {
                 <li><a href="@routes.Profile.profile(currentPage + 1)">&raquo;</a></li>
             }

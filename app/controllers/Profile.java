@@ -60,6 +60,7 @@ public class Profile {
         public String description;
         public int urgency;
         public String location;
+        public String category;
 
         public String validate(){
             if(title.length() >20 || title.length() <5){
@@ -187,6 +188,7 @@ public class Profile {
             return badRequest(addNeedForm.errorsAsJson()).as("application/json");
         }
         else {
+            System.out.println(addNeedForm.get().category);
             Need need = new Need();
             need.addNeed(addNeedForm.get().title,
                     addNeedForm.get().description,
@@ -194,7 +196,8 @@ public class Profile {
                     addNeedForm.get().amount,
                     addNeedForm.get().location,
                     addNeedForm.get().urgency,
-                    user.charity
+                    user.charity,
+                    Need.Category.valueOf(addNeedForm.get().category)
                     );
             return ok();
         }
@@ -288,7 +291,7 @@ public class Profile {
         String email = session().get("email");
         User user = User.findByEmail(email);
         if(!user.equals(need.addedBy)
-                || (user.role==2&&user.charity.equals(need.charity))){
+                || (!(user.role==2&&user.charity.equals(need.charity)))){
             flash("error", "You do not have permission to edit this need");
             return redirect(routes.Profile.profile(1));
         }

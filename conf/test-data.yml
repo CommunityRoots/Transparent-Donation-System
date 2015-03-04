@@ -40,6 +40,7 @@
     addedBy: *usr1
     dateAdded: 2015-02-24
     charity: *svp
+    category: Family
 
 - !!models.Need
     title: food
@@ -52,6 +53,7 @@
     description: Family in need of food. Bills are rising and they cannot afford to feed the family.
     dateAdded: 2015-02-24
     charity: *svp
+    category: Family
 
 - !!models.Need
     title: food
@@ -64,6 +66,7 @@
     description: Family in need of food. Bills are rising and they cannot afford to feed the family.
     dateAdded: 2015-02-24
     charity: *svp
+    category: Family
 
 - !!models.Need
     title: food
@@ -76,6 +79,7 @@
     description: Family in need of food. Bills are rising and they cannot afford to feed the family.
     dateAdded: 2015-02-24
     charity: *svp
+    category: Family
 
 - !!models.Need
     title: food
@@ -88,6 +92,7 @@
     description: Family in need of food. Bills are rising and they cannot afford to feed the family.
     dateAdded: 2015-02-24
     charity: *svp
+    category: Family
 
 - !!models.Need
     title: food
@@ -100,6 +105,7 @@
     description: Family in need of food. Bills are rising and they cannot afford to feed the family.
     dateAdded: 2015-02-24
     charity: *svp
+    category: Family
 
 - !!models.Need
     title: airplane
@@ -109,6 +115,7 @@
     addedBy: *usr1
     dateAdded: 2015-02-24
     charity: *svp
+    category: Family
 
 - !!models.Need
     title: airplane
@@ -118,6 +125,7 @@
     addedBy: *usr1
     dateAdded: 2015-02-24
     charity: *svp
+    category: Family
 
 - !!models.Donation
     donator: *usr1

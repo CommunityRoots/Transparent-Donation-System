@@ -1,4 +1,4 @@
-@(needs: List[Need], currentPage: Integer, pageCount: Integer)
+@(needs: List[Need], currentPage: Integer, pageCount: Integer, category: Integer)
 @main {
 
     <section id="header" class="appear"></section>
@@ -70,9 +70,9 @@
             <div class="row">
                 <nav id="filter" class="col-md-12 text-center">
                     <ul>
-                        <li><a href="#" class="current btn-theme btn-small" data-filter="*">All</a></li>
-                        <li><a href="#"  class="btn-theme btn-small" data-filter=".photography">Family</a></li>
-                        <li ><a href="#" class="btn-theme btn-small" data-filter=".print">Education</a></li>
+                        <li><a href="@routes.Application.needs()" id="catAll" class="@if(category==2){current} btn-theme btn-small">All</a></li>
+                        <li><a href="@routes.Application.needs(1,0)" id="catFam"  class="@if(category==0){current} btn-theme btn-small">Family</a></li>
+                        <li ><a href="@routes.Application.needs(1,1)" id="catEdu" class="@if(category==1){current} btn-theme btn-small">Education</a></li>
                     </ul>
                 </nav>
                 <div class="col-md-12">
@@ -101,7 +101,7 @@
                     </div>
                     <div class="row align-center">
                         @if(pageCount >1){
-                            @pagination(currentPage, pageCount, pageCount, "needs")
+                            @pagination(currentPage, pageCount, pageCount, "needs",category)
                         }
                     </div>
 

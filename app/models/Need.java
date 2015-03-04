@@ -14,12 +14,13 @@ import java.util.List;
 @Entity
 public class Need extends Model {
 
-    public Need(String title, double askAmount, User addedBy){
+    public Need(String title, double askAmount, User addedBy, Category category){
         this.title = title;
         this.donatedAmount = 0;
         this.askAmount = askAmount;
         this.addedBy = addedBy;
         this.dateAdded = new Date();
+        this.category = category;
     }
 
     public Need() {}
@@ -92,7 +93,7 @@ public class Need extends Model {
         return (int) Math.round(donatedAmount*100/askAmount);
     }
 
-    public void addNeed(String title,String description, User user, double amount ,String location, int urgency, Charity charity) {
+    public void addNeed(String title,String description, User user, double amount ,String location, int urgency, Charity charity, Category category) {
         this.title =title;
         this.description =description;
         this.addedBy = user;
@@ -101,6 +102,7 @@ public class Need extends Model {
         this.location = location;
         this.urgency = urgency;
         this.charity = charity;
+        this.category=category;
         this.closed =0;
         this.save();
     }

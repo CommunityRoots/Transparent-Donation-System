@@ -20,15 +20,25 @@ public class Application extends Controller {
         return ok(index.render());
     }
 
-    public static Result needs(int page) {
-        PagingList<Need> pagingList =  Need.find.where()
-                .orderBy("urgency desc")
-                .findPagingList(9);
+    public static Result needs(int page, int category) {
+        PagingList<Need> pagingList;
+        if(category == 2) {
+            pagingList = Need.find.where()
+                    .orderBy("urgency desc")
+                    .findPagingList(9);
+        }
+        else {
+            pagingList =  Need.find.where()
+                    .eq("category", category)
+                    .orderBy("urgency desc")
+                    .findPagingList(9);
+        }
+
         Page<Need> currentPage = pagingList.getPage(page - 1);
         List<Need> needList = currentPage.getList();
 
         int totalPageCount = pagingList.getTotalPageCount();
 
-        return ok(needs.render(needList, page, totalPageCount));
+        return ok(needs.render(needList, page, totalPageCount,category));
     }
 }
