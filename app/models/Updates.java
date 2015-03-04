@@ -28,4 +28,6 @@ public class Updates extends Model {
         this.need = need;
         dateAdded = new Date();
     }
+
+    public static Finder<Long, Updates> find = new Finder<Long,Updates>(Long.class, Updates.class);
 }
