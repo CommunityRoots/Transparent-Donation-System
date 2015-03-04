@@ -64,7 +64,7 @@ public class Reset extends Controller {
         }
 
         try {
-            Token.sendmail(user);
+            Token.sendMail(user);
             flash("success", "Reset email has been sent");
             return ok(forgot.render(form(ForgotPass.class)));
         } catch (MalformedURLException e) {
@@ -82,7 +82,7 @@ public class Reset extends Controller {
             return badRequest(forgot.render(askForm));
         }
 
-        Token resetToken = Token.findByTokenAndType(token);
+        Token resetToken = Token.findByToken(token);
         if (resetToken == null) {
             flash("error", "error.technical");
             Form<ForgotPass> askForm = form(ForgotPass.class);
@@ -106,7 +106,7 @@ public class Reset extends Controller {
             return badRequest(reset.render(resetForm,token));
         }
         try {
-            Token resetToken = Token.findByTokenAndType(token);
+            Token resetToken = Token.findByToken(token);
             if (resetToken == null) {
                 flash("error", "error.technical");
                 Form<ForgotPass> askForm = form(ForgotPass.class);

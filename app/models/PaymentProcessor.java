@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class PaymentProcessor {
 
-    final String API_KEY = Play.application().configuration().getString("stripe.api.key");
+    private final String API_KEY = Play.application().configuration().getString("stripe.api.key");
 
     /**
      *

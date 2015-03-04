@@ -124,3 +124,8 @@
     amount: 20
     need: *need1
 
+- !!models.Token
+    token: e23a4efa-5a96-4048-9f22-e0b42076548a
+    email: bob@gmail.com
+    dateCreated: 2015-03-03 14:19:45
+

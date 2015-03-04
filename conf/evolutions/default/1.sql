@@ -39,7 +39,7 @@ create table need (
 create table token (
   token                     varchar(255) not null,
   email                     varchar(255),
-  date_creation             datetime,
+  date_created              datetime,
   constraint pk_token primary key (token))
 ;
 
