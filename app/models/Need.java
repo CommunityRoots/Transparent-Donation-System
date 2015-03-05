@@ -1,11 +1,12 @@
 package models;
 
-import javax.persistence.*;
+import play.data.validation.Constraints;
+import play.db.ebean.Model;
 
-
-import play.db.ebean.*;
-import play.data.validation.*;
-
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;

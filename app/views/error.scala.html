@@ -1,0 +1,59 @@
+
+@main {
+
+<section id="header" class="appear"></section>
+<div class="navbar navbar-fixed-top" role="navigation" data-0="line-height:100px; height:100px; background-color:rgba(0,0,0,0.3);" data-300="line-height:60px; height:60px; background-color:rgba(0,0,0,1);">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="fa fa-bars color-white"></span>
+            </button>
+            <h1><a class="navbar-brand" href="@routes.Application.index()" data-0="line-height:90px;" data-300="line-height:50px;">			Community Roots
+            </a></h1>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
+                <li><a href="@routes.Application.index()">Home</a></li>
+                <li class="active"><a href="@routes.Application.needs()">Needs</a></li>
+                <li><a href="@routes.Application.index()#about">About us</a></li>
+                @if(session().get("email")==null) {
+                <li><a href="@routes.Registration.register()">Register</a></li>
+                <li><a href="@routes.Login.login()">Login</a></li>
+                } else {
+                <li><a href="@routes.Profile.profile()">Profile</a></li>
+                <li><a href="@routes.Profile.settings()">Settings</a></li>
+                <li><a href="@routes.Login.logout()">Logout</a></li>
+                }
+
+            </ul>
+        </div><!--/.navbar-collapse -->
+    </div>
+</div>
+
+<section class="featured"></section>
+
+<section id="parallax1" class="section pad-top40 pad-bot40" data-stellar-background-ratio="0.5">
+    <div class="container">
+        <div class="align-center pad-top40 pad-bot40">
+            <blockquote class="bigquote color-white">Error</blockquote>
+            <p class="color-white">Woops</p>
+        </div>
+    </div>
+</section>
+
+<section id="section-about" class="section appear clearfix">
+    <div class="container">
+        <div class="row mar-bot40">
+            <div class="col-md-offset-3 col-md-6">
+                <div class="section-header">
+                    <h2 class="section-heading animated" data-animation="bounceInUp">Sorry, an error occured</h2>
+                    <p>This could be for a number of reasons.</p>
+                    <p>Click <a href="@routes.Application.index()">here</a> to get back to the homepage</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<a href="#header" class="scrollup"><i class="fa fa-chevron-up"></i></a>
+}

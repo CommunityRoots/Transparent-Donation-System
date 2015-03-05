@@ -3,6 +3,7 @@ import Services.EmailService;
 import Services.FormValidator;
 import models.User;
 import org.mindrot.jbcrypt.BCrypt;
+import play.cache.Cached;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -37,6 +38,7 @@ public class Registration extends Controller {
         }
     }
 
+    @Cached(key = "register", duration = 10)
     public static Result register(){
         return ok(register.render(form(RegisterForm.class)));
     }

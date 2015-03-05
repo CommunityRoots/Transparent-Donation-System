@@ -1,7 +1,5 @@
 package utils
 
-import play.api.templates._
-
 object TemplateHelpers {
 
   def createRange(page: Int, max: Int, pageCount: Int): Range = {

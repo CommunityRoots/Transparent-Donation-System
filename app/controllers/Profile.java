@@ -4,12 +4,17 @@ import Services.EmailService;
 import Services.FormValidator;
 import com.avaje.ebean.Page;
 import com.avaje.ebean.PagingList;
-import models.*;
+import models.Donation;
+import models.Need;
+import models.User;
 import play.data.Form;
 import play.mvc.Result;
 import play.mvc.Security;
-import views.html.profile.*;
-import views.html.need.*;
+import views.html.need.editNeed;
+import views.html.profile.profile;
+import views.html.profile.settings;
+import views.html.profile.volunteers;
+
 import java.util.LinkedList;
 import java.util.List;
 

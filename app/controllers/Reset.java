@@ -11,7 +11,6 @@ import play.mvc.Result;
 import views.html.forgot.forgot;
 import views.html.forgot.reset;
 
-
 import java.net.MalformedURLException;
 
 import static play.data.Form.form;
