@@ -58,7 +58,7 @@
                         <h1>@need.title</h1>
                         <p>@need.charity.name</p>
                         <p>@need.location</p>
-                        <p>@need.dateAdded</p>
+                        <p>@need.formattedDate()</p>
                         <p id="amountNeeded">€@(need.askAmount - need.donatedAmount) needed</p>
                             <!--
                         breakdown of cost?
@@ -132,7 +132,7 @@
 
                 </div>
                  } else {
-                     <div class="col-sm-4 col-sm-offset-3"><p>Please <a href="@routes.Login.login()">Login</a> or <a href="@routes.Registration.register()">register</a> to donate</div>
+                     <div class="col-sm-4 col-sm-offset-3"><p>Please <a href="@routes.Login.login()" class="loginToPay">Login</a> or <a href="@routes.Registration.register()" class="loginToPay">register</a> to donate</div>
                  }
             </div>
 
@@ -160,39 +160,4 @@
 
 
 }
-<script>
-
-    $("#donateAmount").click(function() {
-        $("#enterAmount").toggle();
-    });
-    $("#donationAmount").bind("keyup change", function(e) {
-        var amount = parseFloat($("#donationAmount").val());
-        var amountNeeded = $("#amountNeeded").text();
-        amountNeeded = parseFloat(amountNeeded.slice(1,amount.length));
-        if(!isNaN(amount)){
-            if(amount>amountNeeded){
-                $("#showAmount").text("Amount more than needed");
-                $("#stripeFee").text("€0.00");
-                $("#stripeTotal").text("€0.00");
-                $("#donationFinal").val(0);
-            }
-            else {
-                var paymentFee = ((amount *2.4)/100) +.24;
-                var VAT_PERCENT =23;
-                var vat= (paymentFee * VAT_PERCENT)/100;
-                paymentFee = paymentFee + vat;
-                var total = amount +paymentFee;
-                $("#showAmount").text("€"+amount.toFixed(2));
-                $("#stripeFee").text("€"+paymentFee.toFixed(2));
-                $("#stripeTotal").text("€"+total.toFixed(2));
-                $("#donationFinal").val(total.toFixed(2));
-            }
-        }
-        else {
-            $("#showAmount").text("€0.00");
-            $("#stripeFee").text("€0.00");
-            $("#stripeTotal").text("€0.00");
-            $("#donationFinal").val(0);
-        }
-    });
-</script>
+<script src="@routes.Assets.at("js/viewNeed.js")"></script>

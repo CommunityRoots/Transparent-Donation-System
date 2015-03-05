@@ -1,6 +1,6 @@
 package controllers;
 
-import models.PaymentProcessor;
+import Services.PaymentProcessor;
 import play.data.DynamicForm;
 import play.mvc.Result;
 import play.mvc.Security;

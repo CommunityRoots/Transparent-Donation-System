@@ -1,9 +1,12 @@
-package models;
+package Services;
 
 
+import Services.EmailService;
 import com.stripe.Stripe;
 import com.stripe.exception.*;
 import com.stripe.model.Charge;
+import models.Need;
+import models.User;
 import play.Logger;
 import play.Play;
 import java.util.HashMap;

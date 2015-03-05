@@ -1,6 +1,6 @@
 package Unit.models;
 
-import models.FormValidator;
+import Services.FormValidator;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

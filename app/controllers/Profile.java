@@ -1,5 +1,7 @@
 package controllers;
 
+import Services.EmailService;
+import Services.FormValidator;
 import com.avaje.ebean.Page;
 import com.avaje.ebean.PagingList;
 import models.*;
@@ -188,7 +190,6 @@ public class Profile {
             return badRequest(addNeedForm.errorsAsJson()).as("application/json");
         }
         else {
-            System.out.println(addNeedForm.get().category);
             Need need = new Need();
             need.addNeed(addNeedForm.get().title,
                     addNeedForm.get().description,

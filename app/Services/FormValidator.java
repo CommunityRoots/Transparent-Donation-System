@@ -1,4 +1,4 @@
-package models;
+package Services;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;

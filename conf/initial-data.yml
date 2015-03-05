@@ -1,0 +1,10 @@
+- &svp !!models.Charity
+    name: SVP
+
+- &usr1 !!models.User
+    email:      fred@gmail.com
+    firstName:  Fred
+    lastName:   Kapinsky
+    role:       1
+    password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
+    charity:    *svp

@@ -1,15 +1,12 @@
 package controllers;
-import models.EmailService;
-import models.FormValidator;
+import Services.EmailService;
+import Services.FormValidator;
 import models.User;
 import org.mindrot.jbcrypt.BCrypt;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.login.register;
-
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
 
 import static play.data.Form.form;
 

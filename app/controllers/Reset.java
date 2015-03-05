@@ -1,6 +1,6 @@
 package controllers;
 
-import models.FormValidator;
+import Services.FormValidator;
 import models.Token;
 import models.User;
 import play.Logger;

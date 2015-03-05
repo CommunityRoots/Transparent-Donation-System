@@ -1,4 +1,5 @@
 import com.avaje.ebean.Ebean;
+import controllers.Admin;
 import models.Token;
 import models.User;
 import play.Application;
@@ -19,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 import static play.mvc.Results.notFound;
 
 public class Global extends GlobalSettings {
+
     @Override
     public <T extends EssentialFilter> Class<T>[] filters() {
         return new Class[]{CSRFFilter.class};
@@ -36,6 +38,11 @@ public class Global extends GlobalSettings {
         if(mode.equals("Test")||mode.equals("Dev")){
             if (User.find.findRowCount()==0) {
                 Ebean.save((List) Yaml.load("test-data.yml"));
+                Logger.info("Data loaded into database");
+            }
+        } else{
+            if (User.find.findRowCount()==0) {
+                Ebean.save((List) Yaml.load("initial-data.yml"));
                 Logger.info("Data loaded into database");
             }
         }
