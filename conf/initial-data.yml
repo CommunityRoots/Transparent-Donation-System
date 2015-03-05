@@ -1,6 +1,10 @@
 - &svp !!models.Charity
     name: SVP
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 - &usr1 !!models.User
     email:      fred@gmail.com
     firstName:  Fred
