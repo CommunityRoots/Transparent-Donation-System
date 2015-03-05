@@ -1,5 +1,6 @@
 package models;
 
+import Services.EmailService;
 import play.data.format.Formats;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
@@ -8,7 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 @Entity
 public class Token extends Model {

@@ -1,5 +1,6 @@
 @import helper._
-@(form: Form[Admin.AddCharity], form2: Form[Admin.AddLeader], charities: List[Charity])
+@(form: Form[Admin.AddCharity], form2: Form[Admin.AddLeader], charities: List[Charity], needs: Long, charity: Long,
+users: Long,donations: Long, date: String)
 @main {
 
 <section id="header" class="appear"></section>
@@ -97,6 +98,69 @@
             </div>
             }
         </div>
+        <br>
+        <hr>
+        <div class="row">
+            <div class="col-xs-6 col-md-3">
+
+                <div class="panel status panel-danger">
+                    <div class="panel-heading" style="background-color: red">
+                        <h1 class="panel-title text-center">@needs</h1>
+                    </div>
+                    <div class="panel-body text-center">
+                        <strong>Needs</strong>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xs-6 col-md-3">
+
+                <div class="panel status panel-warning">
+                    <div class="panel-heading"style="background-color: green">
+                        <h1 class="panel-title text-center">@charity</h1>
+                    </div>
+                    <div class="panel-body text-center">
+                        <strong>Charities</strong>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xs-6 col-md-3">
+
+                <div class="panel status panel-success">
+                    <div class="panel-heading"style="background-color: #DD5600">
+                        <h1 class="panel-title text-center">@users</h1>
+                    </div>
+                    <div class="panel-body text-center">
+                        <strong>Users</strong>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-xs-6 col-md-3">
+
+                <div class="panel status panel-info">
+                    <div class="panel-heading" style="background-color: dodgerblue">
+                        <h1 class="panel-title text-center">@donations</h1>
+                    </div>
+                    <div class="panel-body text-center">
+                        <strong>Donations</strong>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-8 col-md-5">
+                Stats generated on @date
+            </div>
+        </div>
+        <hr>
+    </div>
+
+
 
         <br />
 

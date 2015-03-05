@@ -1,17 +1,11 @@
 package controllers;
 
-import models.*;
-import play.Routes;
+import models.User;
+import play.cache.Cached;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-import play.mvc.Security;
-import views.html.login.*;
-import com.avaje.ebean.Page;
-import com.avaje.ebean.PagingList;
-
-import java.util.Date;
-import java.util.List;
+import views.html.login.login;
 
 import static play.data.Form.form;
 
@@ -30,6 +24,7 @@ public class Login extends Controller {
         }
     }
 
+    @Cached(key = "login", duration = 10)
     public static Result login(){
         return ok(login.render(form(LoginForm.class)));
     }

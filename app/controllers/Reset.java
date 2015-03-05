@@ -1,6 +1,6 @@
 package controllers;
 
-import models.FormValidator;
+import Services.FormValidator;
 import models.Token;
 import models.User;
 import play.Logger;
@@ -10,7 +10,6 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.forgot.forgot;
 import views.html.forgot.reset;
-
 
 import java.net.MalformedURLException;
 

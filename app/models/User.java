@@ -1,11 +1,12 @@
 package models;
 
-import javax.persistence.*;
-
 import org.mindrot.jbcrypt.BCrypt;
-import play.db.ebean.*;
-import play.data.validation.*;
+import play.data.validation.Constraints;
+import play.db.ebean.Model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
 

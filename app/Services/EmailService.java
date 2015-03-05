@@ -1,4 +1,4 @@
-package models;
+package Services;
 
 
 import play.libs.mailer.Email;

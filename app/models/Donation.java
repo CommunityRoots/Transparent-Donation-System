@@ -6,10 +6,8 @@ import play.db.ebean.Model;
 
 import javax.annotation.Nullable;
 import javax.persistence.*;
-import java.lang.String;
 import java.util.Date;
 import java.util.List;
-import java.util.ArrayList;
 
 
 @Entity
@@ -39,10 +37,6 @@ public class Donation extends Model {
         return Donation.find.where()
                 .eq("donator.email", email)
                 .findList();
-    }
-
-    public static void findDonatorEmails(Need need) {
-
     }
 
 }

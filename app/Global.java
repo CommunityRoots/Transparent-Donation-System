@@ -1,3 +1,4 @@
+import Services.StatsService;
 import com.avaje.ebean.Ebean;
 import models.Token;
 import models.User;
@@ -16,19 +17,30 @@ import scala.concurrent.duration.FiniteDuration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static play.mvc.Results.internalServerError;
 import static play.mvc.Results.notFound;
 
 public class Global extends GlobalSettings {
+
+    //CSRF token
     @Override
     public <T extends EssentialFilter> Class<T>[] filters() {
         return new Class[]{CSRFFilter.class};
     }
 
+    //page to display when handler not found
     public F.Promise<Result> onHandlerNotFound(Http.RequestHeader request){
         return F.Promise.<Result>pure(notFound(
                 views.html.notFoundPage.render()
         ));
     }
+    //page to display when an error occurs
+    public F.Promise<Result> onError(Http.RequestHeader request, Throwable t) {
+        return F.Promise.<Result>pure(internalServerError(
+                views.html.error.render()
+        ));
+    }
+
     @Override
     public void onStart(Application app)	{
         Logger.info("Application started");
@@ -36,6 +48,11 @@ public class Global extends GlobalSettings {
         if(mode.equals("Test")||mode.equals("Dev")){
             if (User.find.findRowCount()==0) {
                 Ebean.save((List) Yaml.load("test-data.yml"));
+                Logger.info("Data loaded into database");
+            }
+        } else{
+            if (User.find.findRowCount()==0) {
+                Ebean.save((List) Yaml.load("initial-data.yml"));
                 Logger.info("Data loaded into database");
             }
         }
@@ -48,10 +65,18 @@ public class Global extends GlobalSettings {
                         public void run() {
                             Token.checkIfTokensAreValid();
                             Logger.info("Token cleanup" + System.currentTimeMillis());
+                            StatsService.getInstance().generateStats();
+                            Logger.info("Stats scheduled for update");
                         }
                     },
                     Akka.system().dispatcher()
             );
         }
     }
+
+    @Override
+    public void onStop(Application app) {
+        Logger.info("Application shutdown");
+    }
+
 }

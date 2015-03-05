@@ -1,21 +1,20 @@
 package controllers;
 
-import models.*;
-import play.Routes;
-import play.data.Form;
-import play.mvc.Controller;
-import play.mvc.Result;
-import play.mvc.Security;
-import views.html.need.needs;
-import views.html.index;
 import com.avaje.ebean.Page;
 import com.avaje.ebean.PagingList;
-import java.util.List;
+import models.Need;
+import play.cache.Cached;
+import play.mvc.Controller;
+import play.mvc.Result;
+import views.html.index;
+import views.html.need.needs;
 
-import static play.data.Form.form;
+import java.util.List;
 
 public class Application extends Controller {
 
+    //Cache the index. Index doesnt change
+    @Cached(key = "homePage", duration = 10)
     public static Result index() {
         return ok(index.render());
     }
