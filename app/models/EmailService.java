@@ -3,6 +3,7 @@ package models;
 
 import play.libs.mailer.Email;
 import play.libs.mailer.MailerPlugin;
+import java.util.List;
 
 public class EmailService {
 
@@ -14,5 +15,15 @@ public class EmailService {
         email.setSubject(subject);
         email.setBodyText(content);
         MailerPlugin.send(email);
+    }
+
+    public void sendMultipleEmails(List<String> emails, String subject, String content){
+        email.setFrom("CommunityRoots.net <info@communityroots.net>");
+        email.setSubject(subject);
+        email.setBodyText(content);
+        for(String sendEmail: emails) {
+            email.addTo("<" + sendEmail + ">");
+            MailerPlugin.send(email);
+        }
     }
 }

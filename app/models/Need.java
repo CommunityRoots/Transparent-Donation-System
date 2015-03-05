@@ -123,11 +123,24 @@ public class Need extends Model {
         donation.save();
     }
 
-    public void addUpdate(Need need, String title,String message){
+    /*public void addUpdate(Need need, String title,String message){
         Updates update = new Updates(title,message,need);
         update.save();
         updates.add(update);
+        List<Updates> updates =  Updates.find.where()
+                .eq("need", need)
+                .orderBy("dateAdded desc")
+                .findList();
+    }*/
+
+    public List<Updates> getUpdates(){
+        List<Updates> updates =  Updates.find.where()
+                .eq("need", this)
+                .orderBy("dateAdded desc")
+                .findList();
+        return updates;
     }
+
 
     public void editNeed(String title, String description, String location, double amount, int urgency){
         this.title =title;

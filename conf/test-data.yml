@@ -138,13 +138,11 @@
     dateCreated: 2015-03-03 14:19:45
 
 - !!models.Updates
-    title: title
     message: message
     need: *need1
     dateAdded: 2015-02-24
 
 - !!models.Updates
-    title: title2
     message: message
     need: *need1
     dateAdded: 2015-02-24

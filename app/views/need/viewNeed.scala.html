@@ -143,16 +143,11 @@
                 </div>
             </div>
                 @for(update <- updates){
-                    <div class="row">
-                        <div class="col-sm-2">@update.dateAdded</div>
-                        <div class="col-sm-7"><h3>@update.title</h3></div>
-                    </div>
                     <div class="row pad-bot40">
-                        <div class="col-sm-7 col-sm-offset-2">@update.message</div>
+                        <div class="col-sm-2">@update.dateAdded</div>
+                        <div class="col-sm-7">@update.message</div>
                     </div>
                 }
-
-
         </div>
     </div>
 

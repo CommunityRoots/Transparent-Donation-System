@@ -28,11 +28,8 @@ public class Needs extends Controller {
                     routes.Needs.invalidNeed()
             );
         }
-        List<Updates> updates =  Updates.find.where()
-                .eq("need", need)
-                .orderBy("dateAdded asc")
-                .findList();
-        return ok(viewNeed.render(need,user,updates));
+
+        return ok(viewNeed.render(need,user,need.getUpdates()));
     }
 
     public static Result invalidNeed()

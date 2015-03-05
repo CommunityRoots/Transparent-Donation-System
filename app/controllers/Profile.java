@@ -104,6 +104,7 @@ public class Profile {
         public int urgency;
         public String location;
         public double amount;
+        public String message;
 
         public String validate(){
             if(title.length()>20){
@@ -288,6 +289,11 @@ public class Profile {
 
     public static Result editNeed(long id){
         Need need = Need.find.byId(id);
+        if(need == null){
+            return redirect(
+                    routes.Needs.invalidNeed()
+            );
+        }
         String email = session().get("email");
         User user = User.findByEmail(email);
         if(!user.equals(need.addedBy)
@@ -309,6 +315,9 @@ public class Profile {
     public static Result doEditNeed(long id){
         Form<EditNeed> editNeedForm = form(EditNeed.class).bindFromRequest();
         Need need = Need.find.byId(id);
+        if(editNeedForm.get().message.length()>1) {
+            Updates update = new Updates(editNeedForm.get().message, need);
+        }
         need.editNeed(editNeedForm.get().title,editNeedForm.get().description,
                 editNeedForm.get().location,editNeedForm.get().amount,
                 editNeedForm.get().urgency);

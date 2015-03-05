@@ -45,7 +45,6 @@ create table token (
 
 create table updates (
   id                        bigint auto_increment not null,
-  title                     varchar(255),
   message                   varchar(255),
   date_added                datetime,
   need_id                   bigint,
