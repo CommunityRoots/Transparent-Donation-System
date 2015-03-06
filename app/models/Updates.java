@@ -6,6 +6,8 @@ import play.data.validation.*;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
+import Services.EmailService;
+
 
 @Entity
 public class Updates extends Model {
@@ -32,18 +34,19 @@ public class Updates extends Model {
         this.save();
     }
 
-    public void emailUpdate(String message)
-    {
+    public void emailUpdate(String message) {
         List<Donation> donations = Donation.find.where()
                 .eq("need", need)
                 .findList();
         List<String> emails = new ArrayList<>();
-        for(Donation donation:donations) {
+        for (Donation donation : donations) {
             emails.add(donation.donator.email);
         }
-        EmailService emailService = new EmailService();
-        emailService.sendMultipleEmails(emails, "An update following your donation",
-                "The need " + need.title + " has an update: " + message);
+        if (!emails.isEmpty()) {
+            EmailService emailService = new EmailService();
+            emailService.sendMultipleEmails(emails, "An update following your donation",
+                    "The need " + need.title + " has an update: " + message);
+        }
     }
 
     public static Finder<Long, Updates> find = new Finder<Long,Updates>(Long.class, Updates.class);

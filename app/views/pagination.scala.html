@@ -1,4 +1,4 @@
-@(currentPage: Integer, blockPageSize: Integer, pageCount: Integer, onPage: String, option: Integer = 0)
+@(currentPage: Integer, blockPageSize: Integer, pageCount: Integer, onPage: String, option: Long = 0)
 
 
 
@@ -11,7 +11,11 @@
             @if(onPage == "needs") {
                 <li><a href="@routes.Application.needs(currentPage - 1,option)">&laquo;</a></li>
             } else {
-                <li><a href="@routes.Profile.profile(currentPage - 1)">&laquo;</a></li>
+                @if(onPage == "need") {
+                    <li><a href="@routes.Needs.viewNeed(currentPage - 1,option)">&laquo;</a></li>
+                }else{
+                    <li><a href="@routes.Profile.profile(currentPage - 1)">&laquo;</a></li>
+                }
             }
         }
         @for(index <- utils.TemplateHelpers.createRange(currentPage, blockPageSize, pageCount)) {
@@ -21,7 +25,11 @@
                 @if(onPage == "needs") {
                     <li><a href="@routes.Application.needs(index,option)">@index</a></li>
                 } else {
-                    <li><a href="@routes.Profile.profile(index)">@index</a></li>
+                    @if(onPage == "need") {
+                        <li><a href="@routes.Needs.viewNeed(index,option)">@index</a></li>
+                    } else {
+                        <li><a href="@routes.Profile.profile(index)">@index</a></li>
+                    }
                 }
             }
         }
@@ -32,7 +40,11 @@
             @if(onPage == "needs") {
                 <li><a href="@routes.Application.needs(currentPage + 1,option)">&raquo;</a></li>
             } else {
-                <li><a href="@routes.Profile.profile(currentPage + 1)">&raquo;</a></li>
+                @if(onPage == "need") {
+                    <li><a href="@routes.Needs.viewNeed(currentPage + 1,option)">&raquo;</a></li>
+                } else {
+                    <li><a href="@routes.Profile.profile(currentPage + 1)">&raquo;</a></li>
+                }
             }
         }
 

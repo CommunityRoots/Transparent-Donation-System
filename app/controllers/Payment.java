@@ -40,11 +40,11 @@ public class Payment {
                     flash("error", "Something has gone wrong, donation has not been made.");
                     break;
             }
-            return redirect(routes.Needs.viewNeed(needId));
+            return redirect(routes.Needs.viewNeed(1,needId));
         }
         catch (Exception e){
             flash("error", "Something has gone wrong, donation has not been made.");
-            return redirect(routes.Needs.viewNeed(needId));
+            return redirect(routes.Needs.viewNeed(1,needId));
         }
     }
 }

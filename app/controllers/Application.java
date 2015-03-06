@@ -19,7 +19,7 @@ public class Application extends Controller {
         return ok(index.render());
     }
 
-    public static Result needs(int page, int category) {
+    public static Result needs(int page, long category) {
         PagingList<Need> pagingList;
         if(category == 2) {
             pagingList = Need.find.where()

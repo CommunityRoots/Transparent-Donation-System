@@ -133,7 +133,7 @@ public class Need extends Model {
                 .eq("need", need)
                 .orderBy("dateAdded desc")
                 .findList();
-    }*/
+    }
 
     public List<Updates> getUpdates(){
         List<Updates> updates =  Updates.find.where()
@@ -141,7 +141,7 @@ public class Need extends Model {
                 .orderBy("dateAdded desc")
                 .findList();
         return updates;
-    }
+    }*/
 
 
     public void editNeed(String title, String description, String location, double amount, int urgency){

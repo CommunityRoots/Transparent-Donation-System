@@ -1,5 +1,5 @@
 @import helper._
-@(need: Need, user: User, updates: List[Updates])
+@(need: Need, user: User, updates: List[Updates],currentPage: Integer, pageCount: Integer)
 @main {
 
     <section id="header" class="appear"></section>
@@ -148,6 +148,11 @@
                         <div class="col-sm-7">@update.message</div>
                     </div>
                 }
+            <div class="row align-center">
+                @if(pageCount >1){
+                    @pagination(currentPage, pageCount, pageCount, "need",need.id)
+                }
+            </div>
         </div>
     </div>
 

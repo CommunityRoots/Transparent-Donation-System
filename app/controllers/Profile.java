@@ -7,6 +7,7 @@ import com.avaje.ebean.PagingList;
 import models.Donation;
 import models.Need;
 import models.User;
+import models.Updates;
 import play.data.Form;
 import play.mvc.Result;
 import play.mvc.Security;
@@ -68,6 +69,7 @@ public class Profile {
         public int urgency;
         public String location;
         public String category;
+        public String message;
 
         public String validate(){
             if(title.length() >20 || title.length() <5){

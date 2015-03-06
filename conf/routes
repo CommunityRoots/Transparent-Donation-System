@@ -12,10 +12,10 @@ POST        /login               controllers.Login.authenticate()
 GET         /logout              controllers.Login.logout()
 
 #Needs page
-GET         /needs               controllers.Application.needs(page: Int ?= 1,category: Int ?= 2)
+GET         /needs               controllers.Application.needs(page: Int ?= 1,category: Long ?= 2)
 
 #Need Desc page
-GET         /viewNeed            controllers.Needs.viewNeed(id:Long)
+GET         /viewNeed            controllers.Needs.viewNeed(page: Int ?= 1,id:Long)
 GET         /invalidNeed         controllers.Needs.invalidNeed()
 
 #Profile page
