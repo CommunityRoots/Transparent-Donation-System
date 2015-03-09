@@ -21,6 +21,9 @@ public class Admin extends Controller {
         public String charityName;
 
         public String validate(){
+            if(charityName.length()==0 || charityName == null){
+                return "Please enter charity name";
+            }
             return null;
         }
     }
@@ -30,7 +33,12 @@ public class Admin extends Controller {
 
         public long charity;
 
-        public String validate(){
+        public String validate()
+        {
+            User user = User.findByEmail(leaderEmail);
+            if(user == null){
+                return "No user with that email. User must already be registered";
+            }
             return null;
         }
     }

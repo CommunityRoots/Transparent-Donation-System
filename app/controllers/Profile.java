@@ -116,11 +116,16 @@ public class Profile {
         public String message;
 
         public String validate(){
+            String email = session().get("email");
+            User user = User.find.byId(email);
             if(title.length()>20){
                 return "Title too long. Should be under 60 letters";
             }
             else if(amount <0){
                 return "Amount can not be negative number";
+            }
+            else if(user.role>2){
+                return "You do not have permissions to do this";
             }
             return null;
         }
@@ -262,16 +267,22 @@ public class Profile {
     public static Result listVolunteers(int page){
         String email = session().get("email");
         User user = User.findByEmail(email);
-        if(user.role!=2){
+        if(user.role >2){
             return redirect(routes.Application.index());
         }
-
-        //users that have role volunteer and same charity as user
-        PagingList<User> pagingList = User.find.where()
-                .eq("role","volunteer")
-                .eq("charity",user.charity)
-                .findPagingList(10);
-
+        PagingList<User> pagingList;
+        if(user.role==1){
+            pagingList = User.find.where()
+                    .eq("role","volunteer")
+                    .findPagingList(10);
+        }
+        else{
+            //users that have role volunteer and same charity as user
+            pagingList = User.find.where()
+                    .eq("role","volunteer")
+                    .eq("charity",user.charity)
+                    .findPagingList(10);
+        }
         Page<User> currentPage = pagingList.getPage(page - 1);
         List<User> volunteer = currentPage.getList();
 
