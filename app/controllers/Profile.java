@@ -304,20 +304,24 @@ public class Profile {
         }
         String email = session().get("email");
         User user = User.findByEmail(email);
-        if(!user.equals(need.addedBy)
-                || (!(user.role==2&&user.charity.equals(need.charity)))){
+        if(user.equals(need.addedBy)
+                || ((user.role<=2&&user.charity.equals(need.charity)))){
+            Form<EditNeed> editNeedForm = form(EditNeed.class);
+            EditNeed editNeeds = new EditNeed();
+            editNeeds.title = need.title;
+            editNeeds.description = need.description;
+            editNeeds.location = need.location;
+            editNeeds.urgency = need.urgency;
+            editNeeds.amount = need.askAmount;
+            editNeedForm = editNeedForm.fill(editNeeds);
+            return ok(editNeed.render(editNeedForm,id));
+
+        }
+        else{
             flash("error", "You do not have permission to edit this need");
             return redirect(routes.Profile.profile(1));
         }
-        Form<EditNeed> editNeedForm = form(EditNeed.class);
-        EditNeed editNeeds = new EditNeed();
-        editNeeds.title = need.title;
-        editNeeds.description = need.description;
-        editNeeds.location = need.location;
-        editNeeds.urgency = need.urgency;
-        editNeeds.amount = need.askAmount;
-        editNeedForm = editNeedForm.fill(editNeeds);
-        return ok(editNeed.render(editNeedForm,id));
+
     }
 
     public static Result doEditNeed(long id){
