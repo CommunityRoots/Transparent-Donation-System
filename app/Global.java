@@ -28,6 +28,7 @@ public class Global extends GlobalSettings {
         return new Class[]{CSRFFilter.class};
     }
 
+
     //page to display when handler not found
     public F.Promise<Result> onHandlerNotFound(Http.RequestHeader request){
         return F.Promise.<Result>pure(notFound(
@@ -36,6 +37,10 @@ public class Global extends GlobalSettings {
     }
     //page to display when an error occurs
     public F.Promise<Result> onError(Http.RequestHeader request, Throwable t) {
+        String mode = play.api.Play.current().mode().toString();
+        if(mode.equals("Test")||mode.equals("Dev")) {
+            t.printStackTrace();
+        }
         return F.Promise.<Result>pure(internalServerError(
                 views.html.error.render()
         ));
@@ -43,8 +48,8 @@ public class Global extends GlobalSettings {
 
     @Override
     public void onStart(Application app)	{
-        Logger.info("Application started");
         String mode = play.api.Play.current().mode().toString();
+        Logger.info("Application started");
         if(mode.equals("Test")||mode.equals("Dev")){
             if (User.find.findRowCount()==0) {
                 Ebean.save((List) Yaml.load("test-data.yml"));

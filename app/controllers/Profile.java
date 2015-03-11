@@ -113,11 +113,12 @@ public class Profile {
         public int urgency;
         public String location;
         public double amount;
+        public String category;
         public String message;
 
         public String validate(){
             String email = session().get("email");
-            User user = User.find.byId(email);
+            User user = User.findByEmail(email);
             if(title.length()>20){
                 return "Title too long. Should be under 60 letters";
             }
@@ -337,14 +338,19 @@ public class Profile {
 
     public static Result doEditNeed(long id){
         Form<EditNeed> editNeedForm = form(EditNeed.class).bindFromRequest();
-        Need need = Need.find.byId(id);
-        if(editNeedForm.get().message.length()>1) {
-            Updates update = new Updates(editNeedForm.get().message, need);
+        if (editNeedForm.hasErrors()) {
+            return badRequest(editNeed.render(editNeedForm,id));
+        } else {
+
+            Need need = Need.find.byId(id);
+            if(editNeedForm.get().message.length()>1) {
+                Updates update = new Updates(editNeedForm.get().message, need);
+            }
+            need.editNeed(editNeedForm.get().title, editNeedForm.get().description,
+                    editNeedForm.get().location, editNeedForm.get().amount,
+                    editNeedForm.get().urgency);
+            flash("success", "Need has been updated");
+            return redirect(routes.Profile.profile(1));
         }
-        need.editNeed(editNeedForm.get().title,editNeedForm.get().description,
-                editNeedForm.get().location,editNeedForm.get().amount,
-                editNeedForm.get().urgency);
-        flash("success", "Need has been updated");
-        return redirect(routes.Profile.profile(1));
     }
 }
