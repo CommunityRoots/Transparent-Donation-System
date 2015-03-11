@@ -3,54 +3,60 @@
 # ~~~~
 
 # Home page
-GET         /                    controllers.Application.index()
-GET         /index               controllers.Application.index()
+GET           /                            controllers.Application.index()
+GET           /index                       controllers.Application.index()
 
 # Login page
-GET         /login               controllers.Login.login()
-POST        /login               controllers.Login.authenticate()
-GET         /logout              controllers.Login.logout()
+GET           /login                       controllers.Login.login()
+POST          /login                       controllers.Login.authenticate()
+GET           /logout                      controllers.Login.logout()
 
 #Needs page
-GET         /needs               controllers.Application.needs(page: Int ?= 1,category: Long ?= 2)
+GET           /needs                       controllers.Application.needs(page: Int ?= 1,category: Long ?= 2)
 
 #Need Desc page
-GET         /viewNeed            controllers.Needs.viewNeed(page: Int ?= 1,id:Long)
-GET         /invalidNeed         controllers.Needs.invalidNeed()
+GET           /viewNeed                    controllers.Needs.viewNeed(page: Int ?= 1,id:Long)
+GET           /invalidNeed                 controllers.Needs.invalidNeed()
 
 #Profile page
-GET         /profile                  controllers.Profile.profile(page: Integer ?= 1)
-POST        /profile/addNeed          controllers.Profile.addNeed()
-POST        /profile/addVolunteer     controllers.Profile.addVolunteer()
-GET         /deleteNeed/:id           controllers.Profile.deleteNeed(id: Long)
-GET         /volunteers               controllers.Profile.listVolunteers(page: Integer ?= 1)
-DELETE      /deleteVol/:email         controllers.Profile.deleteVolunteer(email: String)
-GET         /editNeed/:id             controllers.Profile.editNeed(id: Long)
-POST        /editNeed/:id             controllers.Profile.doEditNeed(id: Long)
+GET           /profile                     controllers.Profile.profile(page: Integer ?= 1)
+POST          /profile/addNeed             controllers.Profile.addNeed()
+POST          /profile/addVolunteer        controllers.Profile.addVolunteer()
+GET           /deleteNeed/:id              controllers.Profile.deleteNeed(id: Long)
+GET           /volunteers                  controllers.Profile.listVolunteers(page: Integer ?= 1)
+DELETE        /deleteVol/:email            controllers.Profile.deleteVolunteer(email: String)
+GET           /editNeed/:id                controllers.Profile.editNeed(id: Long)
+POST          /editNeed/:id                controllers.Profile.doEditNeed(id: Long)
 
 #Settings page
-GET         /settings            controllers.Profile.settings()
-POST        /settings/pass            controllers.Profile.changePassword()
-POST        /settings/email            controllers.Profile.changeEmail()
+GET           /settings                    controllers.Profile.settings()
+POST          /settings/pass               controllers.Profile.changePassword()
+POST          /settings/email              controllers.Profile.changeEmail()
 
 #Registration
-GET         /register            controllers.Registration.register()
-POST        /register            controllers.Registration.authenticate()
+GET           /register                    controllers.Registration.register()
+POST          /register                    controllers.Registration.authenticate()
 
 #Forgot Password
-GET         /forgot              controllers.Reset.forgot()
-POST        /forgot              controllers.Reset.doForgot()
-GET         /reset/:token        controllers.Reset.reset(token:String)
-POST        /reset/:token        controllers.Reset.doNewPass(token:String)
+GET           /forgot                      controllers.Reset.forgot()
+POST          /forgot                      controllers.Reset.doForgot()
+GET           /reset/:token                controllers.Reset.reset(token:String)
+POST          /reset/:token                controllers.Reset.doNewPass(token:String)
+
+#Subscriptions
+GET           /subscriptions               controllers.Profile.subscriptions(email: String)
+POST          /subscriptions               controllers.Profile.unsubFromNeed(id: Long, email: String)
+POST          /subscriptions               controllers.Profile.subToNeed(id: Long, email: String)
+POST          /subscriptions               controllers.Profile.unsubFromAll(email: String)
 
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file        controllers.Assets.at(path="/public", file)
+GET           /assets/*file                controllers.Assets.at(path="/public", file)
 
 #Payments
-POST       /viewNeed             controllers.Payment.chargeCard()
+POST          /viewNeed                    controllers.Payment.chargeCard()
 
 #Admin
-GET        /admin                controllers.Admin.admin()
-POST       /admin                controllers.Admin.addCharity()
-POST       /admin/addLeader      controllers.Admin.addLeader()
+GET           /admin                       controllers.Admin.admin()
+POST          /admin                       controllers.Admin.addCharity()
+POST          /admin/addLeader             controllers.Admin.addLeader()
 

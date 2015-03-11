@@ -12,9 +12,7 @@ import play.data.Form;
 import play.mvc.Result;
 import play.mvc.Security;
 import views.html.need.editNeed;
-import views.html.profile.profile;
-import views.html.profile.settings;
-import views.html.profile.volunteers;
+import views.html.profile.*;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -353,4 +351,34 @@ public class Profile {
             return redirect(routes.Profile.profile(1));
         }
     }
+
+    public static Result subscriptions(String email){
+        User user = User.findByEmail(email);
+        List<Donation> donations = Donation.find.where()
+                .eq("donator", user)
+                .findList();
+        return ok(subscriptions.render(donations,user));
+    }
+
+    public static Result unsubFromNeed(long id, String email){
+        Donation.find.byId(id).unsub();
+        return redirect(routes.Profile.subscriptions(email));
+    }
+
+    public static Result subToNeed(long id, String email){
+        Donation.find.byId(id).sub();
+        return redirect(routes.Profile.subscriptions(email));
+    }
+
+    public static Result unsubFromAll(String email){
+        User user = User.findByEmail(email);
+        List<Donation> donations = Donation.find.where()
+                .eq("donator", user)
+                .findList();
+        for(Donation donation:donations) {
+            donation.unsub();
+        }
+        return redirect(routes.Profile.subscriptions(email));
+    }
+
 }
