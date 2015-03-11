@@ -40,6 +40,7 @@
                         <thead>
                             <tr>
                                 <th>Title</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -48,8 +49,10 @@
                             <tr>
                                 <td>@donation.need.title</td>
                                 @if(donation.isSubbed()) {
+                                    <td>Subscribed</td>
                                     <td><a href="@routes.Profile.unsubFromNeed(donation.id,user.email)">Unsub</a></td>
                                 } else{
+                                    <td>Not subscribed</td>
                                     <td><a href="@routes.Profile.subToNeed(donation.id,user.email)">Sub</a></td>
                                 }
                             </tr>

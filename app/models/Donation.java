@@ -29,6 +29,7 @@ public class Donation extends Model {
         this.donator = donator;
         this.amount = amount;
         this.date = new Date();
+        this.save();
     }
 
     public static Model.Finder<Long, Donation> find = new Model.Finder<Long,Donation>(Long.class, Donation.class);
@@ -49,8 +50,7 @@ public class Donation extends Model {
         this.save();
     }
 
-    public boolean isSubbed()
-    {
+    public boolean isSubbed() {
         return notify;
     }
 
