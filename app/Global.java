@@ -27,7 +27,7 @@ public class Global extends GlobalSettings {
     public <T extends EssentialFilter> Class<T>[] filters() {
         return new Class[]{CSRFFilter.class};
     }
-
+/*
     //page to display when handler not found
     public F.Promise<Result> onHandlerNotFound(Http.RequestHeader request){
         return F.Promise.<Result>pure(notFound(
@@ -40,7 +40,7 @@ public class Global extends GlobalSettings {
                 views.html.error.render()
         ));
     }
-
+*/
     @Override
     public void onStart(Application app)	{
         Logger.info("Application started");

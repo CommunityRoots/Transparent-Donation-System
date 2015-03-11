@@ -15,6 +15,7 @@ create table donation (
   amount                    double,
   need_id                   bigint,
   date                      datetime,
+  notify                    tinyint(1) default 0,
   constraint pk_donation primary key (id))
 ;
 

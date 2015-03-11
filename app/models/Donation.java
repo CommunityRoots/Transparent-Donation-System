@@ -22,6 +22,7 @@ public class Donation extends Model {
     @ManyToOne
     public Need need;
     public Date date;
+    public boolean notify = true;
 
     public Donation(Need need,User donator, double amount){
         this.need = need;
@@ -32,11 +33,25 @@ public class Donation extends Model {
 
     public static Model.Finder<Long, Donation> find = new Model.Finder<Long,Donation>(Long.class, Donation.class);
 
-
     public static List<Donation> findByDonator(String email) {
         return Donation.find.where()
                 .eq("donator.email", email)
                 .findList();
+    }
+
+    public void unsub() {
+        this.notify = false;
+        this.save();
+    }
+
+    public void sub() {
+        this.notify = true;
+        this.save();
+    }
+
+    public boolean isSubbed()
+    {
+        return notify;
     }
 
 }

@@ -40,11 +40,13 @@ public class Updates extends Model {
                 .findList();
         List<String> emails = new ArrayList<>();
         for (Donation donation : donations) {
-            emails.add(donation.donator.email);
+            if(donation.notify) {
+                emails.add(donation.donator.email);
+            }
         }
         if (!emails.isEmpty()) {
             EmailService emailService = new EmailService();
-            emailService.sendMultipleEmails(emails, "An update following your donation",
+            emailService.sendMultipleEmails(emails, "An update about your donation",
                     "The need " + need.title + " has an update: " + message);
         }
     }
