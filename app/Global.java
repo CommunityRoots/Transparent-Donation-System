@@ -27,9 +27,7 @@ public class Global extends GlobalSettings {
     public <T extends EssentialFilter> Class<T>[] filters() {
         return new Class[]{CSRFFilter.class};
     }
-
-
-    //page to display when handler not found
+z    //page to display when handler not found
     public F.Promise<Result> onHandlerNotFound(Http.RequestHeader request){
         return F.Promise.<Result>pure(notFound(
                 views.html.notFoundPage.render()
@@ -39,7 +37,7 @@ public class Global extends GlobalSettings {
     public F.Promise<Result> onError(Http.RequestHeader request, Throwable t) {
         String mode = play.api.Play.current().mode().toString();
         if(mode.equals("Test")||mode.equals("Dev")) {
-            t.printStackTrace();
+          t.printStackTrace();
         }
         return F.Promise.<Result>pure(internalServerError(
                 views.html.error.render()

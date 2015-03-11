@@ -163,7 +163,9 @@ public class Profile {
     }
 
     public static Result settings(){
-        return ok(settings.render(form(ChangePass.class),form(ChangeEmail.class)));
+        String email = session().get("email");
+        User user = User.findByEmail(email);
+        return ok(settings.render(form(ChangePass.class),form(ChangeEmail.class),user));
     }
 
     public static Result changePassword(){
@@ -176,27 +178,26 @@ public class Profile {
             EmailService emailService = new EmailService();
             emailService.sendEmail(user.firstName,user.email,"Password Change","Your Password has been changed.");
             flash("success", "Password Changed");
-            return ok(settings.render(form(ChangePass.class),form(ChangeEmail.class)));
+            return ok(settings.render(form(ChangePass.class),form(ChangeEmail.class),user));
         }
     }
 
     public static Result changeEmail(){
+        User user = User.findByEmail(session().get("email"));
         Form<ChangeEmail> changeEmailForm = form(ChangeEmail.class).bindFromRequest();
         if (changeEmailForm.hasErrors()) {
-            return badRequest(settings.render(form(ChangePass.class),changeEmailForm));
+            return badRequest(settings.render(form(ChangePass.class),changeEmailForm,user));
         } else {
-            User user = User.findByEmail(session().get("email"));
             user.changeEmail(changeEmailForm.get().email);
             session().clear();
             session("email", changeEmailForm.get().email);
             flash("success", "Email Changed");
-            return ok(settings.render(form(ChangePass.class),form(ChangeEmail.class)));
+            return ok(settings.render(form(ChangePass.class),form(ChangeEmail.class),user));
         }
     }
 
     public static Result addNeed(){
-        String email = session().get("email");
-        User user = User.findByEmail(email);
+        User user = User.findByEmail(session().get("email"));
         Form<AddNeed> addNeedForm = form(AddNeed.class).bindFromRequest();
         if(addNeedForm.hasErrors()){
             return badRequest(addNeedForm.errorsAsJson()).as("application/json");

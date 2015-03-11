@@ -1,5 +1,5 @@
 @import helper._
-@(form: Form[Profile.ChangePass], form2: Form[Profile.ChangeEmail])
+@(form: Form[Profile.ChangePass], form2: Form[Profile.ChangeEmail],user:User)
 @main {
 
     <section id="header" class="appear"></section>
@@ -92,7 +92,7 @@
             </div>
             <div class="row">
                 <h3>Email subscriptions</h3>
-                <a href="@routes.Profile.subscriptions(form("email").value)">Click here to change what we notify you of</a>
+                <a href="@routes.Profile.subscriptions(user.email)">Click here to change what we notify you of</a>
                 }
             </div>
         </div>
