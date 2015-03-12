@@ -12,27 +12,36 @@
                 </a></h1>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
-                    <li><a href="@routes.Application.index()">Home</a></li>
-                    <li class="active"><a href="@routes.Application.needs()">Needs</a></li>
-                    <li><a href="@routes.Application.index()#about">About us</a></li>
-                    @if(session().get("email")==null) {
-                        <li><a href="@routes.Registration.register()">Register</a></li>
-                        <li><a href="@routes.Login.login()">Login</a></li>
-                    } else {
-                        <li><a href="@routes.Profile.profile()">Profile</a></li>
-                        <li><a href="@routes.Profile.settings()">Settings</a></li>
-                        <li><a href="@routes.Login.logout()">Logout</a></li>
-                    }
-                </ul>
+                <div class="row">
+                    <div class="">
+                        <ul class="nav navbar-nav">
+                            <li><a href="@routes.Application.index()">Home</a></li>
+                            <li class="active"><a href="@routes.Application.needs()">Needs</a></li>
+                            <li><a href="@routes.Application.index()#about">About us</a></li>
+                            @if(session().get("email")==null) {
+                                <li><a href="@routes.Registration.register()">Register</a></li>
+                                <li><a href="@routes.Login.login()">Login</a></li>
+                            } else {
+                                <li><a href="@routes.Profile.profile()">Profile</a></li>
+                                <li><a href="@routes.Profile.settings()">Settings</a></li>
+                                <li><a href="@routes.Login.logout()">Logout</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
             </div><!--/.navbar-collapse -->
         </div>
     </div>
 
     <section class="featured"></section>
 
-
+    </br>
     <div class="container">
+        <div class="row">
+            <div class="col-sm-10">
+                <p>Choose the needs you would like to receive emails about. Or alternatively, unsubscribe from them all.</p>
+            </div>
+        </div>
         <div class="row">
             <div class="col-sm-10">
                 <div class="row">
@@ -60,8 +69,10 @@
                         </tbody>
                     </table>
                 </div>
-                <p><a href="@routes.Profile.unsubFromAll(user.email)">I'd like to unsubscribe from all the needs I have donated to</a></p>
             </div>
+        </div>
+        <div class="row">
+            <div class ="col-lg-4 col-md-6"><a href="@routes.Profile.unsubFromAll(user.email)" type="button" class="btn btn-success btn-block btn-lg">Unsub me from all needs</a></div>
         </div>
     </div>
 
