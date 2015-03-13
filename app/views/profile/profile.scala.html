@@ -12,21 +12,25 @@
                 <h1><a class="navbar-brand" href="@routes.Application.index()" data-0="line-height:90px;" data-300="line-height:50px;">			Community Roots
                 </a></h1>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
-                    <li><a href="@routes.Application.index()">Home</a></li>
-                    <li><a href="@routes.Application.needs()">Needs</a></li>
-                    <li><a href="@routes.Application.index()#about">About us</a></li>
-                    @if(session().get("email")==null) {
-                        <li><a href="@routes.Registration.register()">Register</a></li>
-                        <li><a href="@routes.Login.login()">Login</a></li>
-                    } else {
-                        <li class="active"><a href="@routes.Profile.profile()">Profile</a></li>
-                        <li><a href="@routes.Profile.settings()">Settings</a></li>
-                        <li><a href="@routes.Login.logout()">Logout</a></li>
-                    }
-                </ul>
-            </div><!--/.navbar-collapse -->
+            <div class="row">
+                <div class="col-lg-7 col-md-8 pull-right">
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
+                            <li class="active"><a href="@routes.Application.index()">About us</a></li>
+                            <li><a href="@routes.Application.needs()">Needs</a></li>
+                            @if(session().get("email")==null) {
+                                <li><a href="@routes.Registration.register()">Register</a></li>
+                                <li><a href="@routes.Login.login()">Login</a></li>
+                            } else {
+                                <li><a href="@routes.Profile.profile()">Profile</a></li>
+                                <li><a href="@routes.Profile.settings()">Settings</a></li>
+                                <li><a href="@routes.Login.logout()">Logout</a></li>
+                            }
+
+                        </ul>
+                    </div><!--/.navbar-collapse -->
+                </div>
+            </div>
         </div>
     </div>
     <section class="featured"></section>
@@ -43,13 +47,13 @@
 
                 @if(user.role <4) {
                     <div class="row" >
-                        <div class ="col-lg-2" style="padding-left: 0"><button id="showAddNeed" class="btn btn-success btn-block btn-lg">Add Need</button></div>
+                        <div class ="col-lg-2 col-md-3" style=""><button id="showAddNeed" class="btn btn-success btn-block btn-lg">Add Need</button></div>
                         @if(user.role <3) {
-                            <div class ="col-lg-2"><button id="showAddVol" class="btn btn-success btn-block btn-lg">Add Volunteer</button></div>
-                            <div class ="col-lg-2"><a href="@routes.Profile.listVolunteers()"><button id="listVol" class="btn btn-success btn-block btn-lg">List Volunteers</button></a></div>
+                            <div class ="col-lg-2 col-md-3"><button id="showAddVol" class="btn btn-success btn-block btn-lg">Add Volunteer</button></div>
+                            <div class ="col-lg-2 col-md-3"><a href="@routes.Profile.listVolunteers()"><button id="listVol" class="btn btn-success btn-block btn-lg">List Volunteers</button></a></div>
                         }
                         @if(user.role ==1) {
-                            <div class ="col-lg-2"><a href="@routes.Admin.admin()"><button class="btn btn-success btn-block btn-lg">Admin</button></a></div>
+                            <div class ="col-lg-2 col-md-3"><a href="@routes.Admin.admin()"><button class="btn btn-success btn-block btn-lg">Admin</button></a></div>
                         }
                         <br /><br /><br />
                     </div>
@@ -143,7 +147,7 @@
                                         <br />
                                     </div>
                                     <div class="row">
-                                        <div class ="col-lg-2"><button id="addVolButton" class="btn btn-success btn-block btn-lg">Add</button></div><div class ="col-lg-2"><button id="closeVol" class="btn btn-danger btn-block btn-lg">Close</button></div>
+                                        <div class ="col-lg-2 col-md-3"><button id="addVolButton" class="btn btn-success btn-block btn-lg">Add</button></div><div class ="col-lg-2 col-md-3"><button id="closeVol" class="btn btn-danger btn-block btn-lg">Close</button></div>
                                     </div>
                                 </form>
                             </div>

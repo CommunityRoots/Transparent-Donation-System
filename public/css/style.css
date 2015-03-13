@@ -501,6 +501,9 @@ a.socialIcon:hover, .socialHoverClass {
 	border: 0;
 }
 
+.pad-bot10{
+	padding-bottom: 10px;
+}
 
 /* ========================================
 Media queries
