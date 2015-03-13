@@ -14,13 +14,13 @@
 
                 @if(user.role <4) {
                     <div class="row" >
-                        <div class ="col-lg-2" style="padding-left: 0"><button id="showAddNeed" class="btn btn-success btn-block btn-lg">Add Need</button></div>
+                        <div class ="col-lg-2 col-md-3" style=""><button id="showAddNeed" class="btn btn-success btn-block btn-lg">Add Need</button></div>
                         @if(user.role <3) {
-                            <div class ="col-lg-2"><button id="showAddVol" class="btn btn-success btn-block btn-lg">Add Volunteer</button></div>
-                            <div class ="col-lg-2"><a href="@routes.Profile.listVolunteers()"><button id="listVol" class="btn btn-success btn-block btn-lg">List Volunteers</button></a></div>
+                            <div class ="col-lg-2 col-md-3"><button id="showAddVol" class="btn btn-success btn-block btn-lg">Add Volunteer</button></div>
+                            <div class ="col-lg-2 col-md-3"><a href="@routes.Profile.listVolunteers()"><button id="listVol" class="btn btn-success btn-block btn-lg">List Volunteers</button></a></div>
                         }
                         @if(user.role ==1) {
-                            <div class ="col-lg-2"><a href="@routes.Admin.admin()"><button class="btn btn-success btn-block btn-lg">Admin</button></a></div>
+                            <div class ="col-lg-2 col-md-3"><a href="@routes.Admin.admin()"><button class="btn btn-success btn-block btn-lg">Admin</button></a></div>
                         }
                         <br /><br /><br />
                     </div>
@@ -114,7 +114,7 @@
                                         <br />
                                     </div>
                                     <div class="row">
-                                        <div class ="col-lg-2"><button id="addVolButton" class="btn btn-success btn-block btn-lg">Add</button></div><div class ="col-lg-2"><button id="closeVol" class="btn btn-danger btn-block btn-lg">Close</button></div>
+                                        <div class ="col-lg-2 col-md-3"><button id="addVolButton" class="btn btn-success btn-block btn-lg">Add</button></div><div class ="col-lg-2 col-md-3"><button id="closeVol" class="btn btn-danger btn-block btn-lg">Close</button></div>
                                     </div>
                                 </form>
                             </div>
