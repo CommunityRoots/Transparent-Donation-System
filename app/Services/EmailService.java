@@ -13,14 +13,14 @@ public class EmailService {
         email.setFrom("CommunityRoots.net <info@communityroots.net>");
         email.addTo(name+"<"+sendEmail+">");
         email.setSubject(subject);
-        email.setBodyText(content);
+        email.setBodyHtml(content);
         MailerPlugin.send(email);
     }
 
     public void sendMultipleEmails(List<String> emails, String subject, String content){
         email.setFrom("CommunityRoots.net <info@communityroots.net>");
         email.setSubject(subject);
-        email.setBodyText(content);
+        email.setBodyHtml(content);
         for(String sendEmail: emails) {
             email.addTo("<" + sendEmail + ">");
             MailerPlugin.send(email);
