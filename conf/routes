@@ -60,3 +60,5 @@ GET           /admin                       controllers.Admin.admin()
 POST          /admin                       controllers.Admin.addCharity()
 POST          /admin/addLeader             controllers.Admin.addLeader()
 
+#TOS
+GET           /tos                         controllers.Application.tos()

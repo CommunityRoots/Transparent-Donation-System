@@ -8,6 +8,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.index;
 import views.html.need.needs;
+import views.html.tos;
 
 import java.util.List;
 
@@ -39,5 +40,10 @@ public class Application extends Controller {
         int totalPageCount = pagingList.getTotalPageCount();
 
         return ok(needs.render(needList, page, totalPageCount,category));
+    }
+
+    @Cached(key ="tos", duration = 10)
+    public static Result tos(){
+        return ok(tos.render());
     }
 }
