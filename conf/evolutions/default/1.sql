@@ -29,10 +29,13 @@ create table need (
   charity_id                bigint,
   location                  varchar(255),
   full_name                 varchar(255),
+  paid_to_charity           tinyint(1) default 0,
   category                  integer,
   urgency                   integer,
   date_added                datetime,
-  closed                    integer,
+  date_closed               datetime,
+  date_paid_to_charity      datetime,
+  closed                    tinyint(1) default 0,
   constraint ck_need_category check (category in (0,1)),
   constraint pk_need primary key (id))
 ;
