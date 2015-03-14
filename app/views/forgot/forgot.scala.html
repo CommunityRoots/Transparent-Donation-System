@@ -35,12 +35,11 @@
                 <p>Enter your accounts email address and we will send you a secure link to reset your password</p>
                 <hr class="colorgraph">
                 <div class="col-xs-6 col-sm-6 col-md-6">
-                    <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" value="@form("email").value" tabindex="5">
+                    <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" value="@form("email").value" tabindex="6">
                 </div>
             </form>
         <div class="row">
             <div class="col-xs-6 col-sm-6 col-md-6">
-
             </div>
         </div>
         @if(form.hasGlobalErrors) {
@@ -56,8 +55,7 @@
         }
         <hr class="colorgraph">
         <div class="row">
-            <div class="col-xs-6 col-md-6"><button type="submit" class="btn btn-success btn-block btn-lg">Send</button></div>
-
+            <div class="col-xs-6 col-md-6"><button type="submit" class="btn btn-success btn-block btn-lg" tabindex="7">Send</button></div>
         </div>
         </form>
     </div>

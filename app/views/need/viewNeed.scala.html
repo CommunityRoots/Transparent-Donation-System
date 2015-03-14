@@ -51,8 +51,8 @@
                     €@need.donatedAmount/€@need.askAmount
                 </div>
                 @if(!need.closed){
-                    <div class="col-sm-2 col-md-2">
-                        <a id="donateAmount" class="btn btn-primary btn-block">Donate</a>
+                    <div class="col-sm-3 col-md-2 pad-bot10">
+                        <a id="donateAmount" class="btn btn-primary btn-block" tabindex="6">Donate</a>
                     </div>
                 } else{
                     </div>
@@ -75,7 +75,7 @@
                     <div class="form-group">
 
                         <label for="donateAmount">Amount:</label>
-                        <input type="number" id="donationAmount" name="preFeeAmount" placeholder="€0.00">
+                        <input type="number" id="donationAmount" name="preFeeAmount" placeholder="€0.00" tabindex="7">
                         <label for="donationAmount" id="showAmount"></label>
                     </div>
                         <div id="breakdown">
@@ -89,7 +89,7 @@
                         <input type="hidden" name="needId" value="@need.id">
                         <input type ="hidden" name="donationAmount" id="donationFinal">
                         <div class="row align-center">
-                            <div class="col-sm-3 col-sm-offset-5" id="addStripeButton">
+                            <div class="col-lg-3 col-sm-4 col-sm-offset-5" id="addStripeButton">
 
                                 <script id="stripe"
                                         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -101,6 +101,7 @@
                                 data-panel-label="Donate"
                                 data-label="Pay with card"
                                 data-email="@user.email"
+                                tabindex="8"
                                 >
                                 </script>
 
@@ -111,7 +112,9 @@
 
                 </div>
                  } else {
-                     <div class="col-sm-4 col-sm-offset-3"><p>Please <a href="@routes.Login.login()" class="loginToPay">Login</a> or <a href="@routes.Registration.register()" class="loginToPay">register</a> to donate</div>
+                     <div class="col-sm-4 col-sm-offset-3">
+                        Please <a href="@routes.Login.login()" class="loginToPay" tabindex="7">Login</a> or <a href="@routes.Registration.register()" class="loginToPay" tabindex="8">register</a> to donate
+                    </div>
                  }
             </div>
 

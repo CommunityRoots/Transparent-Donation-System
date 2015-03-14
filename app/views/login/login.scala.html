@@ -35,14 +35,14 @@
                                 <hr class="colorgraph">
                                 <div class="col-xs-6 col-sm-6 col-md-6" style="padding-left: 0;">
                                     <div class="form-group">
-                                        <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" value="@form("email").value" tabindex="1">
+                                        <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" value="@form("email").value" tabindex="6">
 
                                     </div>
                                 </div>
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="2">
+                                    <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="7">
                                 </div>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                             @form.globalError.message
                             </p>
                         }
-                        <p><a href="@routes.Reset.forgot()">Forgot Password</a></p>
+                        <p><a href="@routes.Reset.forgot()" tabindex="8">Forgot Password</a></p>
                         @if(flash.contains("success")) {
                             <p class="success">
                             @flash.get("success")
@@ -59,8 +59,8 @@
                         }
                         <hr class="colorgraph">
                         <div class="row">
-                            <div class="col-xs-6 col-md-6"><button type="submit" class="btn btn-success btn-block btn-lg">Sign In</button></div>
-                            <div class="col-xs-6 col-md-6"><a href="@routes.Registration.register()" class="btn btn-primary btn-block btn-lg">I need an account</a></div>
+                            <div class="col-xs-6 col-md-6"><button type="submit" class="btn btn-success btn-block btn-lg" tabindex="9">Sign In</button></div>
+                            <div class="col-xs-6 col-md-6"><a href="@routes.Registration.register()" class="btn btn-primary btn-block btn-lg" tabindex="10">I need an account</a></div>
                         </div>
                         </form>
                     </div>

@@ -26,16 +26,16 @@
                     <div class="container-form">
                         <form role="form">
                             <div class="row">
-                                <div class="col-lg-4"><input type="password" name="oldPassword" id="oldPassword" class="form-control input-lg" placeholder="Old Password" value="@form("oldPassword").value" tabindex="5"></div><br /> <br />
+                                <div class="col-lg-4"><input type="password" name="oldPassword" id="oldPassword" class="form-control input-lg" placeholder="Old Password" value="@form("oldPassword").value" tabindex="6"></div><br /> <br />
                             </div>
                             <div class="row">
-                                <div class="col-lg-4"><input type="password" name="newPassword" id="newPassword" class="form-control input-lg" placeholder="New Password" value="@form("newPassword").value" tabindex="5"></div><br /> <br />
+                                <div class="col-lg-4"><input type="password" name="newPassword" id="newPassword" class="form-control input-lg" placeholder="New Password" value="@form("newPassword").value" tabindex="7"></div><br /> <br />
                             </div>
                             <div class="row">
-                                <div class="col-lg-4"><input type="password" name="retypePassword" id="retypePassword" class="form-control input-lg" placeholder="Retype Password" value="@form("retypePassword").value" tabindex="5"></div><br /> <br />
+                                <div class="col-lg-4"><input type="password" name="retypePassword" id="retypePassword" class="form-control input-lg" placeholder="Retype Password" value="@form("retypePassword").value" tabindex="8"></div><br /> <br />
                             </div>
                             <div class="row">
-                                <div class ="col-lg-2"><button type="submit" class="btn btn-success btn-block btn-lg">Submit</button></div>
+                                <div class ="col-lg-2"><button type="submit" class="btn btn-success btn-block btn-lg" tabindex="9">Submit</button></div>
                             </div>
 
                         </form>
@@ -50,13 +50,13 @@
                 <div class="container-form">
                     <form role="form">
                         <div class="row">
-                            <div class="col-lg-4"><input type="email" name="email" id="email" class="form-control input-lg" placeholder="New Email" value="@form("email").value" tabindex="5"></div><br /> <br />
+                            <div class="col-lg-4"><input type="email" name="email" id="email" class="form-control input-lg" placeholder="New Email" value="@form("email").value" tabindex="10"></div><br /> <br />
                         </div>
                         <div class="row">
-                            <div class="col-lg-4"><input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" value="@form("password").value" tabindex="5"></div><br /> <br />
+                            <div class="col-lg-4"><input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" value="@form("password").value" tabindex="11"></div><br /> <br />
                         </div>
                         <div class="row">
-                            <div class="col-lg-2"><button type="submit" class="btn btn-success btn-block btn-lg">Submit</button></div><br /> <br />
+                            <div class="col-lg-2"><button type="submit" class="btn btn-success btn-block btn-lg" tabindex="12">Submit</button></div><br /> <br />
                         </div>
                     </form>
                 </div>
@@ -65,7 +65,7 @@
             <div class="row">
                 <div class ="col-lg-4" style="padding-left: 0; padding-top: 20px">
                     <h3>Email subscriptions</h3>
-                    <a href="@routes.Profile.subscriptions(user.email)" type="button" class="btn btn-success btn-block btn-lg">Change notifications</a>
+                    <a href="@routes.Profile.subscriptions(user.email)" type="button" class="btn btn-success btn-block btn-lg" tabindex="12">Change notifications</a>
                 </div>
                 }
             </div>

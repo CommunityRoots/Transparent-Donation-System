@@ -33,34 +33,34 @@
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            <input type="text" name="firstName" id="first_name" class="form-control input-lg" placeholder="First Name" value="@form("firstName").value" tabindex="1">
+                                            <input type="text" name="firstName" id="first_name" class="form-control input-lg" placeholder="First Name" value="@form("firstName").value" tabindex="6">
                                         </div>
                                     </div>
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            <input type="text" name="lastName" id="last_name" class="form-control input-lg" placeholder="Last Name" value="@form("lastName").value" tabindex="2">
+                                            <input type="text" name="lastName" id="last_name" class="form-control input-lg" placeholder="Last Name" value="@form("lastName").value" tabindex="7">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" value="@form("email").value" tabindex="4">
+                                    <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" value="@form("email").value" tabindex="8">
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5">
+                                            <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="9">
                                         </div>
                                     </div>
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
+                                            <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="10">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
 
                                     <div class="col-xs-9 col-sm-9 col-md-10">
-                                        By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="@routes.Application.tos()" >Terms and Conditions</a> set out by this site, including our Cookie Use.
+                                        By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="@routes.Application.tos()" tabindex="11" >Terms and Conditions</a> set out by this site, including our Cookie Use.
                                     </div>
                                 </div>
                                 @if(form.hasGlobalErrors) {
@@ -76,8 +76,8 @@
                                 }
                                 <hr class="colorgraph">
                                 <div class="row">
-                                    <div class="col-xs-6 col-md-6"><button type="submit" class="btn btn-primary btn-block btn-lg" tabindex="7">Register</button></div>
-                                    <div class="col-xs-6 col-md-6"><a href="@routes.Login.login()" class="btn btn-success btn-block btn-lg">Sign In</a></div>
+                                    <div class="col-xs-6 col-md-6"><button type="submit" class="btn btn-primary btn-block btn-lg" tabindex="12">Register</button></div>
+                                    <div class="col-xs-6 col-md-6"><a href="@routes.Login.login()" class="btn btn-success btn-block btn-lg" tabindex="13">Sign In</a></div>
                                 </div>
                             </form>
                         </div>
