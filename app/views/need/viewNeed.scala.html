@@ -5,79 +5,78 @@
 
     <!-- section works -->
     <div class="centered">
-        <div class="row align-center">
-            <div class="col-lg-12">
-                @if(flash.contains("success")) {
-                <p class="success" style="color: green">
-                    @flash.get("success")
-                </p>
-                }
-                @if(flash.contains("error")) {
-                <p class="error">
-                    @flash.get("error")
-                </p>
-                }
+        <div class="container">
+            <div class="row align-center">
+                <div class="col-lg-11">
+                    @if(flash.contains("success")) {
+                    <p class="success" style="color: green">
+                        @flash.get("success")
+                    </p>
+                    }
+                    @if(flash.contains("error")) {
+                    <p class="error">
+                        @flash.get("error")
+                    </p>
+                    }
+                </div>
             </div>
-        </div>
-        <div class="col-md-offset-3 col-md-8">
+            <div class="col-lg-offset-2 ">
+                    <div class="row">
+                        <div class="col-sm-3 col-md-2 align-center"><i class="fa fa-gift fa-5x"></i></div>
+                        <div class="col-sm-5">
+                            <h1>@need.title</h1>
+                            <p>@need.charity.name</p>
+                            <p>@need.location</p>
+                            <p>@need.formattedDate(need.dateAdded)</p>
+                            <p id="amountNeeded">€@(need.askAmount - need.donatedAmount) needed</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <div class="description">
+                                @need.description
+                            </div>
+                        </div>
+                    </div>
                 <div class="row">
-                    <div class="col-sm-3 col-md-2 align-center"><i class="fa fa-gift fa-5x"></i></div>
                     <div class="col-sm-5">
-                        <h1>@need.title</h1>
-                        <p>@need.charity.name</p>
-                        <p>@need.location</p>
-                        <p>@need.formattedDate(need.dateAdded)</p>
-                        <p id="amountNeeded">€@(need.askAmount - need.donatedAmount) needed</p>
-
-
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-7">
-                        <div class="description">
-                            @need.description
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="@need.progressPercentage()" aria-valuemin="0" aria-valuemax="100" style="width: @need.progressPercentage()%">
+                                @need.progressPercentage()%
+                            </div>
                         </div>
                     </div>
-                </div>
-            <div class="row">
-                <div class="col-sm-5">
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="@need.progressPercentage()" aria-valuemin="0" aria-valuemax="100" style="width: @need.progressPercentage()%">
-                            @need.progressPercentage()%
+                    <div class="col-sm-2 align-center">
+                        €@need.donatedAmount/€@need.askAmount
+                    </div>
+                    @if(!need.closed){
+                        <div class="col-sm-3 col-md-2 pad-bot10">
+                            <a id="donateAmount" class="btn btn-primary btn-block" tabindex="6">Donate</a>
                         </div>
-                    </div>
+                    } else{
+                        </div>
+                        <div class="row align-center">
+                            <p>Need is <strong>closed</strong>.</p>
+                            <p>Needs are closed if they are fully donated or can be closed by the charity.</p>
+                    }
+
                 </div>
-                <div class="col-sm-2 align-center">
-                    €@need.donatedAmount/€@need.askAmount
-                </div>
-                @if(!need.closed){
-                    <div class="col-sm-3 col-md-2 pad-bot10">
-                        <a id="donateAmount" class="btn btn-primary btn-block" tabindex="6">Donate</a>
-                    </div>
-                } else{
-                    </div>
+                @if(need.paidToCharity){
                     <div class="row align-center">
-                        <p>Need is <strong>closed</strong>.</p>
-                        <p>Needs are closed if they are fully donated or can be closed by the charity.</p>
-                }
-
-            </div>
-            @if(need.paidToCharity){
-                <div class="row align-center">
-                    <p>€@need.donatedAmount has been given to @need.charity.name for this need. Thank You.</p>
-                </div>
-            }
-            <div class="row align-center" id="enterAmount" style="display: none">
-                @if(session().get("email")!=null) {
-                <div class="col-sm-9 col-md-9">
-                    @helper.form(CSRF(routes.Payment.chargeCard)) {
-                    <form role="form">
-                    <div class="form-group">
-
-                        <label for="donateAmount">Amount:</label>
-                        <input type="number" id="donationAmount" name="preFeeAmount" placeholder="€0.00" tabindex="7">
-                        <label for="donationAmount" id="showAmount"></label>
+                        <p>€@need.donatedAmount has been given to @need.charity.name for this need. Thank You.</p>
                     </div>
+                }
+                <div class="row" id="enterAmount" style="display: none">
+                    @if(session().get("email")!=null) {
+                    <div class="col-sm-9 col-md-9 col-lg-offset-2">
+                        @helper.form(CSRF(routes.Payment.chargeCard)) {
+                        <form role="form">
+                        <div class="form-group">
+
+                            <label for="donateAmount">Amount:</label>
+                            <input type="number" id="donationAmount" name="preFeeAmount" placeholder="€0.00" tabindex="7">
+                            <label for="donationAmount" id="showAmount"></label>
+                        </div>
                         <div id="breakdown">
                             <div class="form-group">
                                 <span><strong>Payment fee:</strong></span> <span id="stripeFee">€0.00</span> <br>
@@ -88,8 +87,8 @@
                         </div>
                         <input type="hidden" name="needId" value="@need.id">
                         <input type ="hidden" name="donationAmount" id="donationFinal">
-                        <div class="row align-center">
-                            <div class="col-lg-3 col-sm-4 col-sm-offset-5" id="addStripeButton">
+                        <div class="row">
+                            <div class="col-lg-3 col-sm-4" id="addStripeButton">
 
                                 <script id="stripe"
                                         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -109,33 +108,33 @@
                                 }
                             </div>
                         </div>
-
-                </div>
-                 } else {
-                     <div class="col-sm-4 col-sm-offset-3">
-                        Please <a href="@routes.Login.login()" class="loginToPay" tabindex="7">Login</a> or <a href="@routes.Registration.register()" class="loginToPay" tabindex="8">register</a> to donate
                     </div>
-                 }
-            </div>
+                     } else {
+                         <div class="col-sm-4 col-sm-offset-3">
+                            Please <a href="@routes.Login.login()" class="loginToPay" tabindex="7">Login</a> or <a href="@routes.Registration.register()" class="loginToPay" tabindex="8">register</a> to donate
+                        </div>
+                     }
+                </div>
 
 
-            <div class="row top-buffer">
-                <div class="col-sm-7">
-                    <h1>Updates</h1>
+                <div class="row top-buffer">
+                    <div class="col-sm-7">
+                        <h1>Updates</h1>
+                    </div>
+                </div>
+                    @for(update <- updates){
+                        <div class="row pad-bot40">
+                            <div class="col-sm-2">@update.dateAdded</div>
+                            <div class="col-sm-7">@update.message</div>
+                        </div>
+                    }
+                <div class="row align-center">
+                    @if(pageCount >1){
+                        @pagination(currentPage, pageCount, pageCount, "need",need.id)
+                    }
                 </div>
             </div>
-                @for(update <- updates){
-                    <div class="row pad-bot40">
-                        <div class="col-sm-2">@update.dateAdded</div>
-                        <div class="col-sm-7">@update.message</div>
-                    </div>
-                }
-            <div class="row align-center">
-                @if(pageCount >1){
-                    @pagination(currentPage, pageCount, pageCount, "need",need.id)
-                }
-            </div>
-        </div>
+                </div>
     </div>
 
     <a href="#header" class="scrollup"><i class="fa fa-chevron-up"></i></a>

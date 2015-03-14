@@ -25,16 +25,16 @@
                 @helper.form(CSRF(routes.Profile.changePassword)) {
                     <div class="container-form">
                         <form role="form">
-                            <div class="row">
-                                <div class="col-lg-4"><input type="password" name="oldPassword" id="oldPassword" class="form-control input-lg" placeholder="Old Password" value="@form("oldPassword").value" tabindex="6"></div><br /> <br />
+                            <div class="row pad-bot10">
+                                <div class="col-lg-4"><input type="password" name="oldPassword" id="oldPassword" class="form-control input-lg" placeholder="Old Password" value="@form("oldPassword").value" tabindex="6"></div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-4"><input type="password" name="newPassword" id="newPassword" class="form-control input-lg" placeholder="New Password" value="@form("newPassword").value" tabindex="7"></div><br /> <br />
+                            <div class="row pad-bot10">
+                                <div class="col-lg-4"><input type="password" name="newPassword" id="newPassword" class="form-control input-lg" placeholder="New Password" value="@form("newPassword").value" tabindex="7"></div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-4"><input type="password" name="retypePassword" id="retypePassword" class="form-control input-lg" placeholder="Retype Password" value="@form("retypePassword").value" tabindex="8"></div><br /> <br />
+                            <div class="row pad-bot10">
+                                <div class="col-lg-4"><input type="password" name="retypePassword" id="retypePassword" class="form-control input-lg" placeholder="Retype Password" value="@form("retypePassword").value" tabindex="8"></div>
                             </div>
-                            <div class="row">
+                            <div class="row pad-bot10">
                                 <div class ="col-lg-2"><button type="submit" class="btn btn-success btn-block btn-lg" tabindex="9">Submit</button></div>
                             </div>
 
@@ -49,14 +49,14 @@
                 @helper.form(CSRF(routes.Profile.changeEmail)) {
                 <div class="container-form">
                     <form role="form">
-                        <div class="row">
-                            <div class="col-lg-4"><input type="email" name="email" id="email" class="form-control input-lg" placeholder="New Email" value="@form("email").value" tabindex="10"></div><br /> <br />
+                        <div class="row pad-bot10">
+                            <div class="col-lg-4"><input type="email" name="email" id="email" class="form-control input-lg" placeholder="New Email" value="@form("email").value" tabindex="10"></div>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-4"><input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" value="@form("password").value" tabindex="11"></div><br /> <br />
+                        <div class="row pad-bot10">
+                            <div class="col-lg-4"><input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" value="@form("password").value" tabindex="11"></div>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-2"><button type="submit" class="btn btn-success btn-block btn-lg" tabindex="12">Submit</button></div><br /> <br />
+                        <div class="row pad-bot10">
+                            <div class="col-lg-2"><button type="submit" class="btn btn-success btn-block btn-lg" tabindex="12">Submit</button></div>
                         </div>
                     </form>
                 </div>
