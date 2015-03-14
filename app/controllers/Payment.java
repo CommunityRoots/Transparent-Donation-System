@@ -20,12 +20,12 @@ public class Payment {
             String token = dynamicForm.get("stripeToken");
             String email = dynamicForm.get("stripeEmail");
             double amount = Double.parseDouble(dynamicForm.get("donationAmount"));
-            double preeFeeamount = Double.parseDouble(dynamicForm.get("preFeeAmount"));
+            double preFeeamount = Double.parseDouble(dynamicForm.get("preFeeAmount"));
 
 
             PaymentProcessor paymentProcessor = new PaymentProcessor();
             //process payment and get status
-            int status = paymentProcessor.paymentThroughStripe(token, email, amount, needId, preeFeeamount);
+            int status = paymentProcessor.paymentThroughStripe(token, email, amount, needId, preFeeamount);
             switch (status) {
                 case 1:
                     flash("success", "Your donation has been made. Thank you!");

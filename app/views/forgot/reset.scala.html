@@ -22,38 +22,6 @@
     </style>
 </head>
 <body>
-<section id="header" class="appear"></section>
-<div class="navbar navbar-fixed-top" role="navigation" data-0="line-height:100px; height:100px; background-color:rgba(0,0,0,0.3);" data-300="line-height:60px; height:60px; background-color:rgba(0,0,0,1);">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="fa fa-bars color-white"></span>
-            </button>
-            <h1><a class="navbar-brand" href="index.html" data-0="line-height:90px;" data-300="line-height:50px;">			Community Roots
-            </a></h1>
-        </div>
-        <div class="row">
-            <div class="col-lg-7 col-md-8 pull-right">
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
-                        <li class="active"><a href="@routes.Application.index()">About us</a></li>
-                        <li><a href="@routes.Application.needs()">Needs</a></li>
-                        @if(session().get("email")==null) {
-                            <li><a href="@routes.Registration.register()">Register</a></li>
-                            <li><a href="@routes.Login.login()">Login</a></li>
-                        } else {
-                            <li><a href="@routes.Profile.profile()">Profile</a></li>
-                            <li><a href="@routes.Profile.settings()">Settings</a></li>
-                            <li><a href="@routes.Login.logout()">Logout</a></li>
-                        }
-
-                    </ul>
-                </div><!--/.navbar-collapse -->
-            </div>
-        </div>
-    </div>
-</div>
-
 <section class="featured"></section>
 
 @helper.form(CSRF(routes.Reset.doNewPass(token))) {
@@ -65,13 +33,13 @@
             <form role="form">
                 <h2>Enter new password <small></small></h2>
                 <hr class="colorgraph">
-                <div class="col-xs-6 col-sm-6 col-md-6"">
-                <input type="password" name="password" id="password" class="form-control input-lg" placeholder="New Password" value="@form("password").value" tabindex="5">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                <input type="password" name="password" id="password" class="form-control input-lg" placeholder="New Password" value="@form("password").value" tabindex="6">
         </div>
         <div class="row">
             <div class="col-xs-6 col-sm-6 col-md-6">
                 <div class="form-group">
-                    <input type="password" name="reEnteredPassword" id="reEnteredPassword" class="form-control input-lg" placeholder="Retype Password" value="@form("reEnteredPassword").value" tabindex="5">
+                    <input type="password" name="reEnteredPassword" id="reEnteredPassword" class="form-control input-lg" placeholder="Retype Password" value="@form("reEnteredPassword").value" tabindex="7">
                 </div>
             </div>
         </div>
@@ -88,8 +56,7 @@
         }
         <hr class="colorgraph">
         <div class="row">
-            <div class="col-xs-6 col-md-6"><button type="submit" class="btn btn-success btn-block btn-lg">Submit</button></div>
-
+            <div class="col-xs-6 col-md-6"><button type="submit" class="btn btn-success btn-block btn-lg" tabindex="8">Submit</button></div>
         </div>
         </form>
     </div>

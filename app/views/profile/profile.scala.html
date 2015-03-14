@@ -1,38 +1,5 @@
 @(form: Form[Profile.AddNeed],user: User, needs: List[Need], currentPage: Integer, pageCount: Integer)
 @main {
-
-
-    <section id="header" class="appear"></section>
-    <div class="navbar navbar-fixed-top" role="navigation" data-0="line-height:100px; height:100px; background-color:rgba(0,0,0,0.3);" data-300="line-height:60px; height:60px; background-color:rgba(0,0,0,1);">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="fa fa-bars color-white"></span>
-                </button>
-                <h1><a class="navbar-brand" href="@routes.Application.index()" data-0="line-height:90px;" data-300="line-height:50px;">			Community Roots
-                </a></h1>
-            </div>
-            <div class="row">
-                <div class="col-lg-7 col-md-8 pull-right">
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
-                            <li class="active"><a href="@routes.Application.index()">About us</a></li>
-                            <li><a href="@routes.Application.needs()">Needs</a></li>
-                            @if(session().get("email")==null) {
-                                <li><a href="@routes.Registration.register()">Register</a></li>
-                                <li><a href="@routes.Login.login()">Login</a></li>
-                            } else {
-                                <li><a href="@routes.Profile.profile()">Profile</a></li>
-                                <li><a href="@routes.Profile.settings()">Settings</a></li>
-                                <li><a href="@routes.Login.logout()">Logout</a></li>
-                            }
-
-                        </ul>
-                    </div><!--/.navbar-collapse -->
-                </div>
-            </div>
-        </div>
-    </div>
     <section class="featured"></section>
         <section id="section-works" class="section appear clearfix">
             <div class="container">
@@ -47,13 +14,13 @@
 
                 @if(user.role <4) {
                     <div class="row" >
-                        <div class ="col-lg-2 col-md-3" style=""><button id="showAddNeed" class="btn btn-success btn-block btn-lg">Add Need</button></div>
+                        <div class ="col-lg-2 col-md-3" style=""><button id="showAddNeed" class="btn btn-success btn-block btn-lg" tabindex="7">Add Need</button></div>
                         @if(user.role <3) {
-                            <div class ="col-lg-2 col-md-3"><button id="showAddVol" class="btn btn-success btn-block btn-lg">Add Volunteer</button></div>
-                            <div class ="col-lg-2 col-md-3"><a href="@routes.Profile.listVolunteers()"><button id="listVol" class="btn btn-success btn-block btn-lg">List Volunteers</button></a></div>
+                            <div class ="col-lg-2 col-md-3"><button id="showAddVol" class="btn btn-success btn-block btn-lg " tabindex="8">Add Volunteer</button></div>
+                            <div class ="col-lg-2 col-md-3"><a href="@routes.Profile.listVolunteers()"><button id="listVol" class="btn btn-success btn-block btn-lg" tabindex="9">List Volunteers</button></a></div>
                         }
                         @if(user.role ==1) {
-                            <div class ="col-lg-2 col-md-3"><a href="@routes.Admin.admin()"><button class="btn btn-success btn-block btn-lg">Admin</button></a></div>
+                            <div class ="col-lg-2 col-md-3"><a href="@routes.Admin.admin()"><button class="btn btn-success btn-block btn-lg" tabindex="10">Admin</button></a></div>
                         }
                         <br /><br /><br />
                     </div>
@@ -82,21 +49,21 @@
                                     <form role="form" id="addNeedForm" onSubmit="return false;">
                                         <div class="row" style="padding-bottom: 5px">
                                             <div class="form-group">
-                                                <div class="col-lg-4"><input type="text" name="title" id="needTitle" class="form-control input-lg" placeholder="Need Title" maxlength="20" value="@form("needTitle").value" tabindex="5"></div>
+                                                <div class="col-lg-4"><input type="text" name="title" id="needTitle" class="form-control input-lg" placeholder="Need Title" maxlength="20" value="@form("needTitle").value" tabindex="11"></div>
                                                 <label for="needTitle">Greater than 4 letters & less than 20</label>
                                             </div>
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-lg-4"><input type="number" name="amount" id="amount" class="form-control input-lg" placeholder="€" tabindex="5"></div><br /><br />
+                                            <div class="col-lg-4"><input type="number" name="amount" id="amount" class="form-control input-lg" placeholder="€" tabindex="12"></div><br /><br />
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-4"><input type="text" name="location" id="location" class="form-control input-lg" placeholder="Location" tabindex="5"></div><br /><br />
+                                            <div class="col-lg-4"><input type="text" name="location" id="location" class="form-control input-lg" placeholder="Location" tabindex="13"></div><br /><br />
                                         </div>
                                         <div class="row" style="padding-bottom: 5px">
                                             <div class="form-group">
                                                 <div class="col-lg-4">
-                                                    <select id="urgency" class="form-control input-lg">
+                                                    <select id="urgency" tabindex="14" class="form-control input-lg">
                                                         <option selected disabled>Urgency</option>
                                                         <option>1</option>
                                                         <option>2</option>
@@ -115,7 +82,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-4">
-                                                <select id="category" class="form-control input-lg">
+                                                <select id="category" tabindex="15" class="form-control input-lg">
                                                     <option selected disabled>Category</option>
                                                     <option>Family</option>
                                                     <option>Education</option>
@@ -124,11 +91,11 @@
                                             <br /><br />
                                         </div>
                                         <div class="row">
-                                            <div class ="col-lg-6"><textarea class="form-control input-lg" rows="3" id="needDescription" placeholder="Description" maxlength="600"></textarea></div><br /><br />
+                                            <div class ="col-lg-6"><textarea class="form-control input-lg" rows="3" id="needDescription" placeholder="Description" maxlength="600" tabindex="16"></textarea></div><br /><br />
                                         </div>
                                         <br />
                                         <div class="row">
-                                            <div class ="col-lg-2"><button id="addNeedButton" class="btn btn-success btn-block btn-lg">Add</button></div><div class ="col-lg-2"><button id="closeNeed" class="btn btn-danger btn-block btn-lg">Close</button></div>
+                                            <div class ="col-lg-2"><button id="addNeedButton" class="btn btn-success btn-block btn-lg" tabindex="17">Add</button></div><div class ="col-lg-2"><button id="closeNeed" class="btn btn-danger btn-block btn-lg" tabindex="18">Close</button></div>
                                         </div>
 
                                     </form>
@@ -141,13 +108,13 @@
                                 <form role="role" id="addVolunteerForm" onsubmit="return false;">
                                     <div class="row">
                                         <div class="form-group">
-                                            <div class="col-lg-4"><input type="email" name="volEmail" id="volEmail" class="form-control input-lg" placeholder="Volunteer Email" tabindex="5"></div>
+                                            <div class="col-lg-4"><input type="email" name="volEmail" id="volEmail" class="form-control input-lg" placeholder="Volunteer Email" tabindex="19"></div>
                                             <label for="volEmail">User must already be registered</label>
                                         </div>
                                         <br />
                                     </div>
                                     <div class="row">
-                                        <div class ="col-lg-2 col-md-3"><button id="addVolButton" class="btn btn-success btn-block btn-lg">Add</button></div><div class ="col-lg-2 col-md-3"><button id="closeVol" class="btn btn-danger btn-block btn-lg">Close</button></div>
+                                        <div class ="col-lg-2 col-md-3"><button id="addVolButton" class="btn btn-success btn-block btn-lg" tabindex="20">Add</button></div><div class ="col-lg-2 col-md-3"><button id="closeVol" class="btn btn-danger btn-block btn-lg" tabindex="21">Close</button></div>
                                     </div>
                                 </form>
                             </div>

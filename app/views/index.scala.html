@@ -5,38 +5,6 @@
         padding: 200px 0 60px !important;
     }
     </style>
-    <section id="header" class="appear"></section>
-    <div class="navbar navbar-fixed-top" role="navigation" data-0="line-height:100px; height:100px; background-color:rgba(0,0,0,0.3);" data-300="line-height:60px; height:60px; background-color:rgba(0,0,0,1);">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="fa fa-bars color-white"></span>
-                </button>
-                <h1><a class="navbar-brand" href="@routes.Application.index()" data-0="line-height:90px;" data-300="line-height:50px;">			Community Roots
-                </a></h1>
-            </div>
-            <div class="row">
-                <div class="col-lg-7 col-md-8 pull-right">
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
-                            <li class="active"><a href="@routes.Application.index()">About us</a></li>
-                            <li><a href="@routes.Application.needs()">Needs</a></li>
-                            @if(session().get("email")==null) {
-                                <li><a href="@routes.Registration.register()">Register</a></li>
-                                <li><a href="@routes.Login.login()">Login</a></li>
-                            } else {
-                                <li><a href="@routes.Profile.profile()">Profile</a></li>
-                                <li><a href="@routes.Profile.settings()">Settings</a></li>
-                                <li><a href="@routes.Login.logout()">Logout</a></li>
-                            }
-
-                        </ul>
-                    </div><!--/.navbar-collapse -->
-                </div>
-            </div>
-        </div>
-    </div>
-
     <section class="featured">
         <div class="container">
             <div class="row mar-bot40">
@@ -126,7 +94,7 @@
                     <div class="section-header">
                         <h2 class="section-heading animated" data-animation="bounceInUp">Our Partners</h2>
                         <p>Charities visit the homes of people with needs. They verify there is an actual need. This is how
-                            needs get onto our website. Without charities this system wouldnt function</p>
+                        needs get onto our website. Without charities this system wouldnt function</p>
                     </div>
                 </div>
             </div>
@@ -197,9 +165,9 @@
         </div>
     </section>
 
-    </div>
+            </div>
 
-    </div>
+        </div>
     </section>
 
 
@@ -221,5 +189,4 @@
 
     </section>
     <a href="#header" class="scrollup"><i class="fa fa-chevron-up"></i></a>
-
 }

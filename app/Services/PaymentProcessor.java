@@ -28,9 +28,10 @@ public class PaymentProcessor {
      * 3 = minimum donation of 20cents
      * 4 = error occured
      */
-    public int paymentThroughStripe(String token, String email, double amount,long needId, double preeFeeAmount){
+    public int paymentThroughStripe(String token, String email, double amount,long needId, double preFeeAmount){
         //amount to cents
         int amountInCents = (int)(amount*100);
+        int preFeeAmountInCents = (int)(preFeeAmount*100);
 
         //need being donated to
         Need need = Need.find.byId(needId);
@@ -41,7 +42,7 @@ public class PaymentProcessor {
         int amountNeededInCents = (int) (need.askAmount - need.donatedAmount)*100;
 
         //are they trying to donate too much or too little
-        if(amountInCents > amountNeededInCents){
+        if(preFeeAmount > amountNeededInCents){
             return 2;
         }
         else if(amountInCents <20){
@@ -88,7 +89,7 @@ public class PaymentProcessor {
         }
 
         //add donation to system
-        need.addDonation(need,user,preeFeeAmount);
+        need.addDonation(need,user,preFeeAmount);
 
         //send email
         EmailService emailService = new EmailService();

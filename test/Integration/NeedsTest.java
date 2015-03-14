@@ -37,6 +37,7 @@ public class NeedsTest {
                 categorySelect.selectByVisibleText("Family");
                 browser.$("#needDescription").text("Inserted through test");
                 browser.$("button#addNeedButton").click();
+                System.out.println(browser.$("#needAdded").getText());
                 assertThat(browser.$("#needAdded").getText().equals("Need has been added successfully"));
             }
         });

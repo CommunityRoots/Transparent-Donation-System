@@ -1,0 +1,50 @@
+@(needs: List[Need])
+@main {
+<section class="featured"></section>
+<section id="section-works" class="section appear clearfix">
+    <div class="container">
+        <div class="row">
+            <h2>Closed Needs</h2>
+            <p>These are needs that have been closed but the money has not yet been paid to charity.</p>
+        </div>
+        @if(flash.contains("success")) {
+            <div class="row">
+                <p class="success">
+                @flash.get("success")
+                </p>
+            </div>
+        }
+            <div class="row">
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>Need</th>
+                        <th>Charity</th>
+                        <th>Donated amount</th>
+                        <th>Date added</th>
+                        <th>Date closed</th>
+                        <th>Mark as payed</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @for((need,index) <- needs.zipWithIndex) {
+                    <tr>
+                        <td><a href="@routes.Needs.viewNeed(1,need.id)">@need.title</a></td>
+                        <td>@need.charity.name</td>
+                        <td>€@need.donatedAmount</td>
+                        <td>@need.formattedDate(need.dateAdded)</td>
+                        <td>@need.formattedDate(need.dateAdded)</td>
+                        <td><a href="@routes.Admin.markAsPaid(need.id)"><i class="fa fa-check"></i></a> </td>
+
+
+                    </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+}

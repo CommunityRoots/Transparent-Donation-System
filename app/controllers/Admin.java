@@ -2,12 +2,14 @@ package controllers;
 
 import Services.StatsService;
 import models.Charity;
+import models.Need;
 import models.User;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
-import views.html.admin;
+import views.html.admin.admin;
+import views.html.admin.payOut;
 
 import java.util.HashMap;
 import java.util.List;
@@ -63,8 +65,8 @@ public class Admin extends Controller {
         StatsService statsService = StatsService.getInstance();
         HashMap<String,Long> stats = statsService.getStats();
         if(addLeaderForm.hasErrors()){
-            return badRequest(admin.render(form(AddCharity.class),addLeaderForm,charityList,
-                    stats.get("needs"),stats.get("charities"),stats.get("users"),stats.get("donations"),statsService.getDateGenerated()));
+            return badRequest(admin.render(form(AddCharity.class), addLeaderForm, charityList,
+                    stats.get("needs"), stats.get("charities"), stats.get("users"), stats.get("donations"), statsService.getDateGenerated()));
         } else {
             String email = addLeaderForm.get().leaderEmail;
             long charityId = addLeaderForm.get().charity;
@@ -89,5 +91,20 @@ public class Admin extends Controller {
             charity.save();
             return admin();
         }
+    }
+
+    public static Result payOut(){
+        return ok(payOut.render(Need.needsToBePaidOut()));
+    }
+
+    public static Result markAsPaid(long needId){
+        User user = User.findByEmail(session().get("email"));
+        Need need = Need.find.byId(needId);
+        if(user.role!=1 || !need.closed){
+            return redirect(routes.Application.index());
+        }
+        need.markAsPaidToCharity();
+        flash("success","Need has been marked as paid to charity");
+        return payOut();
     }
 }

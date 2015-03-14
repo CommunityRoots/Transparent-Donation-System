@@ -59,6 +59,8 @@ POST          /viewNeed                    controllers.Payment.chargeCard()
 GET           /admin                       controllers.Admin.admin()
 POST          /admin                       controllers.Admin.addCharity()
 POST          /admin/addLeader             controllers.Admin.addLeader()
+GET           /payOut                      controllers.Admin.payOut()
+GET          /payOut/:needId              controllers.Admin.markAsPaid(needId:Long)
 
 #TOS
 GET           /tos                         controllers.Application.tos()

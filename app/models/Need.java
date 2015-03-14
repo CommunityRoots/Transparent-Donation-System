@@ -56,6 +56,8 @@ public class Need extends Model {
     public String location;
     public String fullName;
 
+    public boolean paidToCharity;
+
     public Category category;
 
     @Constraints.Min(1)
@@ -63,9 +65,10 @@ public class Need extends Model {
     public int urgency;
 
     public Date dateAdded;
+    public Date dateClosed;
+    public Date datePaidToCharity;
 
-    //1 = closed 0 = open
-    public int closed;
+    public boolean closed;
     
     @OneToMany
     public List<Donation> donations = new LinkedList<>();
@@ -105,7 +108,7 @@ public class Need extends Model {
         this.urgency = urgency;
         this.charity = charity;
         this.category=category;
-        this.closed =0;
+        this.closed =false;
         this.save();
     }
 
@@ -119,7 +122,8 @@ public class Need extends Model {
         donations.add(donation);
         donatedAmount +=amount;
         if(donatedAmount >= askAmount){
-            closed =1;
+            closed =true;
+            dateClosed = new Date();
         }
         this.save();
         donation.save();
@@ -161,7 +165,17 @@ public class Need extends Model {
         return false;
     }
 
-    public String formattedDate(){
-        return new SimpleDateFormat("dd-MM-yyyy").format(dateAdded);
+    public String formattedDate(Date date){
+        return new SimpleDateFormat("dd-MM-yyyy").format(date);
+    }
+
+    public static List<Need> needsToBePaidOut(){
+        return Need.find.where().eq("closed",1).eq("paidToCharity",0).findList();
+    }
+
+    public void markAsPaidToCharity(){
+        this.paidToCharity = true;
+        this.datePaidToCharity = new Date();
+        this.save();
     }
 }
