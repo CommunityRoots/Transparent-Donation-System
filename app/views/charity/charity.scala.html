@@ -1,0 +1,45 @@
+@(charity: Charity,needs: List[Need], currentPage: Integer, pageCount: Integer)
+@main{
+    <section class="featured"></section>
+    <div class="centered">
+        <div class="container">
+            <div class="row text-center">
+                <h1>@charity.name</h1>
+                <p><strong><a href="http://@charity.website">@charity.website</a></strong></p>
+                <p>@charity.description</p>
+            </div>
+            <br>
+            <div class="row text-center">
+                <h2>Needs</h2>
+            </div>
+            <div class="row">
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>Need</th>
+                        <th>Donated Amount</th>
+                        <th>Percent Donated</th>
+                        <th>Added</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @for((need,index) <- needs.zipWithIndex) {
+                    <tr>
+                        <td><a href="@routes.Needs.viewNeed(1,need.id)">@need.title</a></td>
+                        <td>€@need.donatedAmount</td>
+                        <td>@need.progressPercentage()%</td>
+                        <td>@need.daysSinceNeedAdded() days ago</td>
+                    </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+            <div class="row align-center">
+                @if(pageCount >1){
+                    @pagination(currentPage, pageCount, pageCount, "viewCharity",charity.id)
+                }
+            </div>
+        </div>
+    </div>
+}

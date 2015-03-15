@@ -25,7 +25,7 @@
                         <div class="col-sm-3 col-md-2 align-center"><i class="fa fa-gift fa-5x"></i></div>
                         <div class="col-sm-5">
                             <h1>@need.title</h1>
-                            <p>@need.charity.name</p>
+                            <p><a href="@routes.Charities.viewCharity(1,need.charity.id)">@need.charity.name</a></p>
                             <p>@need.location</p>
                             <p>@need.formattedDate(need.dateAdded)</p>
                             <p id="amountNeeded">€@(need.askAmount - need.donatedAmount) needed</p>

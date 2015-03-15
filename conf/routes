@@ -60,7 +60,11 @@ GET           /admin                       controllers.Admin.admin()
 POST          /admin                       controllers.Admin.addCharity()
 POST          /admin/addLeader             controllers.Admin.addLeader()
 GET           /payOut                      controllers.Admin.payOut()
-GET          /payOut/:needId              controllers.Admin.markAsPaid(needId:Long)
+GET          /payOut/:needId               controllers.Admin.markAsPaid(needId:Long)
 
 #TOS
 GET           /tos                         controllers.Application.tos()
+
+#Charity
+GET           /charity       controllers.Charities.viewCharity(page: Int ?= 1,id:Long)
+GET           /invalidCharity              controllers.Charities.invalidCharity()

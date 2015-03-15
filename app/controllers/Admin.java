@@ -21,6 +21,8 @@ public class Admin extends Controller {
 
     public static class AddCharity {
         public String charityName;
+        public String website;
+        public String description;
 
         public String validate(){
             if(charityName.length()==0 || charityName == null){

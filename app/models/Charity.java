@@ -16,6 +16,10 @@ public class Charity extends Model {
 
     public String name;
 
+    public String description;
+
+    public String website;
+
     @OneToMany
     public List<User> members = new LinkedList<>();
 

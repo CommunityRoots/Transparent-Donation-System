@@ -18,6 +18,9 @@
                                 <li><a href="@routes.Registration.register()" tabindex="3">Register</a></li>
                                 <li><a href="@routes.Login.login()" tabindex="4">Login</a></li>
                             } else {
+                                @if(User.findByEmail(session().get("email")).role==1){
+                                    <li><a href="@routes.Admin.admin()">Admin</a></li>
+                                }
                                 <li><a href="@routes.Profile.profile()" tabindex="3">Profile</a></li>
                                 <li><a href="@routes.Profile.settings()" tabindex="4">Settings</a></li>
                                 <li><a href="@routes.Login.logout()" tabindex="5">Logout</a></li>

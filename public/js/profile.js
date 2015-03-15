@@ -55,7 +55,7 @@ $("#showAddNeed").click(function() {
     $("#showAddVol").removeClass("active");
     $("#status").hide();
     $("#addVolunteer").hide();
-    $("#addNeed").show();
+    $("#addNeed").toggle();
 });
 $("#closeNeed").click(function() {
     $("#addNeed").hide();
@@ -64,7 +64,7 @@ $("#closeNeed").click(function() {
 });
 $("#showAddVol").click(function() {
     $("#addNeed").hide();
-    $("#addVolunteer").show();
+    $("#addVolunteer").toggle();
     $("#showAddVol").addClass("active");
     $("#showAddNeed").removeClass("active");
 });

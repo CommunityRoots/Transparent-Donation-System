@@ -15,8 +15,6 @@ public class Updates extends Model {
     @Id
     public long id;
 
-    //public String title;
-
     @Constraints.Required
     public String message;
 
@@ -26,7 +24,6 @@ public class Updates extends Model {
     public Need need;
 
     public Updates(String message,Need need){
-        //this.title = title;
         this.message = message;
         this.emailUpdate(message);
         this.need = need;

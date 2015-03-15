@@ -114,6 +114,8 @@ public class Profile {
         public double amount;
         public String category;
         public String message;
+        public String reason;
+        public boolean closed;
 
         public String validate(){
             String email = session().get("email");
@@ -126,6 +128,11 @@ public class Profile {
             }
             else if(user.role>2){
                 return "You do not have permissions to do this";
+            }
+            else if(closed){
+                if(reason==null ||reason.equals("")){
+                    return "To close a need you must add a reason";
+                }
             }
             return null;
         }
@@ -325,6 +332,7 @@ public class Profile {
             editNeeds.location = need.location;
             editNeeds.urgency = need.urgency;
             editNeeds.amount = need.askAmount;
+            editNeeds.category = need.category.toString();
             editNeedForm = editNeedForm.fill(editNeeds);
             return ok(editNeed.render(editNeedForm,id));
 
@@ -338,17 +346,28 @@ public class Profile {
 
     public static Result doEditNeed(long id){
         Form<EditNeed> editNeedForm = form(EditNeed.class).bindFromRequest();
+        Need need = Need.find.byId(id);
         if (editNeedForm.hasErrors()) {
+            return badRequest(editNeed.render(editNeedForm,id));
+        }
+        else if(editNeedForm.get().amount<=need.donatedAmount){
+            flash("error","Cannot change amount to less than or equal the amount already donated");
             return badRequest(editNeed.render(editNeedForm,id));
         } else {
 
-            Need need = Need.find.byId(id);
+
             if(editNeedForm.get().message.length()>1) {
                 Updates update = new Updates(editNeedForm.get().message, need);
             }
+            if(editNeedForm.get().closed){
+                //close it
+                need.markAsClosed();
+                //send an update as to the reason
+                Updates updates = new Updates(editNeedForm.get().reason, need);
+            }
             need.editNeed(editNeedForm.get().title, editNeedForm.get().description,
                     editNeedForm.get().location, editNeedForm.get().amount,
-                    editNeedForm.get().urgency);
+                    editNeedForm.get().urgency, Need.Category.valueOf(editNeedForm.get().category));
             flash("success", "Need has been updated");
             return redirect(routes.Profile.profile(1));
         }
