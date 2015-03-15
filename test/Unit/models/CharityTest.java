@@ -16,7 +16,7 @@ public class CharityTest {
         running(fakeApplication(), new Runnable() {
             public void run() {
                 int numCharities = Charity.find.findRowCount();
-                Charity charity = new Charity("TestCharity", "www.test.com", "Dummy Charity fo test");
+                Charity charity = new Charity("TestCharity", "Dummy Charity fo test", "www.svp.ie");
                 charity.save();
                 int numCharitiesAfterAdd = Charity.find.findRowCount();
                 assertNotEquals(numCharities, numCharitiesAfterAdd);
@@ -31,10 +31,10 @@ public class CharityTest {
             public void run() {
                 User user = User.findByEmail("bob@gmail.com");
                 Charity charity = user.charity;
-                charity.editCharity("Test", "www.test2.com", "This is an edit test");
+                charity.editCharity("Test", "This is an edit test", "www.test.com");
                 assertEquals(charity.name, "Test");
                 assertEquals(charity.description, "This is an edit test");
-                assertEquals(charity.website, "www.test2.com");
+                assertEquals(charity.website, "www.test.com");
             }
         });
     }

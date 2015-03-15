@@ -436,14 +436,20 @@ public class Profile {
     }
 
     public static Form<EditCharity> preFillEditNeedForm(User user){
-        Charity charity = user.charity;
-        Form<EditCharity> editCharityForm = form(EditCharity.class);
-        EditCharity addCharity = new EditCharity();
-        addCharity.charityName = charity.name;
-        addCharity.description = charity.description;
-        addCharity.website = charity.website;
-        editCharityForm = editCharityForm.fill(addCharity);
-        return editCharityForm;
+        if(user.charity!=null){
+            Charity charity = user.charity;
+            Form<EditCharity> editCharityForm = form(EditCharity.class);
+            EditCharity addCharity = new EditCharity();
+            addCharity.charityName = charity.name;
+            addCharity.description = charity.description;
+            addCharity.website = charity.website;
+            editCharityForm = editCharityForm.fill(addCharity);
+            return editCharityForm;
+        }
+        else {
+            return form(EditCharity.class);
+        }
+
     }
 
 }

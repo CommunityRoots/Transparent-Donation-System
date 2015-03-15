@@ -1,5 +1,7 @@
 - &svp !!models.Charity
     name: SVP
+    website: www.svp.ie
+    description: Chaity the provides for wide range of needs
 
 - &usr1 !!models.User
     email:      fred@gmail.com
@@ -47,7 +49,7 @@
     donatedAmount: 0
     askAmount: 50
     addedBy: *usr1
-    charity: SVP
+    charity: *svp
     location: Navan
     urgency: 10
     description: Family in need of food. Bills are rising and they cannot afford to feed the family.
@@ -60,7 +62,7 @@
     donatedAmount: 0
     askAmount: 50
     addedBy: *usr1
-    charity: SVP
+    charity: *svp
     location: Navan
     urgency: 10
     description: Family in need of food. Bills are rising and they cannot afford to feed the family.
@@ -73,7 +75,7 @@
     donatedAmount: 0
     askAmount: 50
     addedBy: *usr1
-    charity: SVP
+    charity: *svp
     location: Navan
     urgency: 10
     description: Family in need of food. Bills are rising and they cannot afford to feed the family.
@@ -86,7 +88,7 @@
     donatedAmount: 0
     askAmount: 50
     addedBy: *usr1
-    charity: SVP
+    charity: *svp
     location: Navan
     urgency: 10
     description: Family in need of food. Bills are rising and they cannot afford to feed the family.
@@ -99,7 +101,7 @@
     donatedAmount: 0
     askAmount: 50
     addedBy: *usr1
-    charity: SVP
+    charity: *svp
     location: Navan
     urgency: 10
     description: Family in need of food. Bills are rising and they cannot afford to feed the family.
