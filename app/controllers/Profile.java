@@ -4,10 +4,7 @@ import Services.EmailService;
 import Services.FormValidator;
 import com.avaje.ebean.Page;
 import com.avaje.ebean.PagingList;
-import models.Donation;
-import models.Need;
-import models.User;
-import models.Updates;
+import models.*;
 import play.data.Form;
 import play.mvc.Result;
 import play.mvc.Security;
@@ -135,7 +132,21 @@ public class Profile {
             }
             return null;
         }
+    }
+    public static class EditCharity {
+        public String charityName;
+        public String website;
+        public String description;
 
+        public String validate(){
+            if(charityName.length()==0 || charityName == null){
+                return "Please enter charity name";
+            }
+            if(website.contains("http")){
+                return "Website should in form of www.charityAddress.com";
+            }
+            return null;
+        }
     }
 
     public static Result profile(int page) {
@@ -164,7 +175,7 @@ public class Profile {
         List<Need> needs = currentPage.getList();
 
         Integer totalPageCount = pagingList.getTotalPageCount();
-        return ok(profile.render(form(AddNeed.class),user,
+        return ok(profile.render(form(AddNeed.class),preFillEditNeedForm(user),user,
                 needs, page, totalPageCount)
         );
     }
@@ -412,6 +423,27 @@ public class Profile {
             donation.unsub();
         }
         return redirect(routes.Profile.subscriptions(email));
+    }
+
+    public static Result editCharity(){
+        Form<EditCharity> editCharityForm = form(EditCharity.class).bindFromRequest();
+        String email = session().get("email");
+        User user = User.findByEmail(email);
+        Charity charity = user.charity;
+        charity.editCharity(editCharityForm.get().charityName,
+                editCharityForm.get().website,editCharityForm.get().description);
+        return profile(1);
+    }
+
+    public static Form<EditCharity> preFillEditNeedForm(User user){
+        Charity charity = user.charity;
+        Form<EditCharity> editCharityForm = form(EditCharity.class);
+        EditCharity addCharity = new EditCharity();
+        addCharity.charityName = charity.name;
+        addCharity.description = charity.description;
+        addCharity.website = charity.website;
+        editCharityForm = editCharityForm.fill(addCharity);
+        return editCharityForm;
     }
 
 }
