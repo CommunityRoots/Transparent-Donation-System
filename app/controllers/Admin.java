@@ -106,7 +106,6 @@ public class Admin extends Controller {
             String website = addCharityForm.get().website;
             String description = addCharityForm.get().description;
             Charity charity = new Charity(charityName,website,description);
-            charity.save();
             return admin();
         }
     }

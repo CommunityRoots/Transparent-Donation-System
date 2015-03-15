@@ -23,7 +23,7 @@ public class IndexTest {
                 assertThat(browser.$("h2.slogan").getTexts().get(0)).isEqualTo("Welcome to");
                 //move to about section
                 browser.$("a#aboutLink").click();
-                assertThat(browser.url()).isEqualTo("http://localhost:3333/#about");
+                assertThat(browser.url()).isEqualTo("http://localhost:3333/");
             }
         });
     }

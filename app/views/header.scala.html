@@ -12,7 +12,7 @@
                 <div class="col-lg-7 col-md-8 pull-right">
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
-                            <li><a href="@routes.Application.index()" tabindex="1">About us</a></li>
+                            <li><a href="@routes.Application.index()" id="aboutLink" tabindex="1">About us</a></li>
                             <li><a href="@routes.Application.needs()" tabindex="2">Needs</a></li>
                             @if(session().get("email")==null) {
                                 <li><a href="@routes.Registration.register()" tabindex="3">Register</a></li>

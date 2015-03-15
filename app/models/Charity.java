@@ -27,6 +27,7 @@ public class Charity extends Model {
         this.name = name;
         this.website =website;
         this.description =description;
+        this.save();
     }
 
     public static Finder<Long, Charity> find = new Finder<Long,Charity>(Long.class, Charity.class);
