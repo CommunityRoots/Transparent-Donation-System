@@ -8,7 +8,6 @@ import models.Donation;
 import models.Need;
 import models.User;
 import models.Updates;
-import models.Donation;
 import play.data.Form;
 import play.mvc.Result;
 import play.mvc.Security;
@@ -348,7 +347,7 @@ public class Profile {
         Form<EditNeed> editNeedForm = form(EditNeed.class).bindFromRequest();
         Need need = Need.find.byId(id);
         if (editNeedForm.hasErrors()) {
-            return badRequest(editNeed.render(editNeedForm,id));
+            return badRequest(editNeed.render(editNeedForm, id));
         }
         else if(editNeedForm.get().amount<=need.donatedAmount){
             flash("error","Cannot change amount to less than or equal the amount already donated");
@@ -365,9 +364,22 @@ public class Profile {
                 //send an update as to the reason
                 Updates updates = new Updates(editNeedForm.get().reason, need);
             }
+            Need.Category category;
+            int urgency;
+            if(editNeedForm.get().category == null){
+                category = need.category;
+            } else {
+                category = Need.Category.valueOf(editNeedForm.get().category);
+            }
+            if(editNeedForm.get().urgency == 0){
+                urgency = need.urgency;
+            }else {
+                urgency = editNeedForm.get().urgency;
+            }
+
             need.editNeed(editNeedForm.get().title, editNeedForm.get().description,
                     editNeedForm.get().location, editNeedForm.get().amount,
-                    editNeedForm.get().urgency, Need.Category.valueOf(editNeedForm.get().category));
+                    urgency, category);
             flash("success", "Need has been updated");
             return redirect(routes.Profile.profile(1));
         }
