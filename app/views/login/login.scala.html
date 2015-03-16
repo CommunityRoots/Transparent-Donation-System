@@ -1,7 +1,7 @@
 @import helper._
 @(form: Form[Login.LoginForm])
 @main{
-    <html>
+<html xmlns="http://www.w3.org/1999/html">
         <head>
             <title>Login</title>
             <style>
@@ -23,57 +23,55 @@
         </head>
         <body>
             <section class="featured"></section>
+                <div class="container">
 
-            @helper.form(CSRF(routes.Login.authenticate)) {
+                    @helper.form(CSRF(routes.Login.authenticate)) {
 
 
-                <div class="container-form">
-                    <div class="row">
-                        <div class="col-xs-16 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-                            <form role="form">
-                                <h2>Please Sign In</h2>
-                                <hr class="colorgraph">
-                                <div class="col-xs-6 col-sm-6 col-md-6" style="padding-left: 0;">
-                                    <div class="form-group">
-                                        <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" value="@form("email").value" tabindex="6">
+                        <div class="container-form">
+                            <div class="row">
+                                <div class="col-xs-16 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                                    <form role="form">
+                                        <h2>Please Sign In</h2>
+                                        <hr class="colorgraph">
+                                        <div class="col-xs-6 col-sm-6 col-md-6" style="padding-left: 0;">
+                                            <div class="form-group">
+                                                <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" value="@form("email").value" tabindex="6">
 
+                                            </div>
+                                        </div>
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="7">
+                                        </div>
                                     </div>
                                 </div>
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="7">
+                                @if(form.hasGlobalErrors) {
+                                    <p class="error">
+                                    @form.globalError.message
+                                    </p>
+                                }
+                                <p><a href="@routes.Reset.forgot()" tabindex="8">Forgot Password</a></p>
+                                @if(flash.contains("success")) {
+                                    <p class="success">
+                                    @flash.get("success")
+                                    </p>
+                                }
+                                <hr class="colorgraph">
+                                <div class="row">
+                                    <div class="col-xs-6 col-md-6"><button type="submit" class="btn btn-success btn-block btn-lg" tabindex="9">Sign In</button></div>
+                                    <div class="col-xs-6 col-md-6"><a href="@routes.Registration.register()" class="btn btn-primary btn-block btn-lg" tabindex="10">I need an account</a></div>
                                 </div>
+                                </form>
                             </div>
                         </div>
-                        @if(form.hasGlobalErrors) {
-                            <p class="error">
-                            @form.globalError.message
-                            </p>
-                        } else {
-                            @if(flash.contains("error")) {
-                                <p>Please verify your email address.</p>
-
-                            }
-                        }
-                        <p><a href="@routes.Reset.forgot()" tabindex="8">Forgot Password</a></p>
-                        @if(flash.contains("success")) {
-                            <p class="success">
-                            @flash.get("success")
-                            </p>
-                        }
-                        <hr class="colorgraph">
-                        <div class="row">
-                            <div class="col-xs-6 col-md-6"><button type="submit" class="btn btn-success btn-block btn-lg" tabindex="9">Sign In</button></div>
-                            <div class="col-xs-6 col-md-6"><a href="@routes.Registration.register()" class="btn btn-primary btn-block btn-lg" tabindex="10">I need an account</a></div>
+                            <!-- /.modal-dialog -->
                         </div>
-                        </form>
-                    </div>
+                            <!-- /.modal -->
+                        </div>
                 </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                    <!-- /.modal -->
-                </div>
+            </section>
             }
         </body>
     </html>

@@ -12,12 +12,15 @@
                 <div class="col-lg-7 col-md-8 pull-right">
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
-                            <li><a href="@routes.Application.index()" tabindex="1">About us</a></li>
+                            <li><a href="@routes.Application.index()" id="aboutLink" tabindex="1">About us</a></li>
                             <li><a href="@routes.Application.needs()" tabindex="2">Needs</a></li>
                             @if(session().get("email")==null) {
                                 <li><a href="@routes.Registration.register()" tabindex="3">Register</a></li>
                                 <li><a href="@routes.Login.login()" tabindex="4">Login</a></li>
                             } else {
+                                @if(User.findByEmail(session().get("email")).role==1){
+                                    <li><a href="@routes.Admin.admin()">Admin</a></li>
+                                }
                                 <li><a href="@routes.Profile.profile()" tabindex="3">Profile</a></li>
                                 <li><a href="@routes.Profile.settings()" tabindex="4">Settings</a></li>
                                 <li><a href="@routes.Login.logout()" tabindex="5">Logout</a></li>

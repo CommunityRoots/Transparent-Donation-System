@@ -1,5 +1,6 @@
 package Unit.models;
 
+import models.Charity;
 import models.Need;
 import models.User;
 import java.util.List;
@@ -22,7 +23,9 @@ public class NeedTest extends WithApplication {
 
     @Test
     public void progressPercentageTest(){
-        Need need =  new Need("food",50,User.findByEmail("bob@gmail.com"), Need.Category.Family);
+        User user = User.findByEmail("bob@gmail.com");
+        Charity charity = Charity.find.all().get(0);
+        Need need =  new Need("food","need food",user,50,"Ireland",10,charity, Need.Category.Family);
         assertEquals(0, need.progressPercentage(),0);
     }
 

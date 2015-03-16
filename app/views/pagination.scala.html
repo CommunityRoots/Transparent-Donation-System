@@ -13,7 +13,14 @@
             } else {
                 @if(onPage == "need") {
                     <li><a href="@routes.Needs.viewNeed(currentPage - 1,option)">&laquo;</a></li>
-                }else{
+                }
+                @if(onPage =="viewCharity") {
+                    <li><a href="@routes.Charities.viewCharity(currentPage - 1,option)">&laquo;</a></li>
+                }
+                @if(onPage =="volunteers") {
+                    <li><a href="@routes.Profile.listVolunteers(currentPage - 1)">&laquo;</a></li>
+                }
+                @if(onPage =="profile") {
                     <li><a href="@routes.Profile.profile(currentPage - 1)">&laquo;</a></li>
                 }
             }
@@ -27,7 +34,14 @@
                 } else {
                     @if(onPage == "need") {
                         <li><a href="@routes.Needs.viewNeed(index,option)">@index</a></li>
-                    } else {
+                    }
+                    @if(onPage =="volunteers") {
+                        <li><a href="@routes.Profile.listVolunteers(currentPage - 1)">@index</a></li>
+                    }
+                    @if(onPage =="viewCharity") {
+                        <li><a href="@routes.Charities.viewCharity(index,option)">@index</a></li>
+                    }
+                    @if(onPage =="profile") {
                         <li><a href="@routes.Profile.profile(index)">@index</a></li>
                     }
                 }
@@ -42,7 +56,14 @@
             } else {
                 @if(onPage == "need") {
                     <li><a href="@routes.Needs.viewNeed(currentPage + 1,option)">&raquo;</a></li>
-                } else {
+                }
+                @if(onPage =="viewCharity") {
+                    <li><a href="@routes.Charities.viewCharity(currentPage + 1,option)">&raquo;</a></li>
+                }
+                @if(onPage =="volunteers") {
+                <li><a href="@routes.Profile.listVolunteers(currentPage - 1)">&raquo;</a></li>
+                }
+                @if(onPage =="profile") {
                     <li><a href="@routes.Profile.profile(currentPage + 1)">&raquo;</a></li>
                 }
             }

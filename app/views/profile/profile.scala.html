@@ -1,4 +1,5 @@
-@(form: Form[Profile.AddNeed],user: User, needs: List[Need], currentPage: Integer, pageCount: Integer)
+@import helper._
+@(form: Form[Profile.AddNeed],form2: Form[Profile.EditCharity],user: User, needs: List[Need], currentPage: Integer, pageCount: Integer)
 @main {
     <section class="featured"></section>
         <section id="section-works" class="section appear clearfix">
@@ -9,6 +10,9 @@
                 <div class="row">
                     <dl id="user">
                         <dt>@user.firstName @user.lastName</dt>
+                        @if(user.role!=4){
+                            <dt>@user.charity.name</dt>
+                        }
                     </dl>
                 </div>
 
@@ -17,11 +21,10 @@
                         <div class ="col-lg-2 col-md-3" style=""><button id="showAddNeed" class="btn btn-success btn-block btn-lg" tabindex="7">Add Need</button></div>
                         @if(user.role <3) {
                             <div class ="col-lg-2 col-md-3"><button id="showAddVol" class="btn btn-success btn-block btn-lg " tabindex="8">Add Volunteer</button></div>
+                            <div class ="col-lg-2 col-md-3"><button id="showEditCharity" class="btn btn-success btn-block btn-lg " tabindex="9">Edit Charity</button></div>
                             <div class ="col-lg-2 col-md-3"><a href="@routes.Profile.listVolunteers()"><button id="listVol" class="btn btn-success btn-block btn-lg" tabindex="9">List Volunteers</button></a></div>
                         }
-                        @if(user.role ==1) {
-                            <div class ="col-lg-2 col-md-3"><a href="@routes.Admin.admin()"><button class="btn btn-success btn-block btn-lg" tabindex="10">Admin</button></a></div>
-                        }
+
                         <br /><br /><br />
                     </div>
                     @if(form.hasGlobalErrors) {
@@ -43,6 +46,31 @@
                     <div class ="row" id="status" style="display:none">
                         <p id="needAdded"></p>
                     </div>
+                <!-- Edit charity -->
+                <div class="row" id="editCharity" style="display: none">
+                    <div class="col-lg-10">
+                        <h3>Edit Charity</h3>
+                        @helper.form(CSRF(routes.Profile.editCharity)) {
+                        <div class="container-form">
+                            <form role="form">
+                                <div class="row pad-bot10">
+                                    <div class="col-lg-4"><input type="text" name="charityName" class="form-control input-lg" placeholder="Charity Name" value="@form2("charityName").value"></div>
+                                </div>
+                                <div class="row pad-bot10">
+                                    <div class="col-lg-4"><input type="text" name="website" class="form-control input-lg" placeholder="Website" value="@form2("website").value"></div>
+                                </div>
+                                <div class="row pad-bot10">
+                                    <div class ="col-lg-6"><textarea class="form-control input-lg" rows="3" name="description"  placeholder="Description of charity" maxlength="600">@form2("description").value</textarea></div>
+                                </div>
+                                <div class="row">
+                                    <div class ="col-lg-2"><button type="submit" class="btn btn-success btn-block btn-lg" tabindex="10">Submit</button></div><div class ="col-lg-2"><button id="closeEditCharity" class="btn btn-danger btn-block btn-lg" tabindex="11">Close</button></div>
+                                </div>
+
+                            </form>
+                        </div>
+                        }
+                    </div>
+                </div>
 
                         <div id="addNeed" style="display:none">
                                 <div class="container-form">

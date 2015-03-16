@@ -16,13 +16,18 @@ import java.util.List;
 @Entity
 public class Need extends Model {
 
-    public Need(String title, double askAmount, User addedBy, Category category){
-        this.title = title;
-        this.donatedAmount = 0;
-        this.askAmount = askAmount;
-        this.addedBy = addedBy;
+    public Need(String title,String description, User user, double amount ,String location, int urgency, Charity charity, Category category) {
+        this.title =title;
+        this.description =description;
+        this.addedBy = user;
+        this.askAmount =amount;
         this.dateAdded = new Date();
-        this.category = category;
+        this.location = location;
+        this.urgency = urgency;
+        this.charity = charity;
+        this.category=category;
+        this.closed =false;
+        this.save();
     }
 
     public Need() {}
@@ -124,20 +129,12 @@ public class Need extends Model {
         if(donatedAmount >= askAmount){
             closed =true;
             dateClosed = new Date();
+            Updates updates = new Updates("The need has received the full amount of money asked for. Thank you.",this);
         }
         this.save();
         donation.save();
     }
 
-    /*public void addUpdate(Need need, String title,String message){
-        Updates update = new Updates(title,message,need);
-        update.save();
-        updates.add(update);
-        List<Updates> updates =  Updates.find.where()
-                .eq("need", need)
-                .orderBy("dateAdded desc")
-                .findList();
-    }
 
     public List<Updates> getUpdates(){
         List<Updates> updates =  Updates.find.where()
@@ -145,15 +142,16 @@ public class Need extends Model {
                 .orderBy("dateAdded desc")
                 .findList();
         return updates;
-    }*/
+    }
 
 
-    public void editNeed(String title, String description, String location, double amount, int urgency){
+    public void editNeed(String title, String description, String location, double amount, int urgency, Category category){
         this.title =title;
         this.description = description;
         this.location =location;
         this.askAmount =amount;
         this.urgency = urgency;
+        this.category = category;
         this.save();
     }
 
@@ -176,6 +174,16 @@ public class Need extends Model {
     public void markAsPaidToCharity(){
         this.paidToCharity = true;
         this.datePaidToCharity = new Date();
+        Updates update = new Updates("€"+donatedAmount+" has been sent to "+charity.name+" to fulfil this need.",this);
         this.save();
+    }
+
+    public void markAsClosed(){
+        this.closed=true;
+        this.save();
+    }
+
+    public static int numNeedsToBePaidOut(){
+        return Need.find.where().eq("closed",1).eq("paidToCharity",0).findRowCount();
     }
 }

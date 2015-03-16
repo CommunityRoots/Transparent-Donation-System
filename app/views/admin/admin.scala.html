@@ -1,6 +1,6 @@
 @import helper._
 @(form: Form[Admin.AddCharity], form2: Form[Admin.AddLeader], charities: List[Charity], needs: Long, charity: Long,
-users: Long,donations: Long, date: String)
+users: Long,donations: Long, date: String, numToBePaid: Integer)
 @main {
 <section class="featured"></section>
 <section id="section-works" class="section appear clearfix">
@@ -13,7 +13,7 @@ users: Long,donations: Long, date: String)
         <div class="row pad-bot40">
             <div class ="col-lg-2"><button type="submit" class="btn btn-success btn-block btn-lg" id="showAddCharity" tabindex="6">Add Charity</button></div>
             <div class ="col-lg-2"><button type="submit" class="btn btn-success btn-block btn-lg" id="showAddLeader" tabindex="7">Add Leader</button></div>
-            <div class ="col-lg-2"><a href="@routes.Admin.payOut()"><button type="submit" class="btn btn-success btn-block btn-lg" tabindex="8">Pay Needs</button></a></div>
+            <div class ="col-lg-2"><a href="@routes.Admin.payOut()"><button type="submit" class="btn btn-success btn-block btn-lg" tabindex="9">Pay Needs <span class="badge">@numToBePaid</span></button></a></div>
         </div>
         @if(form.hasGlobalErrors) {
         <p class="error">
@@ -28,6 +28,7 @@ users: Long,donations: Long, date: String)
             @flash.get("success")
         </p>
         }
+        <!-- Add charity -->
         <div class="row" id="addCharity" style="display: none">
             <div class="col-lg-10">
                 <h3>Add Charity</h3>
@@ -35,10 +36,16 @@ users: Long,donations: Long, date: String)
                 <div class="container-form">
                     <form role="form">
                         <div class="row pad-bot10">
-                            <div class="col-lg-4"><input type="text" name="charityName" id="charityName" class="form-control input-lg" placeholder="Charity Name" value="@form("chairtyName").value" tabindex="9"></div>
+                            <div class="col-lg-4"><input type="text" name="charityName" id="charityName" class="form-control input-lg" placeholder="Charity Name" value="@form("chairtyName").value"></div>
+                        </div>
+                        <div class="row pad-bot10">
+                            <div class="col-lg-4"><input type="text" name="website" id="website" class="form-control input-lg" placeholder="Website" value="@form("website").value"></div>
+                        </div>
+                        <div class="row pad-bot10">
+                            <div class ="col-lg-6"><textarea class="form-control input-lg" rows="3" name="description"  id="description" placeholder="Description of charity" maxlength="600">@form("description").value</textarea></div>
                         </div>
                         <div class="row">
-                            <div class ="col-lg-2"><button type="submit" class="btn btn-success btn-block btn-lg" tabindex="10">Submit</button></div>
+                            <div class ="col-lg-2"><button type="submit" class="btn btn-success btn-block btn-lg" tabindex="10">Submit</button></div><div class ="col-lg-2"><button id="closeAddCharity" type="button" class="btn btn-danger btn-block btn-lg" tabindex="11">Close</button></div>
                         </div>
 
                     </form>
@@ -46,7 +53,7 @@ users: Long,donations: Long, date: String)
                 }
                 </div>
         </div>
-
+        <!-- Add Leader -->
         <div class="row" id="addLeader" style="display: none">
             <div class="col-lg-10">
                 <h3>Add Leader for Charity</h3>
@@ -54,11 +61,11 @@ users: Long,donations: Long, date: String)
                 <div class="container-form">
                     <form role="form">
                         <div class="row pad-bot10">
-                            <div class="col-lg-4"><input type="email" name="leaderEmail" id="leaderEmail" class="form-control input-lg" placeholder="Leader Email" value="@form("leaderEmail").value" tabindex="11"></div>
+                            <div class="col-lg-4"><input type="email" name="leaderEmail" id="leaderEmail" class="form-control input-lg" placeholder="Leader Email" value="@form("leaderEmail").value" tabindex="12"></div>
                         </div>
                         <div class="row pad-bot10">
                             <div class="col-lg-4">
-                                <select id="urgency" class="form-control input-lg" tabindex="12" name="charity">
+                                <select id="urgency" class="form-control input-lg" tabindex="13" name="charity">
                                     <option selected disabled>Charity</option>
                                     @for(charity <- charities) {
                                         <option value="@charity.id">@charity.name</option>
@@ -67,7 +74,7 @@ users: Long,donations: Long, date: String)
                             </div>
                         </div>
                         <div class="row">
-                            <div class ="col-lg-2"><button type="submit" tabindex="13" class="btn btn-success btn-block btn-lg">Submit</button></div>
+                            <div class ="col-lg-2"><button type="submit" tabindex="14" class="btn btn-success btn-block btn-lg">Submit</button></div><div class ="col-lg-2"><button id="closeAddLeader" type="button" class="btn btn-danger btn-block btn-lg" tabindex="15">Close</button></div>
                         </div>
 
                     </form>
@@ -145,13 +152,4 @@ users: Long,donations: Long, date: String)
 </section>
 
 }
-        <script>
-            $("#showAddCharity").click(function() {
-                $("#addCharity").toggle();
-                $("#addLeader").hide();
-            });
-            $("#showAddLeader").click(function() {
-                $("#addLeader").toggle();
-                $("#addCharity").hide();
-            });
-        </script>
+<script src="@routes.Assets.at("js/admin.js")"></script>

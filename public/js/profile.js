@@ -48,14 +48,17 @@ function update(text)
     $("#status").show();
     $("#needAdded").text(text);
     $("#showAddNeed").removeClass("active");
+    $("#showEditCharity").removeClass("active");
 }
 
 $("#showAddNeed").click(function() {
     $("#showAddNeed").addClass("active");
     $("#showAddVol").removeClass("active");
+    $("#showEditCharity").removeClass("active");
     $("#status").hide();
     $("#addVolunteer").hide();
-    $("#addNeed").show();
+    $("#editCharity").hide();
+    $("#addNeed").toggle();
 });
 $("#closeNeed").click(function() {
     $("#addNeed").hide();
@@ -64,11 +67,25 @@ $("#closeNeed").click(function() {
 });
 $("#showAddVol").click(function() {
     $("#addNeed").hide();
-    $("#addVolunteer").show();
+    $("#editCharity").hide();
+    $("#addVolunteer").toggle();
     $("#showAddVol").addClass("active");
     $("#showAddNeed").removeClass("active");
+    $("#showEditCharity").removeClass("active");
 });
 $("#closeVol").click(function() {
     $("#addVolunteer").hide();
     $("#showAddVol").removeClass("active");
+});
+$("#showEditCharity").click(function() {
+    $("#editCharity").toggle();
+    $("#addVolunteer").hide();
+    $("#addNeed").hide();
+    $("#showEditCharity").addClass("active");
+    $("#showAddVol").removeClass("active");
+    $("#showAddNeed").removeClass("active");
+});
+$("#closeEditCharity").click(function() {
+    $("#editCharity").hide();
+    $("#showEditCharity").removeClass("active");
 });

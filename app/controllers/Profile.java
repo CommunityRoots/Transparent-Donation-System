@@ -4,11 +4,7 @@ import Services.EmailService;
 import Services.FormValidator;
 import com.avaje.ebean.Page;
 import com.avaje.ebean.PagingList;
-import models.Donation;
-import models.Need;
-import models.User;
-import models.Updates;
-import models.Donation;
+import models.*;
 import play.data.Form;
 import play.mvc.Result;
 import play.mvc.Security;
@@ -114,6 +110,8 @@ public class Profile {
         public double amount;
         public String category;
         public String message;
+        public String reason;
+        public boolean closed;
 
         public String validate(){
             String email = session().get("email");
@@ -127,9 +125,28 @@ public class Profile {
             else if(user.role>2){
                 return "You do not have permissions to do this";
             }
+            else if(closed){
+                if(reason==null ||reason.equals("")){
+                    return "To close a need you must add a reason";
+                }
+            }
             return null;
         }
+    }
+    public static class EditCharity {
+        public String charityName;
+        public String website;
+        public String description;
 
+        public String validate(){
+            if(charityName.length()==0 || charityName == null){
+                return "Please enter charity name";
+            }
+            if(website.contains("http")){
+                return "Website should in form of www.charityAddress.com";
+            }
+            return null;
+        }
     }
 
     public static Result profile(int page) {
@@ -158,7 +175,7 @@ public class Profile {
         List<Need> needs = currentPage.getList();
 
         Integer totalPageCount = pagingList.getTotalPageCount();
-        return ok(profile.render(form(AddNeed.class),user,
+        return ok(profile.render(form(AddNeed.class),preFillEditNeedForm(user),user,
                 needs, page, totalPageCount)
         );
     }
@@ -325,6 +342,7 @@ public class Profile {
             editNeeds.location = need.location;
             editNeeds.urgency = need.urgency;
             editNeeds.amount = need.askAmount;
+            editNeeds.category = need.category.toString();
             editNeedForm = editNeedForm.fill(editNeeds);
             return ok(editNeed.render(editNeedForm,id));
 
@@ -338,17 +356,41 @@ public class Profile {
 
     public static Result doEditNeed(long id){
         Form<EditNeed> editNeedForm = form(EditNeed.class).bindFromRequest();
+        Need need = Need.find.byId(id);
         if (editNeedForm.hasErrors()) {
+            return badRequest(editNeed.render(editNeedForm, id));
+        }
+        else if(editNeedForm.get().amount<=need.donatedAmount){
+            flash("error","Cannot change amount to less than or equal the amount already donated");
             return badRequest(editNeed.render(editNeedForm,id));
         } else {
 
-            Need need = Need.find.byId(id);
+
             if(editNeedForm.get().message.length()>1) {
                 Updates update = new Updates(editNeedForm.get().message, need);
             }
+            if(editNeedForm.get().closed){
+                //close it
+                need.markAsClosed();
+                //send an update as to the reason
+                Updates updates = new Updates(editNeedForm.get().reason, need);
+            }
+            Need.Category category;
+            int urgency;
+            if(editNeedForm.get().category == null){
+                category = need.category;
+            } else {
+                category = Need.Category.valueOf(editNeedForm.get().category);
+            }
+            if(editNeedForm.get().urgency == 0){
+                urgency = need.urgency;
+            }else {
+                urgency = editNeedForm.get().urgency;
+            }
+
             need.editNeed(editNeedForm.get().title, editNeedForm.get().description,
                     editNeedForm.get().location, editNeedForm.get().amount,
-                    editNeedForm.get().urgency);
+                    urgency, category);
             flash("success", "Need has been updated");
             return redirect(routes.Profile.profile(1));
         }
@@ -381,6 +423,33 @@ public class Profile {
             donation.unsub();
         }
         return redirect(routes.Profile.subscriptions(email));
+    }
+
+    public static Result editCharity(){
+        Form<EditCharity> editCharityForm = form(EditCharity.class).bindFromRequest();
+        String email = session().get("email");
+        User user = User.findByEmail(email);
+        Charity charity = user.charity;
+        charity.editCharity(editCharityForm.get().charityName,
+                editCharityForm.get().website,editCharityForm.get().description);
+        return profile(1);
+    }
+
+    public static Form<EditCharity> preFillEditNeedForm(User user){
+        if(user.charity!=null){
+            Charity charity = user.charity;
+            Form<EditCharity> editCharityForm = form(EditCharity.class);
+            EditCharity addCharity = new EditCharity();
+            addCharity.charityName = charity.name;
+            addCharity.description = charity.description;
+            addCharity.website = charity.website;
+            editCharityForm = editCharityForm.fill(addCharity);
+            return editCharityForm;
+        }
+        else {
+            return form(EditCharity.class);
+        }
+
     }
 
 }

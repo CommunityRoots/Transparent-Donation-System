@@ -30,25 +30,36 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-10"><input type="number" name="amount" id="amount" class="form-control input-lg" placeholder="€" value="@form("amount").value" tabindex="7"></div><br /><br />
+                                    <div class="col-lg-10"><input type="number" step="any" name="amount" id="amount" class="form-control input-lg" placeholder="€" value="@form("amount").value" tabindex="7"></div><br /><br />
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-10"><input type="text" name="location" id="location" class="form-control input-lg" placeholder="Location" value="@form("location").value" tabindex="8"></div><br /><br />
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-10">
-                                        <select id="urgency" class="form-control input-lg" tabindex="9">
+                                        <select id="urgency" name="urgency" class="form-control input-lg" tabindex="9">
                                             <option selected disabled>Urgency</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>6</option>
-                                            <option>7</option>
-                                            <option>8</option>
-                                            <option>9</option>
-                                            <option>10</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </select>
+                                    </div>
+                                    <br /><br />
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-10">
+                                        <select id="category" name="category" class="form-control input-lg" tabindex="9">
+                                            <option selected disabled>Category</option>
+                                            <option value="Family">Family</option>
+                                            <option value="Education">Education</option>
+
                                         </select>
                                     </div>
                                     <br /><br />
@@ -71,12 +82,33 @@
                         <div class ="col-lg-10"><textarea class="form-control input-lg" rows="3" name="message"  id="message" placeholder="Update" maxlength="600" tabindex="11">@form("message").value</textarea></div>
                     </div>
                 </div>
+                <div class="col-lg-6">
+                    <br>
+                    <div class="row">
+                        <h1 class="col-lg-10">Close Need</h1>
+                    </div>
+                    <div class="row">
+                        <p class="col-lg-10">Closing a need stops donations for this need. Money donated towards this need will then be sent to the charity.</p>
+                    </div>
+                    <div class="row">
+                        <div class ="col-lg-10">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="true" name="closed"> Tick here to close need
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class ="col-lg-10"><textarea class="form-control input-lg" rows="3" name="reason"  id="reason" placeholder="Reason for closing" maxlength="600" tabindex="12">@form("reason").value</textarea></div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="container">
             <div class="row">
                 <div class ="col-lg-2"><button id="addNeedButton" class="btn btn-success btn-block btn-lg" tabindex="12">Save</button></div>
-            </div>
+        </div>
             </form>
             }
         </div>

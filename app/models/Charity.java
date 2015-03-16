@@ -16,12 +16,26 @@ public class Charity extends Model {
 
     public String name;
 
+    public String description;
+
+    public String website;
+
     @OneToMany
     public List<User> members = new LinkedList<>();
 
-    public Charity(String name){
+    public Charity(String name, String description, String website){
         this.name = name;
+        this.website =website;
+        this.description =description;
+        this.save();
     }
 
     public static Finder<Long, Charity> find = new Finder<Long,Charity>(Long.class, Charity.class);
+
+    public void editCharity(String name, String description, String website){
+        this.name = name;
+        this.website = website;
+        this.description = description;
+        this.save();
+    }
 }

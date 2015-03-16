@@ -42,7 +42,7 @@ public class RegisterTest {
                 browser.$("#password").text("secret");
                 browser.$("#password_confirmation").text("secret");
                 browser.$("button").click();
-                //assertThat(browser.url()).isEqualTo("http://localhost:3333/register");
+                assertThat(browser.url()).contains("http://localhost:3333/register");
                 assertThat(browser.find(".error").getText().contains("Password must have 1 number, between 6-20 characters"));
             }
         });

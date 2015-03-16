@@ -27,6 +27,7 @@ GET           /volunteers                  controllers.Profile.listVolunteers(pa
 DELETE        /deleteVol/:email            controllers.Profile.deleteVolunteer(email: String)
 GET           /editNeed/:id                controllers.Profile.editNeed(id: Long)
 POST          /editNeed/:id                controllers.Profile.doEditNeed(id: Long)
+POST          /profile/editCharity         controllers.Profile.editCharity()
 
 #Settings page
 GET           /settings                    controllers.Profile.settings()
@@ -69,3 +70,7 @@ GET           /payOut/:needId              controllers.Admin.markAsPaid(needId:L
 
 #TOS
 GET           /tos                         controllers.Application.tos()
+
+#Charity
+GET           /charity       controllers.Charities.viewCharity(page: Int ?= 1,id:Long)
+GET           /invalidCharity              controllers.Charities.invalidCharity()
