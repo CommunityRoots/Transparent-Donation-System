@@ -34,7 +34,7 @@ public class Login extends Controller {
         if (loginForm.hasErrors()) {
             return badRequest(login.render(loginForm));
         } else if(User.findByEmail(loginForm.get().email).validated==false){
-            flash("error", "Verify your email address");
+            flash("error", "Verify your email address. A link was emailed to you.");
             return badRequest(login.render(loginForm));
         }
         else {
