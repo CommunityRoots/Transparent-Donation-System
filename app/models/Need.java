@@ -16,13 +16,18 @@ import java.util.List;
 @Entity
 public class Need extends Model {
 
-    public Need(String title, double askAmount, User addedBy, Category category){
-        this.title = title;
-        this.donatedAmount = 0;
-        this.askAmount = askAmount;
-        this.addedBy = addedBy;
+    public Need(String title,String description, User user, double amount ,String location, int urgency, Charity charity, Category category) {
+        this.title =title;
+        this.description =description;
+        this.addedBy = user;
+        this.askAmount =amount;
         this.dateAdded = new Date();
-        this.category = category;
+        this.location = location;
+        this.urgency = urgency;
+        this.charity = charity;
+        this.category=category;
+        this.closed =false;
+        this.save();
     }
 
     public Need() {}
@@ -176,5 +181,9 @@ public class Need extends Model {
     public void markAsClosed(){
         this.closed=true;
         this.save();
+    }
+
+    public static int numNeedsToBePaidOut(){
+        return Need.find.where().eq("closed",1).eq("paidToCharity",0).findRowCount();
     }
 }

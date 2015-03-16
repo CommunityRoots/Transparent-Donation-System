@@ -68,7 +68,8 @@ public class Admin extends Controller {
         HashMap<String,Long> stats = statsService.getStats();
 
         return ok(admin.render(form(AddCharity.class),form(AddLeader.class),charityList,
-                stats.get("needs"),stats.get("charities"),stats.get("users"),stats.get("donations"),statsService.getDateGenerated()));
+                stats.get("needs"),stats.get("charities"),stats.get("users"),
+                stats.get("donations"),statsService.getDateGenerated(),Need.numNeedsToBePaidOut()));
     }
 
     public static Result addLeader(){
@@ -80,7 +81,8 @@ public class Admin extends Controller {
         HashMap<String,Long> stats = statsService.getStats();
         if(addLeaderForm.hasErrors()){
             return badRequest(admin.render(form(AddCharity.class), addLeaderForm, charityList,
-                    stats.get("needs"), stats.get("charities"), stats.get("users"), stats.get("donations"), statsService.getDateGenerated()));
+                    stats.get("needs"), stats.get("charities"), stats.get("users"), stats.get("donations"),
+                    statsService.getDateGenerated(),Need.numNeedsToBePaidOut()));
         } else {
             String leaderEmail = addLeaderForm.get().leaderEmail;
             long charityId = addLeaderForm.get().charity;
@@ -100,7 +102,8 @@ public class Admin extends Controller {
         HashMap<String,Long> stats = statsService.getStats();
         if (addCharityForm.hasErrors()) {
             return badRequest(admin.render(addCharityForm,form(AddLeader.class),charityList,
-                    stats.get("needs"),stats.get("charities"),stats.get("users"),stats.get("donations"),statsService.getDateGenerated()));
+                    stats.get("needs"),stats.get("charities"),stats.get("users"),stats.get("donations"),
+                    statsService.getDateGenerated(),Need.numNeedsToBePaidOut()));
         } else {
             String charityName = addCharityForm.get().charityName;
             String website = addCharityForm.get().website;

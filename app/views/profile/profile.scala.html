@@ -10,6 +10,9 @@
                 <div class="row">
                     <dl id="user">
                         <dt>@user.firstName @user.lastName</dt>
+                        @if(user.role!=4){
+                            <dt>@user.charity.name</dt>
+                        }
                     </dl>
                 </div>
 

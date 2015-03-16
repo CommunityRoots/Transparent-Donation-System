@@ -16,7 +16,7 @@ public class UpdatesTest {
         running(fakeApplication(), new Runnable() {
             public void run() {
                 User user = User.findByEmail("bob@gmail.com");
-                Need need = new Need("TestNeed", 23.50, user, Need.Category.Family);
+                Need need = new Need("TestNeed","test description", user, 23.50,"ireland",10,user.charity, Need.Category.Family);
                 Updates updates = new Updates("This is a test update", need);
                 assertNotEquals(need.getUpdates().size(), 0);
             }

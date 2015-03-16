@@ -1,6 +1,6 @@
 @import helper._
 @(form: Form[Admin.AddCharity], form2: Form[Admin.AddLeader], charities: List[Charity], needs: Long, charity: Long,
-users: Long,donations: Long, date: String)
+users: Long,donations: Long, date: String, numToBePaid: Integer)
 @main {
 <section class="featured"></section>
 <section id="section-works" class="section appear clearfix">
@@ -13,7 +13,7 @@ users: Long,donations: Long, date: String)
         <div class="row pad-bot40">
             <div class ="col-lg-2"><button type="submit" class="btn btn-success btn-block btn-lg" id="showAddCharity" tabindex="6">Add Charity</button></div>
             <div class ="col-lg-2"><button type="submit" class="btn btn-success btn-block btn-lg" id="showAddLeader" tabindex="7">Add Leader</button></div>
-            <div class ="col-lg-2"><a href="@routes.Admin.payOut()"><button type="submit" class="btn btn-success btn-block btn-lg" tabindex="9">Pay Needs</button></a></div>
+            <div class ="col-lg-2"><a href="@routes.Admin.payOut()"><button type="submit" class="btn btn-success btn-block btn-lg" tabindex="9">Pay Needs <span class="badge">@numToBePaid</span></button></a></div>
         </div>
         @if(form.hasGlobalErrors) {
         <p class="error">
