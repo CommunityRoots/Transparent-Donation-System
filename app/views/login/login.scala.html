@@ -50,6 +50,11 @@
                             <p class="error">
                             @form.globalError.message
                             </p>
+                        } else {
+                            @if(flash.contains("error")) {
+                                <p>Please verify your email address.</p>
+
+                            }
                         }
                         <p><a href="@routes.Reset.forgot()" tabindex="8">Forgot Password</a></p>
                         @if(flash.contains("success")) {

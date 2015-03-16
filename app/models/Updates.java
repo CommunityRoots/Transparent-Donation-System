@@ -40,7 +40,7 @@ public class Updates extends Model {
                 .findList();
         List<String> emails = new ArrayList<>();
         for (Donation donation : donations) {
-            if(donation.notify) {
+            if(donation.notify&&!emails.contains(donation.donator.email)) {
                 emails.add(donation.donator.email);
             }
         }

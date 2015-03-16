@@ -1,13 +1,15 @@
 package controllers;
 import Services.EmailService;
 import Services.FormValidator;
-import models.User;
+import models.*;
 import org.mindrot.jbcrypt.BCrypt;
 import play.cache.Cached;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.login.register;
+import java.net.MalformedURLException;
+import play.Logger;
 
 import static play.data.Form.form;
 
@@ -55,13 +57,43 @@ public class Registration extends Controller {
                     registerForm.get().lastName,
                     BCrypt.hashpw(registerForm.get().password,BCrypt.gensalt(12))).save();
             session("email", email);
-            EmailService emailService = new EmailService();
-            emailService.sendEmail(firstName,email,"Welcome to Community Roots",
-                    "Welcome to CommunityRoots. Please feel free to donate money towards needs.");
+            try {
+                Token.sendConfirmEmail(User.findByEmail(email));
+            } catch (MalformedURLException e) {
+                Logger.error("Cannot validate URL", e);
+            }
             return redirect(
                     routes.Profile.profile(1)
             );
         }
+    }
+
+    public static Result confirm(String token) {
+        if (token == null) {
+            flash("error", "Invalid link");
+        } else {
+            Token confirmToken = Token.findByToken(token);
+            if (confirmToken == null) {
+                flash("error", "error.technical");
+            } else if (confirmToken.isExpired()) {
+                confirmToken.delete();
+                flash("error", "Link has expired");
+            } else {
+                User.findByEmail(confirmToken.email).validate();
+            }
+        }
+        return redirect(
+                routes.Profile.profile(1)
+        );
+    }
+
+    public static Result sendConfirmEmail(String email) {
+        try {
+            Token.sendConfirmEmail(User.findByEmail(email));
+        } catch (MalformedURLException e) {
+            Logger.error("Cannot validate URL", e);
+        }
+        return redirect(routes.Login.login());
     }
 
 

@@ -3,11 +3,13 @@ package models;
 import org.mindrot.jbcrypt.BCrypt;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
+import play.Logger;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.util.Date;
+import java.net.MalformedURLException;
 
 
 @Entity
@@ -19,6 +21,7 @@ public class User extends Model {
         this.lastName = lastName;
         this.password = password;
         this.role = 4; //default
+        this.validated = false;
         this.joined = new Date();
     }
     //play framework changes these to private and adds getters + setters on run
@@ -39,6 +42,8 @@ public class User extends Model {
     @Constraints.MaxLength(20)
     @Constraints.Required
     public String password;
+
+    public boolean validated;
 
     /*
         User Roles:
@@ -95,4 +100,10 @@ public class User extends Model {
         this.lastLogin = new Date();
         this.save();
     }
+
+    public void validate() {
+        this.validated = true;
+        this.save();
+    }
+
 }

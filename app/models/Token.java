@@ -67,6 +67,18 @@ public class Token extends Model {
         emailService.sendEmail(name,mail,subject,content);
     }
 
+    public static void sendConfirmEmail(User user) throws MalformedURLException {
+        String mail = user.email;
+        String name = user.firstName;
+        String subject = "Welcome to Community Roots";
+        Token token = getNewToken(user);
+        String urlString = "http://communityroots.net/confirm/"+token.token;
+        URL url = new URL(urlString);
+        String content = "Welcome to CommunityRoots. Please feel free to donate money towards needs. Please confirm your email address here: "+ url;
+        EmailService emailService = new EmailService();
+        emailService.sendEmail(name,mail,subject,content);
+    }
+
     public static void checkIfTokensAreValid(){
         //loop through tokens checking if they are valid
         List<Token> tokenList = Token.find.all();

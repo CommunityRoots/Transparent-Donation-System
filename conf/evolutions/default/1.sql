@@ -61,6 +61,7 @@ create table user (
   first_name                varchar(255),
   last_name                 varchar(255),
   password                  varchar(255),
+  validated                 tinyint(1) default 0,
   role                      integer,
   charity_id                bigint,
   joined                    datetime,

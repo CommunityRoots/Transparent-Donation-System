@@ -32,6 +32,14 @@
     role:       4
     password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
 
+- !!models.User
+    email:      daithi_07@hotmail.com
+    firstName:  Harold
+    lastName:   Commodious
+    role:       4
+    password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
+
+
 - &need1 !!models.Need
     title: airplane
     donatedAmount: 20

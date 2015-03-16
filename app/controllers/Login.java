@@ -33,7 +33,11 @@ public class Login extends Controller {
         Form<LoginForm> loginForm = form(LoginForm.class).bindFromRequest();
         if (loginForm.hasErrors()) {
             return badRequest(login.render(loginForm));
-        } else {
+        } else if(User.findByEmail(loginForm.get().email).validated==false){
+            flash("error", "Verify your email address");
+            return badRequest(login.render(loginForm));
+        }
+        else {
             session().clear();
             String email = loginForm.get().email;
             session("email", email);

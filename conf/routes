@@ -43,6 +43,11 @@ POST          /forgot                      controllers.Reset.doForgot()
 GET           /reset/:token                controllers.Reset.reset(token:String)
 POST          /reset/:token                controllers.Reset.doNewPass(token:String)
 
+#Confirm
+GET           /confirm/:token              controllers.Registration.confirm(token:String)
+POST          /confirm/:token              controllers.Registration.confirm(token:String)
+POST          /login                       controllers.Registration.sendConfirmEmail(email:String)
+
 #Subscriptions
 GET           /subscriptions               controllers.Profile.subscriptions(email: String)
 POST          /subscriptions               controllers.Profile.unsubFromNeed(id: Long, email: String)
@@ -60,7 +65,7 @@ GET           /admin                       controllers.Admin.admin()
 POST          /admin                       controllers.Admin.addCharity()
 POST          /admin/addLeader             controllers.Admin.addLeader()
 GET           /payOut                      controllers.Admin.payOut()
-GET          /payOut/:needId              controllers.Admin.markAsPaid(needId:Long)
+GET           /payOut/:needId              controllers.Admin.markAsPaid(needId:Long)
 
 #TOS
 GET           /tos                         controllers.Application.tos()

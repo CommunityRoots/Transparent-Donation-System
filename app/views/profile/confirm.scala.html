@@ -1,0 +1,42 @@
+@import helper._
+@(token: String)
+@main{
+    <html>
+        <head>
+            <title>Login</title>
+            <style>
+            .container-form{
+            padding-top: 120px;
+            }
+            .colorgraph {
+            height: 5px;
+            border-top: 0;
+            background: #c4e17f;
+            border-radius: 5px;
+            background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+            background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+            background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+            background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+            }
+
+            </style>
+        </head>
+        <body>
+            <section class="featured"></section>
+
+                <div class="container-form">
+                    <div class="row">
+                        <div class="col-lg-8">
+                                <h2>Please click to the button to confirm your email</h2>
+                                <div class="row">
+                                    <div class="col-md-6"><a type="button" href="@routes.Registration.confirm(token)" class="btn btn-success btn-block btn-lg" tabindex="8">Confirm</a></div>
+                                </div>
+                        </div>
+                    </div>
+                        <!-- /.modal-dialog -->
+                </div>
+                    <!-- /.modal -->
+
+        </body>
+    </html>
+}
