@@ -56,14 +56,13 @@ public class Registration extends Controller {
             new User(registerForm.get().email, firstName,
                     registerForm.get().lastName,
                     BCrypt.hashpw(registerForm.get().password,BCrypt.gensalt(12))).save();
-            session("email", email);
             try {
                 Token.sendConfirmEmail(User.findByEmail(email));
             } catch (MalformedURLException e) {
                 Logger.error("Cannot validate URL", e);
             }
             return redirect(
-                    routes.Profile.profile(1)
+                    routes.Login.login(1)
             );
         }
     }
@@ -93,7 +92,7 @@ public class Registration extends Controller {
         } catch (MalformedURLException e) {
             Logger.error("Cannot validate URL", e);
         }
-        return redirect(routes.Login.login());
+        return redirect(routes.Login.login(0));
     }
 
 

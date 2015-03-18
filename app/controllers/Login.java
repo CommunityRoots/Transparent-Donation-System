@@ -25,17 +25,17 @@ public class Login extends Controller {
     }
 
     @Cached(key = "login", duration = 10)
-    public static Result login(){
-        return ok(login.render(form(LoginForm.class)));
+    public static Result login(int page){
+        return ok(login.render(form(LoginForm.class),page));
     }
 
     public static Result authenticate() {
         Form<LoginForm> loginForm = form(LoginForm.class).bindFromRequest();
         if (loginForm.hasErrors()) {
-            return badRequest(login.render(loginForm));
+            return badRequest(login.render(loginForm,0));
         } else if(User.findByEmail(loginForm.get().email).validated==false){
-            flash("error", "Verify your email address. A link was emailed to you.");
-            return badRequest(login.render(loginForm));
+            flash("error", "Verify your email address. A link has be emailed to you.");
+            return badRequest(login.render(loginForm,0));
         }
         else {
             session().clear();
@@ -53,7 +53,7 @@ public class Login extends Controller {
         session().clear();
         flash("success", "You've been logged out");
         return redirect(
-                routes.Login.login()
+                routes.Login.login(0)
         );
     }
 }
