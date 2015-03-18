@@ -37,6 +37,15 @@ body {
 	padding: 10px 0;
 }
 
+.bold{
+	font-size: 18px;
+	font-weight: 600;
+}
+
+p{
+	font-size: 18px;
+}
+
 .centered{
 	margin: 0 auto;
 	display: block;

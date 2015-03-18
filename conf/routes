@@ -7,7 +7,7 @@ GET           /                            controllers.Application.index()
 GET           /index                       controllers.Application.index()
 
 # Login page
-GET           /login                       controllers.Login.login(page:Int ?= 0)
+GET           /login                       controllers.Login.login()
 POST          /login                       controllers.Login.authenticate()
 GET           /logout                      controllers.Login.logout()
 

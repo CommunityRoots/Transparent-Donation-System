@@ -61,8 +61,9 @@ public class Registration extends Controller {
             } catch (MalformedURLException e) {
                 Logger.error("Cannot validate URL", e);
             }
+            flash("success", "A confirmation email has been sent to your email account. Please click the link in the email to verify your email account.");
             return redirect(
-                    routes.Login.login(1)
+                    routes.Login.login()
             );
         }
     }
@@ -92,7 +93,7 @@ public class Registration extends Controller {
         } catch (MalformedURLException e) {
             Logger.error("Cannot validate URL", e);
         }
-        return redirect(routes.Login.login(0));
+        return redirect(routes.Login.login());
     }
 
 
