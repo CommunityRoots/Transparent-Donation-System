@@ -18,7 +18,7 @@ public class LoginTest {
         running(fakeApplication(), new Runnable() {
             public void run() {
                 Result result = callAction(
-                        routes.ref.Login.login(),
+                        routes.ref.Login.login(0),
                         new FakeRequest(GET, "/").withSession(CSRF.TokenName(), CSRFFilter.apply$default$5().generateToken())
                 );
                 assertThat(status(result)).isEqualTo(OK);

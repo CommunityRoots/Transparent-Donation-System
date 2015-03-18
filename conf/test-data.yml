@@ -43,10 +43,12 @@
 
 
 - &need1 !!models.Need
-    title: airplane
+    title: utility bills
     donatedAmount: 20
     askAmount: 50
     urgency: 1
+    location: ratoath
+    description: Rising rent and less income has left the family in financal difficulty.
     addedBy: *usr1
     dateAdded: 2015-02-24
     charity: *svp
@@ -118,7 +120,7 @@
     category: Family
 
 - !!models.Need
-    title: airplane
+    title: utility bills
     donatedAmount: 0
     askAmount: 50
     urgency: 1
@@ -128,7 +130,7 @@
     category: Family
 
 - !!models.Need
-    title: airplane
+    title: utility bills
     donatedAmount: 0
     askAmount: 50
     urgency: 1
