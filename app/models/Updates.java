@@ -35,6 +35,7 @@ public class Updates extends Model {
         List<Donation> donations = Donation.find.where()
                 .eq("need", need)
                 .findList();
+        System.out.println(""+donations.size());
         List<String> emails = new ArrayList<>();
         for (Donation donation : donations) {
             if(donation.notify&&!emails.contains(donation.donator.email)) {

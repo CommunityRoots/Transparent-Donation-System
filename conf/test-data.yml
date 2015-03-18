@@ -15,7 +15,7 @@
     role:       1
     password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
     charity:    *cr
-    validated: 1
+    validated:  true
 
 - &usr1 !!models.User
     email:      bob@gmail.com
@@ -24,7 +24,7 @@
     role:       2
     password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
     charity:    *svp
-    validated: 1
+    validated:  true
 
 - !!models.User
     email:      tom@gmail.com
@@ -33,7 +33,7 @@
     role:       3
     password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
     charity:    *svp
-    validated: 1
+    validated:  true
 
 - !!models.User
     email:      harold@gmail.com
@@ -41,7 +41,7 @@
     lastName:   Commodious
     role:       4
     password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
-    validated: 1
+    validated:  true
 
 - !!models.User
     email:      daithi_07@hotmail.com
@@ -49,7 +49,7 @@
     lastName:   Commodious
     role:       4
     password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
-    validated: 1
+    validated:  true
 
 
 - &need1 !!models.Need

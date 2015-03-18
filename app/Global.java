@@ -54,7 +54,8 @@ public class Global extends GlobalSettings {
                 Ebean.save((List) Yaml.load("test-data.yml"));
                 Logger.info("Data loaded into database");
             }
-        } else{
+        }
+        else{
             if (User.find.findRowCount()==0) {
                 Ebean.save((List) Yaml.load("initial-data.yml"));
                 Logger.info("Data loaded into database");
