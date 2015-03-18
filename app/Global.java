@@ -33,6 +33,7 @@ public class Global extends GlobalSettings {
                 views.html.notFoundPage.render()
         ));
     }
+
     //page to display when an error occurs
     public F.Promise<Result> onError(Http.RequestHeader request, Throwable t) {
         String mode = play.api.Play.current().mode().toString();

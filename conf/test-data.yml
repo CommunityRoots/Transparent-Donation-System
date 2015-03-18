@@ -3,13 +3,19 @@
     website: www.svp.ie
     description: Chaity the provides for wide range of needs
 
+- &cr !!models.Charity
+    name: CommunityRoots
+    website: www.communityroots.net
+    description: As we are a non profit organisation we also have needs to keep this service running. This can be things like server costs.
+
 - &usr1 !!models.User
     email:      fred@gmail.com
     firstName:  Fred
     lastName:   Kapinsky
     role:       1
     password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
-    charity:    *svp
+    charity:    *cr
+    validated: 1
 
 - &usr1 !!models.User
     email:      bob@gmail.com
@@ -18,6 +24,7 @@
     role:       2
     password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
     charity:    *svp
+    validated: 1
 
 - !!models.User
     email:      tom@gmail.com
@@ -26,6 +33,7 @@
     role:       3
     password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
     charity:    *svp
+    validated: 1
 
 - !!models.User
     email:      harold@gmail.com
@@ -33,6 +41,7 @@
     lastName:   Commodious
     role:       4
     password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
+    validated: 1
 
 - !!models.User
     email:      daithi_07@hotmail.com
@@ -40,6 +49,7 @@
     lastName:   Commodious
     role:       4
     password:   $2a$12$1ZZmEbZSMzbLuTjENsy68eS6df0J6vuHgawc.t8M4w4MwxlRwjo.C
+    validated: 1
 
 
 - &need1 !!models.Need

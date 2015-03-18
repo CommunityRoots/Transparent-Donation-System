@@ -55,7 +55,7 @@
                                     </p>
                                 } else {
                                     @if(flash.contains("error")) {
-                                        <p>Please verify your email address.</p>
+                                        <p>@flash.get("error")</p>
                                     }
                                 }
                                 <p><a href="@routes.Reset.forgot()" tabindex="8">Forgot Password</a></p>
@@ -64,11 +64,7 @@
                                     @flash.get("success")
                                     </p>
                                 }
-                                @if(flash.contains("error")) {
-                                <p class="error">
-                                    @flash.get("error")
-                                </p>
-                                }
+
                                 <hr class="colorgraph">
                                 <div class="row">
                                     <div class="col-xs-6 col-md-6"><button type="submit" class="btn btn-success btn-block btn-lg" tabindex="9">Sign In</button></div>

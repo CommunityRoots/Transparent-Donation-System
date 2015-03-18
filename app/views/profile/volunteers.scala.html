@@ -1,5 +1,5 @@
 @import helper._
-@(volunteers: List[User],currentPage: Integer, pageCount: Integer)
+@(user: User,volunteers: List[User],currentPage: Integer, pageCount: Integer)
 @main {
 <section class="featured"></section>
 <section id="section-works" class="section appear clearfix">
@@ -12,15 +12,27 @@
             @flash.get("success")
         </p>
         }
+        @if(flash.contains("error")) {
+        <p class="success">
+            @flash.get("error")
+        </p>
+        }
 
         <div class="row">
-            <p>Volunteers listed in your charity.</p>
+            @if(user.role==1){
+                <p>Volunteers and leaders listed in the system.</p>
+            }else {
+                <p>Volunteers listed in your charity.</p>
+            }
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
+                    @if(user.role==1){
+                        <th>Role</th>
+                    }
                     <th>Remove</th>
                 </tr>
                 </thead>
@@ -30,6 +42,14 @@
                     <td>@volunteer.firstName</td>
                     <td>@volunteer.lastName</td>
                     <td>@volunteer.email</td>
+                    @if(user.role==1){
+                        @if(volunteer.role==2){
+                            <td>Leader</td>
+                        }else {
+                            <td>Volunteer</td>
+                        }
+
+                    }
                     <td><a href="@routes.Profile.deleteVolunteer(volunteer.email)"><i class="fa fa-minus-circle"></i></a> </td>
                 </tr>
                 }

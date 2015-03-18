@@ -2,6 +2,7 @@ package controllers;
 
 import Services.EmailService;
 import Services.FormValidator;
+import com.avaje.ebean.Expr;
 import com.avaje.ebean.Page;
 import com.avaje.ebean.PagingList;
 import models.*;
@@ -156,8 +157,11 @@ public class Profile {
         int role = user.role;
         PagingList<Need> pagingList;
         //admin or volunteer. Give them needs they added
-        if(role<4){
-            pagingList = Need.find.where().eq("added_by_id",user.id).findPagingList(3);
+        if(role==3){
+            pagingList = Need.find.where().eq("added_by_id",user.id).findPagingList(6);
+        }
+        else if(role<3){
+            pagingList = Need.find.where().eq("charity_id", user.charity.id).findPagingList(6);
         }
         else {
             //Give users needs they donated to
@@ -168,7 +172,7 @@ public class Profile {
             for(Donation donation : donationsByUserToNeed) {
                 needids.add(donation.need.id);
             }
-            pagingList =  Need.find.where().in("id",needids).findPagingList(3);
+            pagingList =  Need.find.where().in("id",needids).findPagingList(6);
         }
 
         Page<Need> currentPage = pagingList.getPage(page - 1);
@@ -250,8 +254,10 @@ public class Profile {
         //can delete if they added the need
         //if they are an admin of the charity a need was added into
         if(need != null
-                && (user.email.equals(need.addedBy.email) || (user.role==2&& user.charity.equals(need.charity)))
-                && user.role<4)
+                && user.role<4
+                && (user.email.equals(need.addedBy.email) || (user.role<3&& (user.charity.id==need.charity.id)))
+                )
+
         {
             if(need.deleteNeed()){
                 flash("success", "Need Deleted");
@@ -289,15 +295,17 @@ public class Profile {
             return redirect(routes.Application.index());
         }
         PagingList<User> pagingList;
+        //admins can remove leaders and volunteers
         if(user.role==1){
             pagingList = User.find.where()
-                    .eq("role","volunteer")
+                    .or(Expr.eq("role", 3),Expr.eq("role",2))
                     .findPagingList(10);
         }
         else{
+            //leaders can remove volunteers
             //users that have role volunteer and same charity as user
             pagingList = User.find.where()
-                    .eq("role","volunteer")
+                    .eq("role",3)
                     .eq("charity",user.charity)
                     .findPagingList(10);
         }
@@ -306,7 +314,7 @@ public class Profile {
 
         Integer totalPageCount = pagingList.getTotalPageCount();
         return ok(volunteers.render(
-                        volunteer, page, totalPageCount)
+                        user,volunteer, page, totalPageCount)
         );
     }
 
@@ -314,8 +322,8 @@ public class Profile {
         String email = session().get("email");
         User user = User.findByEmail(email);
         User volunteer = User.findByEmail(id);
-        if(user.role > 2 ||
-                !user.charity.equals(volunteer.charity)){
+        if((user.role > 2 ||
+                user.role==2&&!user.charity.equals(volunteer.charity))){
             flash("error", "You do not have permission to remove a volunteer");
             return redirect(routes.Profile.listVolunteers(1));
         }
@@ -431,7 +439,7 @@ public class Profile {
         User user = User.findByEmail(email);
         Charity charity = user.charity;
         charity.editCharity(editCharityForm.get().charityName,
-                editCharityForm.get().website,editCharityForm.get().description);
+                editCharityForm.get().description,editCharityForm.get().website);
         return profile(1);
     }
 
