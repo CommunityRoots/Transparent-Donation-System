@@ -20,14 +20,14 @@
                         <h2 class="section-heading animated" data-animation="bounceInUp">
                             <div class="uk-margin" data-uk-margin>
                                 <div class="uk-button-dropdown" data-uk-dropdown>
-                                    Your
-                                    <button type="button" class="uk-button dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    Your <span class="uk-button">COMMUNITY</span>
+                                    <!--<button type="button" class="uk-button dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                         COMMUNITY <span class="caret"></span>
                                     </button>
 
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href="#">Country</a></li>
-                                    </ul>
+                                    </ul>-->
                                 </div>
                             </div>
                          </h2>
@@ -58,7 +58,7 @@
                                             <div class="desc-limit">
                                                     @need.description
                                             </div>
-                                            <h5><a href="@routes.Charities.viewCharity(1,need.charity.id)">@need.charity.name</a></h5>
+                                            <p><a class="bold" href="@routes.Charities.viewCharity(1,need.charity.id)">@need.charity.name</a> - @need.location</p>
                                         </div>
                                     </div>
                                 }
