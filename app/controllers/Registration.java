@@ -82,8 +82,9 @@ public class Registration extends Controller {
                 User.findByEmail(confirmToken.email).validate();
             }
         }
+        flash("success", "Thanks for verifying your account. You can now sign in below.");
         return redirect(
-                routes.Profile.profile(1)
+                routes.Login.login()
         );
     }
 
