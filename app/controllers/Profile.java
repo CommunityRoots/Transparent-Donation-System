@@ -191,11 +191,11 @@ public class Profile {
     }
 
     public static Result changePassword(){
+        User user = User.findByEmail(session().get("email"));
         Form<ChangePass> changePassForm = form(ChangePass.class).bindFromRequest();
         if (changePassForm.hasErrors()) {
-            return forbidden();
+            return badRequest(settings.render(changePassForm,form(ChangeEmail.class),user));
         } else {
-            User user = User.findByEmail(session().get("email"));
             user.changePassword(changePassForm.get().newPassword);
             EmailService emailService = new EmailService();
             emailService.sendEmail(user.firstName,user.email,"Password Change","Your Password has been changed.");
