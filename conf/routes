@@ -51,9 +51,9 @@ POST          /login                       controllers.Registration.sendConfirmE
 
 #Subscriptions
 GET           /subscriptions               controllers.Profile.subscriptions(email: String)
-POST          /subscriptions               controllers.Profile.unsubFromNeed(id: Long, email: String)
-POST          /subscriptions               controllers.Profile.subToNeed(id: Long, email: String)
-POST          /subscriptions               controllers.Profile.unsubFromAll(email: String)
+GET          /subscriptions/unSub               controllers.Profile.unsubFromNeed(id: Long, email: String)
+GET          /subscriptions/sub               controllers.Profile.subToNeed(id: Long, email: String)
+GET          /subscriptions/unSubAll               controllers.Profile.unsubFromAll(email: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET           /assets/*file                controllers.Assets.at(path="/public", file)

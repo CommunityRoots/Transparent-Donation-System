@@ -417,7 +417,7 @@ public class Profile {
 
     public static Result unsubFromNeed(long id, String email){
         Donation.find.byId(id).unsub();
-        return redirect(routes.Profile.subscriptions(email));
+        return subscriptions(email);
     }
 
     public static Result subToNeed(long id, String email){
