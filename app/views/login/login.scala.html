@@ -31,7 +31,7 @@
                             <div class="row">
                                 <div class="col-xs-16 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
                                     @if(flash.contains("success")) {
-                                        <p class="bold">@flash.get("success")</p>
+                                        <p class="bold" id="successMessage">@flash.get("success")</p>
                                     }
                                     <form role="form">
                                         <h2>Please Sign In</h2>

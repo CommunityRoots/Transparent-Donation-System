@@ -24,7 +24,8 @@ public class RegisterTest {
                 browser.$("#password").text("secret1");
                 browser.$("#password_confirmation").text("secret1");
                 browser.$("button").click();
-                assertThat(browser.url()).isEqualTo("http://localhost:3333/profile");
+                assertThat(browser.url()).isEqualTo("http://localhost:3333/login");
+                assertThat(browser.find("p#successMessage").getText().contains("A confirmation email has been sent to your email account. Please click the link in the email to verify your email account."));
 
             }
         });
