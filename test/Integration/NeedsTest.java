@@ -32,7 +32,6 @@ public class NeedsTest {
                 browser.$("#location").text("Webb");
                 Select urgencySelect = new Select(webDriver.findElement(By.id("urgency")));
                 urgencySelect.selectByVisibleText("10");
-                System.out.println(urgencySelect.getOptions().get(0).getText());
                 Select categorySelect = new Select(webDriver.findElement(By.id("category")));
                 categorySelect.selectByVisibleText("Family");
                 browser.$("#needDescription").text("Inserted through test");
