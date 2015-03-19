@@ -10,7 +10,10 @@ import play.data.Form;
 import play.mvc.Result;
 import play.mvc.Security;
 import views.html.need.editNeed;
-import views.html.profile.*;
+import views.html.profile.profile;
+import views.html.profile.settings;
+import views.html.profile.subscriptions;
+import views.html.profile.volunteers;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -87,10 +90,10 @@ public class Profile {
 
         public String validate(){
             String adminEmail = session().get("email");
-            User admin = User.find.byId(adminEmail);
-            User user = User.find.byId(email);
+            User admin = User.findByEmail(adminEmail);
+            User user = User.findByEmail(email);
 
-            if(User.find.byId(email) == null){
+            if(User.findByEmail(email) == null){
                 return "No user with that email";
             }
             else if(admin.role >2){
@@ -194,7 +197,7 @@ public class Profile {
         User user = User.findByEmail(session().get("email"));
         Form<ChangePass> changePassForm = form(ChangePass.class).bindFromRequest();
         if (changePassForm.hasErrors()) {
-            return badRequest(settings.render(changePassForm,form(ChangeEmail.class),user));
+            return badRequest(settings.render(changePassForm, form(ChangeEmail.class), user));
         } else {
             user.changePassword(changePassForm.get().newPassword);
             EmailService emailService = new EmailService();
@@ -281,7 +284,7 @@ public class Profile {
         else {
             User user = User.findByEmail(addVolunteerForm.get().email);
             String email = session().get("email");
-            User admin = User.find.byId(email);
+            User admin = User.findByEmail(email);
             user.changeRole(3);
             user.setCharity(admin.charity);
             return ok();

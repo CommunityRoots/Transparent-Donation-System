@@ -1,15 +1,17 @@
 package controllers;
-import Services.EmailService;
+
 import Services.FormValidator;
-import models.*;
+import models.Token;
+import models.User;
 import org.mindrot.jbcrypt.BCrypt;
+import play.Logger;
 import play.cache.Cached;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.login.register;
+
 import java.net.MalformedURLException;
-import play.Logger;
 
 import static play.data.Form.form;
 

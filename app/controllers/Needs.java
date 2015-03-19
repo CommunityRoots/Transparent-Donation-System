@@ -1,7 +1,7 @@
 package controllers;
 
-import com.avaje.ebean.PagingList;
 import com.avaje.ebean.Page;
+import com.avaje.ebean.PagingList;
 import models.Need;
 import models.Updates;
 import models.User;

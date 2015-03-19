@@ -42,4 +42,18 @@ public class LoginTest {
             }
         });
     }
+
+    @Test
+    public void doForgotPassword() {
+        HtmlUnitDriver webDriver = new HtmlUnitDriver(BrowserVersion.CHROME);
+        running(testServer(3333), webDriver, new F.Callback<TestBrowser>() {
+            public void invoke(TestBrowser browser) {
+                browser.goTo("http://localhost:3333/forgot");
+                browser.$("#email").text("bob@gmail.com");
+                browser.$("button").click();
+                assertThat(browser.find("p.success").getText().contains("Reset email has been sent"));
+            }
+        });
+    }
+
 }

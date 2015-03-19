@@ -3,6 +3,7 @@ package models;
 
 import org.hibernate.validator.constraints.Email;
 import play.db.ebean.Model;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;

@@ -3,13 +3,11 @@ package models;
 import org.mindrot.jbcrypt.BCrypt;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
-import play.Logger;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.util.Date;
-import java.net.MalformedURLException;
 
 
 @Entity
